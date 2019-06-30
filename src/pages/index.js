@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 
 export default ({ data }) => (
@@ -15,8 +15,8 @@ export default ({ data }) => (
                 <h1>What I'm Up To</h1>
                 <p><strong>JavaScript is Disabled - Cannot Load Latest Posts</strong></p>
                 <p>Sorry, I realise this is a bit rough, but currently articles on theAdhocracy only work with JavaScript. It's something I'm actively looking to address in the future, but right now I'm struggling to find a solution.</p>
-                <p>If you're interested, the reason for the requirement is because the site is hosted on <a href="https://www.netlify.com" target="_blank">Netlify</a> but dynamically loads content in from a <a href="https://craftcms.com/" target="_blank">Craft CMS</a> instance on an old-school webserver. That leaves me with a choice: client-side content rendering (aka JavaScript) or forcing a rebuild of the whole site for every edit. Neither seem particularly viable, so right now I've chosen JavaScript.</p>
-                <p>If you have any ideas or suggestions, I'm always happy to hear them. Feel free to DM or @ me on Twitter <a href="https://twitter.com/theadhocracy" target="_blank">@theAdhocracy</a> with your thoughts 👍</p>
+                <p>If you're interested, the reason for the requirement is because the site is hosted on <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a> but dynamically loads content in from a <a href="https://craftcms.com/" target="_blank" rel="noopener noreferrer">Craft CMS</a> instance on an old-school webserver. That leaves me with a choice: client-side content rendering (aka JavaScript) or forcing a rebuild of the whole site for every edit. Neither seem particularly viable, so right now I've chosen JavaScript.</p>
+                <p>If you have any ideas or suggestions, I'm always happy to hear them. Feel free to DM or @ me on Twitter <a href="https://twitter.com/theadhocracy" target="_blank" rel="noopener noreferrer">@theAdhocracy</a> with your thoughts 👍</p>
             </noscript>
             {data.allPosts.edges.map(({ node }) => (
                 <section><h2>{node.title}</h2>

@@ -1,12 +1,15 @@
 const axios = require('axios');
 const crypto = require('crypto');
 
-exports.sourceNodes = async ({ boundActionCreators }) => {
-    const { createNode } = boundActionCreators;
+exports.sourceNodes = async ({ actions }) => {
+    const { createNode } = actions;
 
     // Fetch data from the input API endpoint
     const fetchPosts = () => axios.get(`https://cms.theadhocracy.co.uk/posts.json`);
     const res = await fetchPosts();
+
+    // const fetchArticle = () => axios.get(`https://cms.theadhocracy.co.uk/post.json`);
+    // const res = await fetchArticle();
 
     // Map results and create nodes
     res.data.data.map((post, i) => {
@@ -20,6 +23,7 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
             },
             children: [],
             // Fields specific to this endpoint
+            entryId: post.id,
             title: post.title,
             slug: post.slug,
             date: post.date,
