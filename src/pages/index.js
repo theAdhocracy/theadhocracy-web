@@ -20,7 +20,7 @@ export default ({ data }) => (
             </noscript>
             {data.allPosts.edges.map(({ node }) => (
                 <section><h2>{node.title}</h2>
-                    <article dangerouslySetInnerHTML={{ __html: `${node.snippet} <Link to={/article/${node.slug}}>Read More</Link>` }}></article>
+                    <article><span dangerouslySetInnerHTML={{ __html: `${node.snippet}` }}></span> <Link to={`/article/${node.slug}`}>Read More</Link></article>
                     <aside>
                         <p>Explore more like this: {node.categories[0].map(category => <strong>{category} </strong>)}</p>
                         <p>Article tagged as: {node.tags[0].map(tag => <em>{tag} </em>)}</p>
