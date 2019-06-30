@@ -1,0 +1,149 @@
+/* General reset to Box-Model */
+*, ::before, ::after { box-sizing: border-box; }
+
+/* Define text in responsive font-sizes */
+h1 {
+    font-size: 2rem;
+    margin: 0.67em 0;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.17rem;
+}
+h4 {
+    font-size: 1.00rem;
+}
+h5 {
+    font-size: 0.83rem;
+}
+h6 {
+    font-size: 0.67rem;
+}
+p {
+    font-size: 1rem;
+}
+
+/* Improve readability */
+h2, h3, h4, h5, h6{
+    line-height: 1;
+}
+p, ul, ol, dl, address {
+    line-height: 1.5;
+}
+
+/* General fixes */
+pre {
+    white-space: pre-wrap; /* Overflow by default is bad. */
+}
+hr {
+    border: .5px solid;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Multimedia */
+img, video, canvas, audio, iframe, embed, object  { 
+    display: block;
+    vertical-align: middle;
+}
+img, video {
+    max-width: 100%; /* Make images and video flexible by default. */
+    height: auto; /* Ensure images and video maintain their aspect ratio when max-width comes into play. */
+}
+img {
+    border-style: none; /* Remove the border on images inside links in IE 10 and earlier. */
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+body > div > div {
+    background-color: hsl(212, 10%, 93%);
+    color: hsl(212, 20%, 20%);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto minmax(auto, 3rem) auto auto minmax(100px, max-content);
+    grid-template-areas: 
+        "header header header header header header header header header header"
+        "nav nav nav nav nav nav nav nav nav nav"
+        "about about about about about about about sidebar sidebar sidebar"
+        "content content content content content content content sidebar sidebar sidebar"
+        "footer footer footer footer footer footer footer footer footer footer";
+}
+
+#header {
+    grid-area: header;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+#header > img {
+    margin: 0 auto;
+}
+
+#nav {
+    grid-area: nav;
+    background-color: #000;
+    color: #fff;
+}
+
+#nav > ul {
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#nav > ul li {
+    padding: 0.5rem;
+}
+
+#about {
+    grid-area: about;
+    padding: 2rem;
+}
+
+.profile_photo {
+    max-width: 12rem;
+    border-radius: 50%;
+} 
+
+#content {
+    grid-area: content;
+    padding: 2rem;
+}
+
+#content > article {
+    /* background-color: rgba(0, 0, 0, 0.637) */
+}
+
+#sidebar {
+    grid-area: sidebar;
+    padding: 2rem;
+}
+
+#footer {
+    grid-area: footer;
+}
+
+.footnotes {
+    counter-reset: footnote;
+}
+
+.footnotes p::before {
+    counter-increment: footnote;
+    content: "[" counter(footnote) "] ";
+}
