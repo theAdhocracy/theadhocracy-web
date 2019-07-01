@@ -23,11 +23,11 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!) {
-                            article(slug: {eq: $slug }) {
-                        title
-      body
-                    footnotes
-                  }
-                }
+    query($slug: String!) {
+        article(slug: {eq: $slug }) {
+            title
+            body
+            footnotes
+        }
+    }
 `
