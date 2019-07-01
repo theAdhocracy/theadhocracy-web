@@ -1,18 +1,21 @@
 const axios = require('axios');
 const crypto = require('crypto');
+const path = require(`path`)
+
+// ******* API NODES
 
 exports.sourceNodes = async ({ actions }) => {
     const { createNode } = actions;
 
     // Fetch data from the input API endpoint
     const fetchPosts = () => axios.get(`https://cms.theadhocracy.co.uk/posts.json`);
-    const res = await fetchPosts();
+    const getFeed = await fetchPosts();
 
-    const fetchArticle = () => axios.get(`https://cms.theadhocracy.co.uk/article/1363.json`);
-    const getArticle = await fetchArticle();
+    const fetchArticles = () => axios.get(`https://cms.theadhocracy.co.uk/articles.json`);
+    const getArticles = await fetchArticles();
 
     // Map results and create nodes
-    res.data.data.map((post, i) => {
+    getFeed.data.data.map((post, i) => {
         // Create node object
         const postsNode = {
             // Required fields for Gatsby
@@ -44,38 +47,67 @@ exports.sourceNodes = async ({ actions }) => {
     });
 
     // Map results and create nodes
-    // getArticle.data.map((article, i) => {
-    // Create node object
+    getArticles.data.data.map((article, i) => {
+        // Create node object
+        const articlesNode = {
+            // Required fields for Gatsby
+            id: `${i}`,
+            parent: `__SOURCE__`,
+            internal: {
+                type: `Article`, // name of the graphQL query --> allArticle {}
+            },
+            children: [],
+            // Fields specific to this endpoint
+            entryId: article.id,
+            title: article.title,
+            slug: article.slug,
+            date: article.date,
+            body: article.body,
+            footnotes: article.footnotes,
+            categories: article.categories,
+            tags: article.tags
+        }
 
-    const articleNode = {
-        // Required fields for Gatsby
-        id: `1`,
-        parent: `__SOURCE__`,
-        internal: {
-            type: `Article`, // name of the graphQL query --> allArticle {}
-        },
-        children: [],
-        // Fields specific to this endpoint
-        entryId: getArticle.data.id,
-        title: getArticle.data.title,
-        slug: getArticle.data.slug,
-        date: getArticle.data.date,
-        body: getArticle.data.body,
-        footnotes: getArticle.data.footnotes,
-        categories: getArticle.data.categories,
-        tags: getArticle.data.tags
-    }
+        // Get content digest of node. (Required field)
+        const contentDigest = crypto
+            .createHash(`md5`)
+            .update(JSON.stringify(articlesNode))
+            .digest(`hex`);
+        articlesNode.internal.contentDigest = contentDigest;
 
-    // Get content digest of node. (Required field)
-    const contentDigest = crypto
-        .createHash(`md5`)
-        .update(JSON.stringify(articleNode))
-        .digest(`hex`);
-    articleNode.internal.contentDigest = contentDigest;
-
-    // Create node with the gatsby createNode() API
-    createNode(articleNode);
-    // });
+        // Create node with the gatsby createNode() API
+        createNode(articlesNode);
+    });
 
     return;
+}
+
+//******* PAGE CREATION
+
+exports.createPages = ({ graphql, actions }) => {
+    // **Note:** The graphql function call returns a Promise
+    // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
+    const { createPage } = actions
+    return graphql(`
+        {
+            allArticle {
+                nodes {
+                    slug
+                }
+            }
+        }
+    `
+    ).then(result => {
+        result.data.allArticle.nodes.forEach(({ slug }) => {
+            createPage({
+                path: `/article/${slug}`,
+                component: path.resolve(`./src/templates/article.js`),
+                context: {
+                    // Data passed to context is available
+                    // in page queries as GraphQL variables.
+                    slug: slug,
+                },
+            })
+        })
+    })
 }
