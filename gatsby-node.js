@@ -64,6 +64,7 @@ exports.sourceNodes = async ({ actions }) => {
             date: article.date,
             body: article.body,
             footnotes: article.footnotes,
+            resources: article.resources,
             categories: article.categories,
             tags: article.tags
         }
@@ -85,8 +86,6 @@ exports.sourceNodes = async ({ actions }) => {
 //******* PAGE CREATION
 
 exports.createPages = ({ graphql, actions }) => {
-    // **Note:** The graphql function call returns a Promise
-    // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
     const { createPage } = actions
     return graphql(`
         {
