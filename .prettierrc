@@ -1,7 +1,10 @@
 {
+  "arrowParens": "always",
   "endOfLine": "lf",
+  "printWidth": 500,
   "semi": false,
   "singleQuote": false,
-  "tabWidth": 2,
-  "trailingComma": "es5"
+  "tabWidth": 4,
+  "trailingComma": "none",
+  "useTabs": true
 }

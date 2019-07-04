@@ -11,8 +11,8 @@ export default ({ data }) => (
             <p>Ad hoc thoughts from an ad hoc mind!</p>
         </section>
         <section id="content">
+            <h1>What I'm Up To</h1>
             <noscript>
-                <h1>What I'm Up To</h1>
                 <p><strong>JavaScript is Disabled - Cannot Load Latest Posts</strong></p>
                 <p>Sorry, I realise this is a bit rough, but currently articles on theAdhocracy only work with JavaScript. It's something I'm actively looking to address in the future, but right now I'm struggling to find a solution.</p>
                 <p>If you're interested, the reason for the requirement is because the site is hosted on <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a> but dynamically loads content in from a <a href="https://craftcms.com/" target="_blank" rel="noopener noreferrer">Craft CMS</a> instance on an old-school webserver. That leaves me with a choice: client-side content rendering (aka JavaScript) or forcing a rebuild of the whole site for every edit. Neither seem particularly viable, so right now I've chosen JavaScript.</p>
@@ -32,20 +32,20 @@ export default ({ data }) => (
 )
 
 export const query = graphql`
-    query LatestPostsQuery {
-        allPosts {
-            edges {
-                node {
-                    title
-                    slug
-                    snippet
-                    categories
-                    tags
-                }
-            }
-        }
-    }
-`;
+	query LatestPostsQuery {
+		allPosts {
+			edges {
+				node {
+					title
+					slug
+					snippet
+					categories
+					tags
+				}
+			}
+		}
+	}
+`
 
 // <!doctype html>
 // <html lang="en">
