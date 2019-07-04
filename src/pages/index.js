@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => {
                 </noscript>
                 {data.allPosts.edges.map(({ node }) => (
                     <section><h2>{node.title}</h2>
-                        <article><span dangerouslySetInnerHTML={{ __html: `${node.snippet} <a href="${`/article/${node.slug}`}">Read More</a>` }} /></article>
+                        <article><span dangerouslySetInnerHTML={{ __html: `${node.snippet}` }} /> <Link to={`/article/${node.slug}`}>Read More</Link></article>
                         <aside>
                             <p>Explore more like this: {node.categories.map(category => <strong>{category} </strong>)}</p>
                             <p>Article tagged as: {node.tags.map(tag => <em>{tag}, </em>)}</p>
