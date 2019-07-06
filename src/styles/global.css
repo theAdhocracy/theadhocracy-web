@@ -25,12 +25,9 @@ p {
     font-size: 1rem;
 }
 
-/* Improve readability */
-h2, h3, h4, h5, h6{
-    line-height: 1;
-}
-p, ul, ol, dl, address {
-    line-height: 1.5;
+/* Improve readability - uses em to allow for variable font size */
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, address{
+    line-height: 1.5em;
 }
 
 /* General fixes */
@@ -49,7 +46,6 @@ nav ul {
 /* Multimedia */
 img, video, canvas, audio, iframe, embed, object  { 
     display: block;
-    vertical-align: middle;
 }
 img, video {
     max-width: 100%; /* Make images and video flexible by default. */
@@ -57,6 +53,21 @@ img, video {
 }
 img {
     border-style: none; /* Remove the border on images inside links in IE 10 and earlier. */
+}
+
+/* Utility Classes */
+.flat-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.flat-list > li + li {
+    margin-left: 1rem;
 }
 
 html,
@@ -124,6 +135,7 @@ body > div > div {
 #content {
     grid-area: content;
     padding: 2rem;
+    background-color: white;
 }
 
 #content > article {
@@ -146,4 +158,62 @@ body > div > div {
 .footnotes p::before {
     counter-increment: footnote;
     content: "[" counter(footnote) "] ";
+}
+
+/* Index Content Grid */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-gap: 3rem;
+}
+
+/* Content Cards */
+
+.content-card {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 5px solid blue;
+}
+
+.content-card article {
+    flex: 1;
+}
+
+.content-card footer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+}
+
+.content-card footer * {
+    margin: 0;
+}
+
+.content-card footer > * {
+    padding: 1rem;
+}
+
+.content-card footer p {
+    height: 100%;
+    background-color: pink;
+    text-align: center;
+}
+
+.content-card footer ul {
+    grid-column: 1 / 3;
+    padding-top: 0;
+}
+
+.content-card footer li {
+    /* border: 1px solid black; */
+    padding: 1rem;
+    flex: 1;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+    background-color: white;
 }
