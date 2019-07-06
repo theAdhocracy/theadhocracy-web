@@ -27,7 +27,7 @@ const IndexPage = ({ data }) => {
                             </header>
                             <article><span dangerouslySetInnerHTML={{ __html: `${node.snippet}` }} /></article>
                             <footer>
-                                <p><span role="img" aria-label="Book icon">📖</span> <Link to={`/article/${node.slug}`}>Continue Reading</Link></p>
+                                <p><span role="img" aria-label="Book icon">📖</span> <Link to={`/article/${node.slug}`}>Read Article</Link></p>
                                 <p><span role="img" title="Date published" aria-label="Date published">📆</span> 01 Jan 2019</p>
                                 <ul className="flat-list">{node.categories.map(category => <li>{category} </li>)}</ul>
                                 {/* <p>Article tagged as: {node.tags.map(tag => <em>{tag}, </em>)}</p> */}
