@@ -12,7 +12,9 @@ const IndexPage = ({ data }) => {
                 <p>Ad hoc thoughts from an ad hoc mind!</p>
             </section>
             <section id="content">
-                <h1>What I'm Up To</h1>
+                <header>
+                    <h1>What I'm Up To</h1>
+                </header>
                 <noscript>
                     <p><strong>JavaScript is Disabled - Cannot Load Latest Posts</strong></p>
                     <p>Sorry, I realise this is a bit rough, but currently articles on theAdhocracy only work with JavaScript. It's something I'm actively looking to address in the future, but right now I'm struggling to find a solution.</p>
@@ -25,12 +27,12 @@ const IndexPage = ({ data }) => {
                             <header>
                                 <h2>{node.title}</h2>
                             </header>
-                            <article><span dangerouslySetInnerHTML={{ __html: `${node.snippet}` }} /></article>
+                            <article dangerouslySetInnerHTML={{ __html: `${node.snippet}` }} />
                             <footer>
-                                <Link to={`/article/${node.slug}`}><span role="img" aria-label="Book icon">📖</span>Read Article</Link>
+                                <Link to={`/article/${node.slug}`}><span role="img" aria-label="Book icon">📖</span> Read Article</Link>
                                 <p><span role="img" title="Date published" aria-label="Date published">📆</span> 01 Jan 2019</p>
                                 <p><span>Categories</span></p>
-                                <ul className="flat-list">{node.categories.map(category => <li>{category} </li>)}</ul>
+                                <ul className="flat-list">{node.categories.map(category => <li>{category}</li>)}</ul>
                                 {/* <p>Article tagged as: {node.tags.map(tag => <em>{tag}, </em>)}</p> */}
                             </footer>
                         </section>

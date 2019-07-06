@@ -137,6 +137,7 @@ body > div > div {
 #about {
     grid-area: about;
     padding: 2rem;
+    background-color: #ffffff;
 }
 
 .profile_photo {
@@ -148,6 +149,21 @@ body > div > div {
     grid-area: content;
     padding: 2rem;
     background-color: white;
+}
+
+#content > header {
+    margin-bottom: 2rem;
+    border-bottom: 5px solid var(--orange);
+    border-image: linear-gradient(90deg, var(--orange), var(--yellow)) 1;
+}
+
+#content h1 {
+    display: inline-block;
+    margin: 0 0 0.2rem 0;
+    background: linear-gradient(90deg, var(--orange), var(--yellow));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color: var(--orange); /* fallback if gradients aren't suppported */
 }
 
 #content > article {
@@ -186,10 +202,20 @@ body > div > div {
     display: flex;
     flex-direction: column;
     border-bottom: 5px solid var(--lightblue);
+    border-image: linear-gradient(90deg, var(--lightblue), var(--blue)) 1;
+}
+
+.content-card h2 {
+    margin: 0;
+    padding: 0.25rem 1rem 0.5rem 1rem;
+    background-image: linear-gradient(90deg, var(--blue), var(--lightblue));
+    color: white;
 }
 
 .content-card article {
     flex: 1;
+    margin: 1rem 0;
+    padding: 0 0.75rem;
 }
 
 .content-card footer {
@@ -214,11 +240,11 @@ body > div > div {
     background-color: var(--orange);
     border-radius: 0.5rem;
     text-align: center;
+    line-height: 1.6em;
 }
 
 .content-card footer a {
     margin: 0 0.25rem 0 0.75rem;
-    cursor: pointer;
 }
 
 .content-card footer a:hover {
