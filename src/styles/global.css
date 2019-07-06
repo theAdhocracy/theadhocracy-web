@@ -106,8 +106,10 @@ body > div > div {
 
 #header {
     grid-area: header;
-    align-items: center;
     padding: 2rem 1rem;
+    border-top: 10px solid var(--pink);
+    border-image: linear-gradient(90deg, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink)) 1;
+    text-align: center;
 }
 
 #header > img {
