@@ -3,11 +3,11 @@ import Header from './header'
 import Footer from './footer'
 import Sidebar from './sidebar'
 
-export default ({ children }) => (
+export default ({ children, sidebar }) => (
     <>
         <Header></Header>
         {children}
-        <Sidebar></Sidebar>
+        {sidebar ? <Sidebar></Sidebar> : null}
         <Footer></Footer>
     </>
 )

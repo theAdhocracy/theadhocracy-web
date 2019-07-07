@@ -1,0 +1,84 @@
+/* Determin Grid Widths */
+:root {
+    --main:         40rem;
+    --aside:        20rem;
+    --gutter:       10rem;
+    --full-width:   calc(var(--main) + (2 * var(--aside)) + (2 * var(--gutter)));
+    --part-span:    calc(var(--main) + var(--aside));
+}
+
+/* Layout */
+
+#content {
+    grid-column: 1 / -1;
+}
+
+main * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content p, #content h2, #content h3, #content h4, #content h5, #content h6 {
+    max-width: var(--main);
+    line-height: 2;
+}
+
+#content h2 {
+    background: linear-gradient(90deg, var(--blue), var(--lightblue));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color: var(--blue); /* fallback if gradients aren't suppported */
+}
+
+#content pre {
+    max-width: var(--part-span);
+    padding: 1rem 3rem;
+    overflow-x: auto;
+    background-color: var(--darkgray);
+    border-left: 5px solid var(--orange);
+    border-image: linear-gradient(180deg, var(--orange), var(--yellow)) 1;
+    color: var(--yellow);
+    font-family: monospace, sans-serif;
+    line-height: 2.2;
+    tab-size: 4;
+}
+
+.article-details {
+    margin-top: 0;
+    text-align: right;
+    list-style: none;
+}
+
+.article-details > li {
+    margin-right: 3rem;
+    line-height: 2;
+}
+
+/* Width / Column Utility Classes */
+
+.full-width {
+    max-width: var(--full-width);
+    width: 100%;
+}
+
+.main-col {
+    max-width: var(--main);
+    width: 100%;
+}
+
+.right-side {
+    float: right;
+    max-width: var(--aside);
+    width: 100%;
+}
+
+.left-side {
+    float: left;
+    max-width: var(--aside);
+    width: 100%;
+}
+
+.part-span {
+    max-width: var(--part-span);
+    width: 100%;
+}
