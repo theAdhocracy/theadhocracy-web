@@ -103,8 +103,8 @@ body > div > div {
     grid-template-areas: 
         "header header header header header header header header header header"
         "nav nav nav nav nav nav nav nav nav nav"
-        "about about about about about about about sidebar sidebar sidebar"
-        "content content content content content content content sidebar sidebar sidebar"
+        ". . about about about about about about . ."
+        ". . content content content content content content . ."
         "footer footer footer footer footer footer footer footer footer footer";
 }
 

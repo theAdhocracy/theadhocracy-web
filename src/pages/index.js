@@ -6,7 +6,7 @@ import Card from "../components/content_card"
 
 const IndexPage = ({ data }) => {
     return (
-        <Layout title="theAdhocracy" sidebar={true}>
+        <Layout title="theAdhocracy" sidebar={false}>
             <section id="about">
                 <img className={"profile_photo"} src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/profile-photo-square.jpg" alt="Murray Adcock (site owner) wearing shades and raising a single eyebrow." />
                 <h1>oh hi!</h1>
