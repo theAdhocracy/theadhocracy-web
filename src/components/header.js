@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 export default (props) => (
     <>
         <header id="header">
+            <img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg" />
             <h1>theAdhocracy</h1>
         </header>
         <nav id="nav">
