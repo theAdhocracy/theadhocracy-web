@@ -103,9 +103,20 @@ body > div > div {
     grid-template-areas: 
         "header header header header header header header header header header"
         "nav nav nav nav nav nav nav nav nav nav"
-        ". . about about about about about about . ."
-        ". . content content content content content content . ."
+        "about about about about about about about about about about"
+        "content content content content content content content content content content"
         "footer footer footer footer footer footer footer footer footer footer";
+}
+
+@media screen and (min-width: 900) {
+    body > div > div {
+        grid-template-areas: 
+            "header header header header header header header header header header"
+            "nav nav nav nav nav nav nav nav nav nav"
+            ". . about about about about about about . ."
+            ". . content content content content content content . ."
+            "footer footer footer footer footer footer footer footer footer footer";
+    }
 }
 
 #header {
