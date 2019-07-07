@@ -82,6 +82,26 @@ main.article * {
     color: var(--lightblue);
 }
 
+.article figure {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: center;
+}
+
+.article figure img {
+    margin: 0 0 0 auto;
+}
+
+.article figure figcaption {
+    max-width: 20rem;
+    margin: 2rem auto 0 2rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--lightblue);
+    font-size: 0.8rem;
+    color: var(--lightblue);
+}
+
 /* Article Details */
 
 .article-details {
