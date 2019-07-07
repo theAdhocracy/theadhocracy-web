@@ -95,7 +95,7 @@ body {
 }
 
 body > div > div {
-    background-color: hsl(212, 10%, 93%);
+    background-color: var(--lightgrey);
     color: hsl(212, 20%, 20%);
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -180,9 +180,17 @@ body > div > div {
     background-color: #ffffff;
 }
 
+#about h1 {
+    color: var(--pink);
+    margin-bottom: 0;
+}
+
 .profile_photo {
     max-width: 12rem;
     border-radius: 50%;
+    float: left;
+    margin-right: 2rem;
+    shape-outside: circle(50%);
 } 
 
 #content {
