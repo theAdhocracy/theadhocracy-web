@@ -132,6 +132,7 @@ body > div > div {
     background-image: linear-gradient(90deg, black 15%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
     background-position: left center;
     background-size: 400% auto;
 }
@@ -211,11 +212,8 @@ body > div > div {
     background: linear-gradient(90deg, var(--orange), var(--yellow));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
     color: var(--orange); /* fallback if gradients aren't suppported */
-}
-
-#content > article {
-    /* background-color: rgba(0, 0, 0, 0.637) */
 }
 
 #sidebar {
@@ -240,6 +238,7 @@ body > div > div {
     background: linear-gradient(90deg, var(--orange), var(--pink));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
 }
 
 #footer h1 {

@@ -5,7 +5,7 @@ export default (props) => (
     <>
         <header id="header">
             <Link to="/">
-                <img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg" />
+                <img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg" alt="Stylised, cartoon version of Murray Adcock's face." />
                 <h1>theAdhocracy</h1>
             </Link>
         </header>

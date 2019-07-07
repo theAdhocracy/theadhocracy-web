@@ -3,7 +3,7 @@ import React from 'react'
 export default (props) => {
 
     // Creating Human Era Year
-    const today = new Date
+    const today = new Date()
     const yearAD = today.getFullYear()
     const yearHE = (yearAD + 10000).toString().replace(/^([0-9][0-9])/, "$1,")
 

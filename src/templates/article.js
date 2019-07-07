@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 
 import "../styles/article.css"
@@ -22,7 +22,7 @@ export default ({ data }) => {
                         <li>01 Jan 2019</li>
                         <li>Categories</li>
                         <li>
-                            {post.categories.map(category => <a href="#">{category}, </a>)}
+                            {post.categories.map(category => <a>{category}, </a>)}
                         </li>
                         <li>Tags</li>
                         <li>

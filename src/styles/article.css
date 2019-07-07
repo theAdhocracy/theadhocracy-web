@@ -27,6 +27,7 @@ main.article * {
     background: linear-gradient(90deg, var(--blue), var(--lightblue));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
     color: var(--blue); /* fallback if gradients aren't suppported */
 }
 
@@ -34,6 +35,7 @@ main.article * {
     background: linear-gradient(90deg, var(--green), var(--lightblue));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+    background-clip: text;
     color: var(--green); /* fallback if gradients aren't suppported */
 }
 
