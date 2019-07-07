@@ -7,9 +7,9 @@
     --part-span:    calc(var(--main) + var(--aside));
 }
 
-/* Layout */
+/* Layout & Element Styling */
 
-.article {
+#content.article {
     grid-column: 1 / -1;
 }
 
@@ -49,6 +49,40 @@ main.article * {
     line-height: 2.2;
     tab-size: 4;
 }
+
+.article blockquote {
+    position: relative;
+    max-width: var(--part-span);
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-family: "Times New Roman", serif;
+    line-height: 2;
+    text-align: center;
+    font-style: italic;
+    quotes: "“" "”";
+}
+
+.article blockquote::before {
+    content: open-quote;
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    margin-right: 1.25rem;
+    font-size: 4rem;
+    color: var(--orange);
+}
+
+.article blockquote::after {
+    content: close-quote;
+    position: absolute;
+    bottom: -2rem;
+    right: 0;
+    margin-left: 1.25rem;
+    font-size: 4rem;
+    color: var(--lightblue);
+}
+
+/* Article Details */
 
 .article-details {
     margin-top: 0;
