@@ -126,6 +126,10 @@ body > div > div {
     color: #fff;
 }
 
+#nav a {
+    color: #fff;
+}
+
 #nav > ul {
     display: inline-flex;
     justify-content: space-evenly;
