@@ -10,7 +10,7 @@ export default ({ data }) => {
 
     return (
         <Layout>
-            <main id="content">
+            <main id="content" class="article">
                 <header>
                     <h1>{post.title}</h1>
                 </header>
