@@ -30,11 +30,18 @@ main * {
     color: var(--blue); /* fallback if gradients aren't suppported */
 }
 
+#content h3 {
+    background: linear-gradient(90deg, var(--green), var(--lightblue));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color: var(--green); /* fallback if gradients aren't suppported */
+}
+
 #content pre {
     max-width: var(--part-span);
     padding: 1rem 3rem;
     overflow-x: auto;
-    background-color: var(--darkgray);
+    background-color: var(--darkgrey);
     border-left: 5px solid var(--orange);
     border-image: linear-gradient(180deg, var(--orange), var(--yellow)) 1;
     color: var(--yellow);
@@ -49,9 +56,19 @@ main * {
     list-style: none;
 }
 
-.article-details > li {
+.article-details li {
     margin-right: 3rem;
     line-height: 2;
+    color: var(--yellow);
+}
+
+.article-details li:nth-of-type(even) {
+    color: var(--green);
+}
+
+.article-details li:nth-of-type(even) a {
+    color: var(--grey);
+    text-decoration: none;
 }
 
 /* Width / Column Utility Classes */

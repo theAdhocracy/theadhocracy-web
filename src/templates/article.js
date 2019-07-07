@@ -16,9 +16,18 @@ export default ({ data }) => {
                 </header>
                 <div className="full-width">
                     <ul className="article-details left-side">
-                        <li>Published: 01 Jan 2019</li>
-                        <li>Published: 01 Jan 2019</li>
-                        <li>Published: 01 Jan 2019</li>
+                        <li>Updated</li>
+                        <li>01 Jan 2019</li>
+                        <li>Published</li>
+                        <li>01 Jan 2019</li>
+                        <li>Categories</li>
+                        <li>
+                            {post.categories.map(category => <a href="#">{category}, </a>)}
+                        </li>
+                        <li>Tags</li>
+                        <li>
+                            {post.tags.map(tag => <a>{tag}, </a>)}
+                        </li>
                     </ul>
                     <article dangerouslySetInnerHTML={{ __html: body }} />
                     <section className="footnotes">
@@ -39,6 +48,8 @@ export const query = graphql`
             title
             body
             footnotes
+            categories
+            tags
         }
     }
 `

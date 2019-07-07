@@ -7,8 +7,9 @@
     --yellow:       #F2C12E;
     --pink:         #F22E62;
 
-    --darkgray:     #1D2A34;
-    --lightgray:    #F8F8F8;
+    --grey:         #d8d8d8;
+    --darkgrey:     #1D2A34;
+    --lightgrey:    #F8F8F8;
 }
 
 /* General reset to Box-Model */
