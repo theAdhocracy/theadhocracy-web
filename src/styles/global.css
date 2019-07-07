@@ -185,15 +185,47 @@ body > div > div {
 
 #footer {
     grid-area: footer;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 4rem 1rem;
+    background-color: var(--darkgrey);
+    color: var(--pink);
 }
 
-.footnotes {
-    counter-reset: footnote;
+#footer section {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 2rem;
+    background: linear-gradient(90deg, var(--orange), var(--pink));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
-.footnotes p::before {
-    counter-increment: footnote;
-    content: "[" counter(footnote) "] ";
+#footer h1 {
+    width: 100%;
+}
+
+#footer p {
+    min-width: 10rem;
+    text-align: center;
+}
+
+#footer a {
+    color: var(--grey);
+    text-decoration: none;
+}
+
+#footer img {
+    height: 50px;
+    margin: 1rem auto;
+}
+
+.copyright {
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 /* Index Content Grid */
@@ -202,4 +234,13 @@ body > div > div {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     grid-gap: 3rem;
+}
+
+/* Desktop */
+
+@media screen and (min-width: 400px) {
+    #footer section {
+        min-width: 399px;
+    }
+    
 }

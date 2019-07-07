@@ -125,6 +125,17 @@ main.article * {
     text-decoration: none;
 }
 
+/* Article Footnotes */
+
+.footnotes {
+    counter-reset: footnote;
+}
+
+.footnotes p::before {
+    counter-increment: footnote;
+    content: "[" counter(footnote) "] ";
+}
+
 /* Width / Column Utility Classes */
 
 .full-width {
