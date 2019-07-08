@@ -108,7 +108,7 @@ body > div > div {
         "footer footer footer footer footer footer footer footer footer footer";
 }
 
-@media screen and (min-width: 900) {
+@media screen and (min-width: 900px) {
     body > div > div {
         grid-template-areas: 
             "header header header header header header header header header header"
