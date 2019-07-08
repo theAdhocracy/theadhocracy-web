@@ -227,6 +227,19 @@ body > div > div {
     color: var(--orange); /* fallback if gradients aren't suppported */
 }
 
+.content-grid > a:last-child {
+  margin: 0 auto;
+  grid-column: 1 / -1;
+  margin-bottom: 0.75rem;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--pink), var(--yellow));
+  font-size: 1.5rem;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
 #sidebar {
     grid-area: sidebar;
     padding: 2rem;

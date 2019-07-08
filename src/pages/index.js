@@ -27,6 +27,7 @@ const IndexPage = ({ data }) => {
                     {data.allPosts.edges.map(({ node }) => (
                         <Card post={node} />
                     ))}
+                    <a href="/articles/">Explore?</a>
                 </main>
             </section>
         </Layout>
@@ -44,7 +45,8 @@ export const query = graphql`
 					slug
 					snippet
 					categories
-					tags
+                    tags
+                    date(formatString: "DD MMM YYYY")
 				}
 			}
 		}

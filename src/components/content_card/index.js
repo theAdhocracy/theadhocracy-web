@@ -12,7 +12,7 @@ const ContentCard = ({ post }) => {
             <article dangerouslySetInnerHTML={{ __html: `${post.snippet}` }} />
             <footer>
                 <Link to={`/article/${post.slug}`}><span role="img" aria-label="Book icon">📖</span> Read Article</Link>
-                <p><span role="img" title="Date published" aria-label="Date published">📆</span> 01 Jan 2019</p>
+                <p><span role="img" title="Date published" aria-label="Date published">📆</span> {post.date}</p>
                 <p><span>Categories</span></p>
                 <ul className="flat-list">{post.categories.map(category => <li>{category}</li>)}</ul>
                 {/* <p>Article tagged as: {post.tags.map(tag => <em>{tag}, </em>)}</p> */}
