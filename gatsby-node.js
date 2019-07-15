@@ -63,6 +63,7 @@ exports.sourceNodes = async ({ actions }) => {
             slug: article.slug,
             date: article.date,
             body: article.body,
+            snippet: article.snippet,
             footnotes: article.footnotes,
             resources: article.resources,
             categories: article.categories,

@@ -61,6 +61,7 @@ export const query = graphql`
             nodes {
                 title
                 slug
+                snippet
                 date(formatString: "DD MMM YYYY")
                 categories
                 tags
