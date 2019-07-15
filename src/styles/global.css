@@ -260,6 +260,8 @@ body > div > div {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: end;
     margin-right: 2rem;
     background: linear-gradient(90deg, var(--orange), var(--pink));
     -webkit-text-fill-color: transparent;
@@ -269,10 +271,11 @@ body > div > div {
 
 #footer h1 {
     width: 100%;
+    text-align: center;
 }
 
 #footer p {
-    min-width: 10rem;
+    min-width: 8rem;
     text-align: center;
 }
 
@@ -284,6 +287,11 @@ body > div > div {
 #footer img {
     height: 50px;
     margin: 1rem auto;
+}
+
+#footer img.wide-logo {
+    height: 40px;
+    margin: 1.4rem auto 1rem;
 }
 
 .copyright {
@@ -305,7 +313,7 @@ body > div > div {
 
 @media screen and (min-width: 400px) {
     #footer section {
-        min-width: 399px;
+        min-width: 299px;
     }
     
 }
