@@ -1,28 +1,53 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Card from "../components/content_card"
 
-const Articles = ({ data }) => {
-    return (
-        <Layout title="theAdhocracy" sidebar={false}>
-            <section id="content">
-                <header>
-                    <h1>Explore Articles</h1>
-                </header>
-                <section>
-                    <button>List View</button>
-                    <button>Page View</button>
-                    <p>Timeline for pagination (some kind of calendar with mapped hot spots and year select at far right)</p>
+class Articles extends React.Component {
+    render() {
+        // Defining pagination values
+        const { currentPage, numPages } = this.props.pageContext
+        const pageRoot = "/articles/"
+        const isFirst = currentPage === 1
+        const isLast = currentPage === numPages
+        const prevPage = currentPage - 1 === 1 ? pageRoot : `${pageRoot}${(currentPage - 1).toString()}`
+        const nextPage = `${pageRoot}${(currentPage + 1).toString()}`
+
+        // Set root for data
+        const articles = this.props.data.allArticle.nodes
+
+        return (
+            <Layout title="theAdhocracy" sidebar={false}>
+                <section id="content">
+                    <header>
+                        <h1>Explore Articles</h1>
+                    </header>
+                    <section>
+                        <button>List View</button>
+                        <button>Page View</button>
+                        <p>Timeline for pagination (some kind of calendar with mapped hot spots and year select at far right)</p>
+                    </section>
+                    <main className="content-grid">
+                        {articles.map(article => (
+                            <Card post={article} />
+                        ))}
+                        <footer className="page-navigation">
+                            {!isFirst && (
+                                <Link to={prevPage} rel="prev">
+                                    ← Previous Page
+                                </Link>
+                            )}
+                            {!isLast && (
+                                <Link to={nextPage} rel="next">
+                                    Next Page →
+                                </Link>
+                            )}
+                        </footer>
+                    </main>
                 </section>
-                <main className="content-grid">
-                    {data.allArticle.nodes.map(article => (
-                        <Card post={article} />
-                    ))}
-                </main>
-            </section>
-        </Layout>
-    )
+            </Layout>
+        )
+    }
 }
 
 export default Articles

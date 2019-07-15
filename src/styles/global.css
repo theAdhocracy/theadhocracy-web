@@ -207,7 +207,7 @@ body > div > div {
 
 #content {
     grid-area: content;
-    padding: 2rem;
+    padding: 1rem;
     background-color: white;
 }
 
@@ -227,7 +227,17 @@ body > div > div {
     color: var(--orange); /* fallback if gradients aren't suppported */
 }
 
-.content-grid > a:last-child {
+footer.page-navigation {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+footer.page-navigation > a {
+    min-width: 20rem;
+}
+
+.content-grid > a:last-child, footer.page-navigation > a {
   margin: 0 auto;
   grid-column: 1 / -1;
   margin-bottom: 0.75rem;
@@ -312,6 +322,11 @@ body > div > div {
 /* Desktop */
 
 @media screen and (min-width: 400px) {
+    
+    #content {
+        padding: 2rem;
+    }
+
     #footer section {
         min-width: 299px;
     }
