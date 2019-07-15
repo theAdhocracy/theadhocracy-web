@@ -15,7 +15,6 @@ const ContentCard = ({ post }) => {
                 <p><span role="img" title="Date published" aria-label="Date published">📆</span> {post.date}</p>
                 <p><span>Categories</span></p>
                 <ul className="flat-list">{post.categories.map(category => <li>{category}</li>)}</ul>
-                {/* <p>Article tagged as: {post.tags.map(tag => <em>{tag}, </em>)}</p> */}
             </footer>
         </section>
     )
