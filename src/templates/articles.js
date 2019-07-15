@@ -22,11 +22,11 @@ class Articles extends React.Component {
                     <header>
                         <h1>Explore Articles</h1>
                     </header>
-                    <section>
+                    {/* <section>
                         <button>List View</button>
                         <button>Page View</button>
                         <p>Timeline for pagination (some kind of calendar with mapped hot spots and year select at far right)</p>
-                    </section>
+                    </section> */}
                     <main className="content-grid">
                         {articles.map(article => (
                             <Card post={article} />
