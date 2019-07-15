@@ -28,7 +28,7 @@ const Articles = ({ data }) => {
 export default Articles
 
 export const query = graphql`
-	query AllPostsQuery {
+	query OldAllPostsQuery {
         allArticle {
             nodes {
                 title
