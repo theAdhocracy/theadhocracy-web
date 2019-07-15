@@ -5,5 +5,89 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: `theAdhocracy`,
+    description: `Ad hoc thoughts from an ad hoc mind.`,
+    siteUrl: `https://theadhocracy.co.uk/`,
+  },
+  plugins: [
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allPosts } }) => {
+              return allPosts.edges.map(edge => {
+                return Object.assign({}, edge.node.title, {
+                  title: edge.node.title,
+                  description: edge.node.snippet,
+                  date: edge.node.date,
+                  url: site.siteMetadata.siteUrl + "articles/" + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + "articles/" + edge.node.slug
+                })
+              })
+            },
+            query: `
+              {
+                allPosts {
+                  edges {
+                    node {
+                      title
+                      slug
+                      snippet
+                      date(formatString: "DD MMM YYYY")
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "theAdhocracy RSS Feed: All Posts",
+          },
+          {
+            serialize: ({ query: { site, allPosts } }) => {
+              return allPosts.edges.map(edge => {
+                return Object.assign({}, edge.node.title, {
+                  title: edge.node.title,
+                  description: edge.node.snippet,
+                  date: edge.node.date,
+                  url: site.siteMetadata.siteUrl + "articles/" + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + "articles/" + edge.node.slug
+                })
+              })
+            },
+            query: `
+              {
+                allPosts {
+                  edges {
+                    node {
+                      title
+                      slug
+                      snippet
+                      date(formatString: "DD MMM YYYY")
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss-articles.xml",
+            title: "theAdhocracy RSS Feed: Articles Only",
+            match: `^.*/article/`,
+          },
+        ],
+      },
+    },
+  ],
 }
