@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+https://fervent-darwin-bec3e4.netlify.com/* https://www.theadhocracy.co.uk/:splat 301!
