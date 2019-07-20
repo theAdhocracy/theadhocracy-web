@@ -139,6 +139,10 @@ main.article * {
     content: "[" counter(footnote) "] ";
 }
 
+.footnote-return {
+    text-decoration: none;
+}
+
 /* Width / Column Utility Classes */
 
 .full-width {
