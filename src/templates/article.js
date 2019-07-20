@@ -35,7 +35,7 @@ export default ({ data }) => {
                     </ul>
                     <article dangerouslySetInnerHTML={{ __html: body }} />
                     <section className="footnotes">
-                        <h2>Footnotes</h2>
+                        {post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
                         {post.footnotes.map((footnote, index) => {
                             let position = index + 1
                             return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} />
