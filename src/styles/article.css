@@ -99,6 +99,7 @@ main.article * {
     max-width: 20rem;
     margin: 2rem auto 0 2rem;
     padding-left: 1rem;
+    padding-bottom: 0.25rem;
     border-left: 3px solid var(--lightblue);
     font-size: 0.8rem;
     color: var(--lightblue);
