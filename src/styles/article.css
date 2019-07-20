@@ -138,14 +138,16 @@ main.article * {
 
 .article-details {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-template-columns: minmax(5rem, 7rem) minmax(10rem, 1fr);
     width: 100%;
     max-width: 100%;
     margin-top: 0;
+    padding-left: 0;
     list-style: none;
 }
 
 .article-details li {
+    width: 100%;
     line-height: 2;
     color: var(--yellow);
 }
@@ -177,29 +179,18 @@ main.article * {
 
 /* Desktop */
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 599px) {
 
     .article-details {
         display: block;
         max-width: var(--aside);
-        margin-top: 0;
+        padding-left: 2.5rem;
         text-align: right;
-        list-style: none;
     }
     
     .article-details li {
+        width: auto;
         margin-right: 3rem;
-        line-height: 2;
-        color: var(--yellow);
-    }
-    
-    .article-details li:nth-of-type(even) {
-        color: var(--green);
-    }
-    
-    .article-details li:nth-of-type(even) a {
-        color: var(--grey);
-        text-decoration: none;
     }
 
 }
