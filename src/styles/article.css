@@ -134,7 +134,7 @@ main.article * {
     counter-reset: footnote;
 }
 
-.footnotes p::before {
+.footnotes > aside > *:first-child::before {
     counter-increment: footnote;
     content: "[" counter(footnote) "] ";
 }
