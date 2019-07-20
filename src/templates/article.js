@@ -21,9 +21,9 @@ export default ({ data }) => {
                 <div className="full-width">
                     <ul className="article-details left-side">
                         <li>Updated</li>
-                        <li>01 Jan 2019</li>
+                        <li>{post.date}</li>
                         <li>Published</li>
-                        <li>01 Jan 2019</li>
+                        <li>{post.date}</li>
                         <li>Categories</li>
                         <li>
                             {post.categories.map(category => <a>{category}, </a>)}
@@ -49,12 +49,13 @@ export default ({ data }) => {
 
 export const query = graphql`
     query($slug: String!) {
-        article(slug: {eq: $slug }) {
-            title
+                article(slug: {eq: $slug }) {
+                title
             body
             footnotes
             categories
             tags
+            date(formatString: "DD MMMM YYYY")
         }
     }
 `
