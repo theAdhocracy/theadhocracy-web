@@ -315,6 +315,12 @@ footer.page-navigation > a {
     margin-bottom: 0;
     text-align: center;
     font-size: 1.2rem;
+    color: var(--grey);
+}
+
+.copyright span {
+    padding-left: 1rem;
+    font-size: 1.3rem;
 }
 
 /* Index Content Grid */
