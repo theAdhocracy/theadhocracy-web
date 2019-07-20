@@ -188,6 +188,7 @@ body > div > div {
 
 #about {
     grid-area: about;
+    max-width: 100vw;
     padding: 2rem;
     background-color: #ffffff;
 }
@@ -198,6 +199,7 @@ body > div > div {
 }
 
 .profile_photo {
+    width: 100%;
     max-width: 12rem;
     border-radius: 50%;
     float: left;
@@ -273,7 +275,6 @@ footer.page-navigation > a {
     flex-wrap: wrap;
     justify-content: center;
     align-items: end;
-    margin-right: 2rem;
     background: linear-gradient(90deg, var(--orange), var(--pink));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
@@ -330,6 +331,7 @@ footer.page-navigation > a {
 
     #footer section {
         min-width: 299px;
+        margin-right: 2rem;
     }
 
     .content-grid {
