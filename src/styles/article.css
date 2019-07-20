@@ -138,7 +138,7 @@ main.article * {
 
 .article-details {
     display: grid;
-    grid-template-columns: minmax(5rem, 7rem) minmax(10rem, 1fr);
+    grid-template-columns: 1fr;
     width: 100%;
     max-width: 100%;
     margin-top: 0;
@@ -176,6 +176,15 @@ main.article * {
     text-decoration: none;
 }
 
+/* Mobile Breakpoints */
+
+@media screen and (min-width: 275px) {
+
+    .article-details {
+        grid-template-columns: minmax(5rem, 7rem) minmax(10rem, 1fr);
+    }
+
+}
 
 /* Desktop */
 
