@@ -33,7 +33,7 @@ export default ({ data }) => {
                     <section className="footnotes">
                         {post.footnotes.map((footnote, index) => {
                             let position = index + 1
-                            return <p id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '$1 <a href="#index' + position + '" title="Return to previous location in article.">⬆️</a>') }}></p>
+                            return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} />
                         })}
                     </section>
                 </div>
