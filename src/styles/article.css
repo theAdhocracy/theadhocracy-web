@@ -79,6 +79,7 @@ main.article * {
     font-family: monospace, sans-serif;
     line-height: 2.2;
     tab-size: 4;
+    white-space: pre;
 }
 
 .article blockquote {
