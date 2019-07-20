@@ -95,12 +95,13 @@ main.article * {
 
 .article blockquote::before {
     content: open-quote;
-    position: absolute;
-    top: -1rem;
-    left: 0;
+    display: inline-block;
+    transform: translateY(0.25rem);
     margin-right: 1.25rem;
+    margin-left: -3rem; /* allows position to spill into gap for article details */
     font-size: 4rem;
     color: var(--orange);
+    line-height: 0;
 }
 
 .article blockquote::after {
