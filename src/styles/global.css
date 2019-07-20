@@ -141,7 +141,7 @@ body > div > div {
 
 #header a h1 {
     color: black;
-    background-image: linear-gradient(90deg, black 15%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
+    background-image: linear-gradient(90deg, black 20%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
@@ -328,6 +328,10 @@ footer.page-navigation > a {
 /* Desktop */
 
 @media screen and (min-width: 400px) {
+
+    #header a h1 {
+        background-image: linear-gradient(90deg, black 15%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
+    }
     
     #content {
         padding: 2rem;
