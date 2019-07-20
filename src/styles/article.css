@@ -171,3 +171,30 @@ main.article * {
     max-width: var(--part-span);
     width: 100%;
 }
+
+/* Desktop */
+
+@media screen and (min-width: 550px) {
+
+    .article-details {
+        margin-top: 0;
+        text-align: right;
+        list-style: none;
+    }
+    
+    .article-details li {
+        margin-right: 3rem;
+        line-height: 2;
+        color: var(--yellow);
+    }
+    
+    .article-details li:nth-of-type(even) {
+        color: var(--green);
+    }
+    
+    .article-details li:nth-of-type(even) a {
+        color: var(--grey);
+        text-decoration: none;
+    }
+    
+}
