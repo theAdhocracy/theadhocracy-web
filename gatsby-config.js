@@ -8,9 +8,15 @@ module.exports = {
   siteMetadata: {
     title: `theAdhocracy`,
     description: `Ad hoc thoughts from an ad hoc mind.`,
-    siteUrl: `https://theadhocracy.co.uk/`,
+    siteUrl: `https://www.theadhocracy.co.uk/`,
+    siteImage: `static/favicon.svg`,
+    twitterHandle: `@theAdhocracy`,
+    version: `3.0.0`
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-react-helmet`,
+    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {

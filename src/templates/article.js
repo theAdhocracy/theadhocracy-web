@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo/seo"
 
 import "../styles/article.css"
 
@@ -10,6 +11,9 @@ export default ({ data }) => {
 
     return (
         <Layout>
+            <SEO
+                title={post.title}
+            />
             <main id="content" class="article">
                 <header>
                     <h1>{post.title}</h1>
@@ -31,9 +35,10 @@ export default ({ data }) => {
                     </ul>
                     <article dangerouslySetInnerHTML={{ __html: body }} />
                     <section className="footnotes">
+                        {post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
                         {post.footnotes.map((footnote, index) => {
                             let position = index + 1
-                            return <p id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '$1 <a href="#index' + position + '" title="Return to previous location in article.">⬆️</a>') }}></p>
+                            return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} />
                         })}
                     </section>
                 </div>

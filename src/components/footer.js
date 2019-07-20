@@ -1,4 +1,5 @@
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 
 export default (props) => {
 
@@ -6,6 +7,16 @@ export default (props) => {
     const today = new Date()
     const yearAD = today.getFullYear()
     const yearHE = (yearAD + 10000).toString().replace(/^([0-9][0-9])/, "$1,")
+
+    // Get Version Number
+    const data = useStaticQuery(graphql`query {
+        site {
+          siteMetadata {
+            version
+          }
+        }
+      }`)
+    const version = data.site.siteMetadata.version
 
     return (
         <footer id="footer">
@@ -30,7 +41,7 @@ export default (props) => {
                 <p>Reviews <a href="/"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/rss-icon.svg" alt="RSS" /></a></p>
                 <p>Notes <a href="/"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/rss-icon.svg" alt="RSS" /></a></p>
             </section>
-            <p className="copyright"><a href="https://www.youtube.com/watch?v=czgOWmtGVGs">&copy; {yearHE} HE</a></p>
+            <p className="copyright"><a href="https://www.youtube.com/watch?v=czgOWmtGVGs">&copy; {yearHE} HE</a> <span>|</span> <a href="https://github.com/theAdhocracy/theadhocracy"><span>&#9419;</span> {version}</a></p>
         </footer>
     )
 }

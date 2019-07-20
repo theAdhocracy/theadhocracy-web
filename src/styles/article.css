@@ -7,6 +7,35 @@
     --part-span:    calc(var(--main) + var(--aside));
 }
 
+/* Width / Column Utility Classes */
+
+.full-width {
+    max-width: var(--full-width);
+    width: 100%;
+}
+
+.main-col {
+    max-width: var(--main);
+    width: 100%;
+}
+
+.right-side {
+    float: right;
+    max-width: var(--aside);
+    width: 100%;
+}
+
+.left-side {
+    float: left;
+    max-width: var(--aside);
+    width: 100%;
+}
+
+.part-span {
+    max-width: var(--part-span);
+    width: 100%;
+}
+
 /* Layout & Element Styling */
 
 #content.article {
@@ -50,6 +79,7 @@ main.article * {
     font-family: monospace, sans-serif;
     line-height: 2.2;
     tab-size: 4;
+    white-space: pre;
 }
 
 .article blockquote {
@@ -66,12 +96,13 @@ main.article * {
 
 .article blockquote::before {
     content: open-quote;
-    position: absolute;
-    top: -1rem;
-    left: 0;
+    display: inline-block;
+    transform: translateY(0.25rem);
     margin-right: 1.25rem;
+    margin-left: -3rem; /* allows position to spill into gap for article details */
     font-size: 4rem;
     color: var(--orange);
+    line-height: 0;
 }
 
 .article blockquote::after {
@@ -108,13 +139,17 @@ main.article * {
 /* Article Details */
 
 .article-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
     margin-top: 0;
-    text-align: right;
+    padding-left: 0;
     list-style: none;
 }
 
 .article-details li {
-    margin-right: 3rem;
+    width: 100%;
     line-height: 2;
     color: var(--yellow);
 }
@@ -134,36 +169,39 @@ main.article * {
     counter-reset: footnote;
 }
 
-.footnotes p::before {
+.footnotes > aside > *:first-child::before {
     counter-increment: footnote;
     content: "[" counter(footnote) "] ";
 }
 
-/* Width / Column Utility Classes */
-
-.full-width {
-    max-width: var(--full-width);
-    width: 100%;
+.footnote-return {
+    text-decoration: none;
 }
 
-.main-col {
-    max-width: var(--main);
-    width: 100%;
+/* Mobile Breakpoints */
+
+@media screen and (min-width: 275px) {
+
+    .article-details {
+        grid-template-columns: minmax(5rem, 7rem) minmax(10rem, 1fr);
+    }
+
 }
 
-.right-side {
-    float: right;
-    max-width: var(--aside);
-    width: 100%;
-}
+/* Desktop */
 
-.left-side {
-    float: left;
-    max-width: var(--aside);
-    width: 100%;
-}
+@media screen and (min-width: 599px) {
 
-.part-span {
-    max-width: var(--part-span);
-    width: 100%;
+    .article-details {
+        display: block;
+        max-width: var(--aside);
+        padding-left: 2.5rem;
+        text-align: right;
+    }
+    
+    .article-details li {
+        width: auto;
+        margin-right: 3rem;
+    }
+
 }
