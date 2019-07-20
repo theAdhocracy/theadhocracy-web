@@ -9,7 +9,7 @@ module.exports = {
     title: `theAdhocracy`,
     description: `Ad hoc thoughts from an ad hoc mind.`,
     siteUrl: `https://www.theadhocracy.co.uk/`,
-    siteImage: ``,
+    siteImage: `static/favicon.svg`,
     twitterHandle: `@theAdhocracy`,
   },
   plugins: [

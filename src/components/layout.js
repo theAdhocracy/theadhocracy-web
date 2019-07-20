@@ -6,7 +6,7 @@ import Sidebar from './sidebar'
 
 export default ({ children, sidebar }) => (
     <>
-        <SEO></SEO>
+        <SEO />
         <Header></Header>
         {children}
         {sidebar ? <Sidebar></Sidebar> : null}
