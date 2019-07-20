@@ -264,13 +264,14 @@ footer.page-navigation > a {
     grid-area: footer;
     display: flex;
     flex-wrap: wrap;
-    padding: 2rem 4rem 1rem;
+    padding: 2rem 2rem 1rem;
     background-color: var(--darkgrey);
     color: var(--pink);
 }
 
 #footer section {
     flex: 1;
+    flex-basis: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -329,7 +330,12 @@ footer.page-navigation > a {
         padding: 2rem;
     }
 
+    #footer {
+        padding: 2rem 4rem 1rem;
+    }
+
     #footer section {
+        flex-basis: 0%;
         min-width: 299px;
         margin-right: 2rem;
     }
