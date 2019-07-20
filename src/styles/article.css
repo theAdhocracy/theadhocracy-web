@@ -7,6 +7,35 @@
     --part-span:    calc(var(--main) + var(--aside));
 }
 
+/* Width / Column Utility Classes */
+
+.full-width {
+    max-width: var(--full-width);
+    width: 100%;
+}
+
+.main-col {
+    max-width: var(--main);
+    width: 100%;
+}
+
+.right-side {
+    float: right;
+    max-width: var(--aside);
+    width: 100%;
+}
+
+.left-side {
+    float: left;
+    max-width: var(--aside);
+    width: 100%;
+}
+
+.part-span {
+    max-width: var(--part-span);
+    width: 100%;
+}
+
 /* Layout & Element Styling */
 
 #content.article {
@@ -108,13 +137,15 @@ main.article * {
 /* Article Details */
 
 .article-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    width: 100%;
+    max-width: 100%;
     margin-top: 0;
-    text-align: right;
     list-style: none;
 }
 
 .article-details li {
-    margin-right: 3rem;
     line-height: 2;
     color: var(--yellow);
 }
@@ -143,40 +174,14 @@ main.article * {
     text-decoration: none;
 }
 
-/* Width / Column Utility Classes */
-
-.full-width {
-    max-width: var(--full-width);
-    width: 100%;
-}
-
-.main-col {
-    max-width: var(--main);
-    width: 100%;
-}
-
-.right-side {
-    float: right;
-    max-width: var(--aside);
-    width: 100%;
-}
-
-.left-side {
-    float: left;
-    max-width: var(--aside);
-    width: 100%;
-}
-
-.part-span {
-    max-width: var(--part-span);
-    width: 100%;
-}
 
 /* Desktop */
 
 @media screen and (min-width: 550px) {
 
     .article-details {
+        display: block;
+        max-width: var(--aside);
         margin-top: 0;
         text-align: right;
         list-style: none;
@@ -196,5 +201,5 @@ main.article * {
         color: var(--grey);
         text-decoration: none;
     }
-    
+
 }
