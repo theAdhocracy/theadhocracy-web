@@ -238,18 +238,20 @@ footer.page-navigation {
 }
 
 footer.page-navigation > a {
-    min-width: 20rem;
+    width: 100%;
+    max-width: 20rem;
 }
 
 .content-grid > a:last-child, footer.page-navigation > a {
   margin: 0 auto;
   grid-column: 1 / -1;
   margin-bottom: 0.75rem;
-  padding: 1rem 3rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   background: linear-gradient(135deg, var(--pink), var(--yellow));
   font-size: 1.5rem;
   color: white;
+  text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 500;
