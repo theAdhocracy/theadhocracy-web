@@ -14,6 +14,7 @@ export default (props) => (
                 <li><Link to="/">Home</Link></li>
                 {/* <li><Link to="/about/">About</Link></li> */}
                 <li><Link to="/articles/">Articles</Link></li>
+                <li><Link to="/journal/">Journal</Link></li>
                 {/* <li>Portfolio</li>
                 <li>Contact</li> */}
             </ul>
