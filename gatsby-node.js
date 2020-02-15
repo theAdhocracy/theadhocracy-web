@@ -14,7 +14,10 @@ exports.sourceNodes = async ({ actions }) => {
     const fetchArticles = () => axios.get(`https://cms.theadhocracy.co.uk/articles.json`);
     const getArticles = await fetchArticles();
 
-    // Map results and create nodes
+    const fetchJournals = () => axios.get(`https://cms.theadhocracy.co.uk/journals.json`);
+    const getJournals = await fetchJournals();
+
+    // Map feed and create nodes
     getFeed.data.data.map((post, i) => {
         // Create node object
         const postsNode = {
@@ -22,7 +25,7 @@ exports.sourceNodes = async ({ actions }) => {
             id: `${i}`,
             parent: `__SOURCE__`,
             internal: {
-                type: `Posts`, // name of the graphQL query --> allArticle {}
+                type: `Posts`, // name of the graphQL query --> allPosts {}
             },
             children: [],
             // Fields specific to this endpoint
@@ -46,7 +49,7 @@ exports.sourceNodes = async ({ actions }) => {
         createNode(postsNode);
     });
 
-    // Map results and create nodes
+    // Map articles and create nodes
     getArticles.data.data.map((article, i) => {
         // Create node object
         const articlesNode = {
@@ -81,6 +84,38 @@ exports.sourceNodes = async ({ actions }) => {
         createNode(articlesNode);
     });
 
+     // Map journals and create nodes
+     getJournals.data.data.map((journal, i) => {
+        // Create node object
+        const journalsNode = {
+            // Required fields for Gatsby
+            id: `${i}`,
+            parent: `__SOURCE__`,
+            internal: {
+                type: `Journals`, // name of the graphQL query --> allJournals {}
+            },
+            children: [],
+            // Fields specific to this endpoint
+            entryId: journal.id,
+            title: journal.title,
+            slug: journal.slug,
+            date: journal.date,
+            body: journal.body,
+            footnotes: journal.footnotes,
+            tags: journal.tags
+        }
+
+        // Get content digest of node. (Required field)
+        const contentDigest = crypto
+            .createHash(`md5`)
+            .update(JSON.stringify(journalsNode))
+            .digest(`hex`);
+        journalsNode.internal.contentDigest = contentDigest;
+
+        // Create node with the gatsby createNode() API
+        createNode(journalsNode);
+    });
+
     return;
 }
 
@@ -91,6 +126,11 @@ exports.createPages = ({ graphql, actions }) => {
     return graphql(`
         {
             allArticle {
+                nodes {
+                    slug
+                }
+            }
+            allJournals {
                 nodes {
                     slug
                 }
@@ -124,6 +164,36 @@ exports.createPages = ({ graphql, actions }) => {
                     limit: postsPerPage,
                     skip: i * postsPerPage,
                     numPages,
+                    currentPage: i + 1,
+                },
+            })
+        })
+
+        // Create journal entries
+        result.data.allJournals.nodes.forEach(({ slug }) => {
+            createPage({
+                path: `/journal/${slug}`,
+                component: path.resolve(`./src/templates/article.js`),
+                context: {
+                    // Data passed to context is available
+                    // in page queries as GraphQL variables.
+                    slug: slug,
+                },
+            })
+        })
+
+        // Create articles list page
+        const journals = result.data.allJournals.nodes
+        const journalsPerPage = 12
+        const numJournalPages = Math.ceil(journals.length / journalsPerPage)
+        Array.from({ length: numJournalPages }).forEach((_, i) => {
+            createPage({
+                path: i === 0 ? `/journal` : `/journal/${i + 1}`,
+                component: path.resolve("./src/templates/articles.js"),
+                context: {
+                    limit: journalsPerPage,
+                    skip: i * journalsPerPage,
+                    numJournalPages,
                     currentPage: i + 1,
                 },
             })
