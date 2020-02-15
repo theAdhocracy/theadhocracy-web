@@ -20,7 +20,7 @@ class Journal extends React.Component {
                         {entries.map(entry => (
                             <h2>{entry.title}</h2>
                         ))}
-                        <PageNav page={this.props.pageContext}/>
+                        {entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/"/> : ""}
                     </main>
                 </section>
             </Layout>

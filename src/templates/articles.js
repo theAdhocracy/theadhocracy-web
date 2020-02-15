@@ -26,7 +26,7 @@ class Articles extends React.Component {
                         {articles.map(article => (
                             <Card post={article} />
                         ))}
-                        <PageNav page={this.props.pageContext}/>
+                        <PageNav page={this.props.pageContext} root="articles/"/>
                     </main>
                 </section>
             </Layout>
