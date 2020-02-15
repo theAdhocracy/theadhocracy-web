@@ -189,7 +189,7 @@ exports.createPages = ({ graphql, actions }) => {
         Array.from({ length: numJournalPages }).forEach((_, i) => {
             createPage({
                 path: i === 0 ? `/journal` : `/journal/${i + 1}`,
-                component: path.resolve("./src/templates/articles.js"),
+                component: path.resolve("./src/templates/journal.js"),
                 context: {
                     limit: journalsPerPage,
                     skip: i * journalsPerPage,

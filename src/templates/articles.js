@@ -12,7 +12,7 @@ class Articles extends React.Component {
         const articles = this.props.data.allArticle.nodes
 
         return (
-            <Layout title="theAdhocracy" sidebar={false}>
+            <Layout title="theAdhocracy | Articles" sidebar={false}>
                 <section id="content">
                     <header>
                         <h1>Explore Articles</h1>
