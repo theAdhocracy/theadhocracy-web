@@ -1,6 +1,6 @@
 {
     "prettier.useTabs": true,
-    "prettier.tabWidth": 4,
     "prettier.semi": false,
-    "prettier.printWidth": 120
+    "prettier.printWidth": 120,
+    "prettier.vueIndentScriptAndStyle": true
 }

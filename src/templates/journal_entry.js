@@ -6,7 +6,7 @@ import SEO from "../components/seo/seo"
 import "../styles/article.css"
 
 export default ({ data }) => {
-    const post = data.article
+    const post = data.journals
     const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
 
     return (
@@ -24,10 +24,6 @@ export default ({ data }) => {
                         <li>{post.date}</li>
                         <li>Published</li>
                         <li>{post.date}</li>
-                        <li>Categories</li>
-                        <li>
-                            {post.categories.map(category => <a>{category}, </a>)}
-                        </li>
                         <li>Tags</li>
                         <li>
                             {post.tags.map(tag => <a>{tag}, </a>)}
@@ -49,11 +45,10 @@ export default ({ data }) => {
 
 export const query = graphql`
     query($slug: String!) {
-        article(slug: {eq: $slug }) {
+        journals(slug: {eq: $slug }) {
             title
             body
             footnotes
-            categories
             tags
             date(formatString: "DD MMMM YYYY")
         }

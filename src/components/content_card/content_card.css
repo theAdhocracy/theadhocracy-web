@@ -111,3 +111,9 @@
     text-decoration: none;
     color: #ffffff;
 }
+
+/* Journal Entries */
+
+.journal-card {
+    padding-bottom: 1rem;
+}
