@@ -10,6 +10,8 @@ class Journal extends React.Component {
         // Set root for data
         const entries = this.props.data.allJournals.nodes
 
+        let testMonth = ""
+
         return (
             <Layout title="theAdhocracy" sidebar={false}>
                 <section id="content">
@@ -17,9 +19,21 @@ class Journal extends React.Component {
                         <h1>Journal Entries</h1>
                     </header>
                     <main className="content-grid">
-                        {entries.map(entry => (
-                            <h2>{entry.title}</h2>
-                        ))}
+                        {entries.map((entry) => {
+                            if(entry.month === testMonth) {
+                                return (
+                                    <Card post={entry} type="journal" />
+                                )
+                            } else {
+                                testMonth = entry.month
+                                return (
+                                    <>
+                                        <h2>{entry.month}</h2>
+                                        <Card post={entry} type="journal" />
+                                    </>
+                                )
+                            }
+                        })}
                         {entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/"/> : ""}
                     </main>
                 </section>
@@ -37,6 +51,12 @@ export const query = graphql`
                 title
                 slug
                 date(formatString: "DD MMM YYYY")
+                weekday
+                day
+                month
+                year
+                dateSuffix
+                snippet
                 tags
             }
         }

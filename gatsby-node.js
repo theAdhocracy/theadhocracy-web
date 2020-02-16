@@ -100,7 +100,13 @@ exports.sourceNodes = async ({ actions }) => {
             title: journal.title,
             slug: journal.slug,
             date: journal.date,
+            weekday: journal.weekday,
+            day: journal.day,
+            month: journal.month,
+            year: journal.year,
+            dateSuffix: journal.dateSuffix,
             body: journal.body,
+            snippet: journal.snippet,
             footnotes: journal.footnotes,
             tags: journal.tags
         }
@@ -182,7 +188,7 @@ exports.createPages = ({ graphql, actions }) => {
             })
         })
 
-        // Create articles list page
+        // Create journals list page
         const journals = result.data.allJournals.nodes
         const journalsPerPage = 12
         const numJournalPages = Math.ceil(journals.length / journalsPerPage)
