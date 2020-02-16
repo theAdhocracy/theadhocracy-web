@@ -65,6 +65,7 @@ exports.sourceNodes = async ({ actions }) => {
             title: article.title,
             slug: article.slug,
             date: article.date,
+            updated: article.updated,
             body: article.body,
             snippet: article.snippet,
             footnotes: article.footnotes,
@@ -100,6 +101,7 @@ exports.sourceNodes = async ({ actions }) => {
             title: journal.title,
             slug: journal.slug,
             date: journal.date,
+            update: journal.updated,
             weekday: journal.weekday,
             day: journal.day,
             month: journal.month,
@@ -139,6 +141,8 @@ exports.createPages = ({ graphql, actions }) => {
             allJournals {
                 nodes {
                     slug
+                    year
+                    month
                 }
             }
         }
@@ -176,9 +180,9 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // Create journal entries
-        result.data.allJournals.nodes.forEach(({ slug }) => {
+        result.data.allJournals.nodes.forEach(({ slug, year, month }) => {
             createPage({
-                path: `/journal/${slug}`,
+                path: `/journal/${year}/${month.toLowerCase()}/${slug}`,
                 component: path.resolve(`./src/templates/journal_entry.js`),
                 context: {
                     // Data passed to context is available
