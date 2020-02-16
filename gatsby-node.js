@@ -33,9 +33,12 @@ exports.sourceNodes = async ({ actions }) => {
             title: post.title,
             slug: post.slug,
             date: post.date,
+            month: post.month,
+            year: post.year,
             snippet: post.snippet,
             categories: post.categories,
-            tags: post.tags
+            tags: post.tags,
+            contentType: post.type
         }
 
         // Get content digest of node. (Required field)

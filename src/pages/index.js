@@ -25,7 +25,7 @@ const IndexPage = ({ data }) => {
                 </noscript>
                 <main className="content-grid">
                     {data.allPosts.edges.map(({ node }) => (
-                        <Card post={node} />
+                        <Card post={node} type={node.contentType === "journals" ? "journal" : ""} />
                     ))}
                     <a href="/articles/">Explore?</a>
                 </main>
@@ -47,6 +47,9 @@ export const query = graphql`
 					categories
                     tags
                     date(formatString: "DD MMM YYYY")
+                    month
+                    year
+                    contentType
 				}
 			}
 		}
