@@ -28,7 +28,9 @@ class Journal extends React.Component {
                                 testMonth = entry.month
                                 return (
                                     <>
-                                        <h2>{entry.month}</h2>
+                                        <div className="journal-section">
+                                            <h2>{entry.month}</h2>
+                                        </div>
                                         <Card post={entry} type="journal" />
                                     </>
                                 )
