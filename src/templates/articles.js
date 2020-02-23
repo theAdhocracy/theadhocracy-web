@@ -1,12 +1,12 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
 
 class Articles extends React.Component {
     render() {
-        
+
 
         // Set root for data
         const articles = this.props.data.allArticle.nodes
@@ -26,7 +26,7 @@ class Articles extends React.Component {
                         {articles.map(article => (
                             <Card post={article} />
                         ))}
-                        <PageNav page={this.props.pageContext} root="articles/"/>
+                        <PageNav page={this.props.pageContext} root="articles/" />
                     </main>
                 </section>
             </Layout>

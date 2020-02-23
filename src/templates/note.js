@@ -21,7 +21,7 @@ export default ({ data }) => {
                 <div className="full-width">
                     <ul className="article-details left-side">
                         <li>Source</li>
-                        <li><a href={note.source}>Link to Original 🔗</a></li>
+                        <li><a href={note.source}>Link to Original <span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></a></li>
                         <li>Published</li>
                         <li>{note.date}</li>
                         <li>Categories</li>

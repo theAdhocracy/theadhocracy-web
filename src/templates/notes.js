@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import PageNav from "../components/page_nav"
 
 // CSS
-import styles from "../styles/note.css"
+import "../styles/note.css"
 
 class Notes extends React.Component {
     render() {
@@ -20,13 +20,13 @@ class Notes extends React.Component {
                     </header>
                     <main>
                         {notes.map(note => (
-                            <section className={"note"}>
+                            <section className="note">
                                 <header>
                                     <h2><a href={note.source}>{note.title}</a>{note.attribution ? <> | <span className={"attributed_to"}>{note.attribution}</span></> : ""}</h2>
                                 </header>
                                 <article dangerouslySetInnerHTML={{ __html: `${note.body}` }} />
                                 <footer>
-                                    <p role="img" title="Date published" aria-label="Date published">📆 {note.date}  &nbsp;|&nbsp;<Link to={`/notes/${note.slug}`}><span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></Link></p>
+                                    <p><span role="img" title="Date published" aria-label="Date published">📆</span> {note.date}  &nbsp;|&nbsp;<Link to={`/notes/${note.slug}`}><span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></Link></p>
                                     <ul className="flat-list">{note.categories.map(category => <li><strong>{category},&nbsp;</strong></li>)}{note.tags.map((tag, index, array) => (index < array.length - 1 ? <li>{tag},&nbsp;</li> : <li>{tag}</li>))}</ul>
                                 </footer>
                             </section>
