@@ -47,7 +47,7 @@ main.article * {
     margin-right: auto;
 }
 
-.article p, .article h2, .article h3, .article h4, .article h5, .article h6, .article article ul {
+.article p, .article h2, .article h3, .article h4, .article h5, .article h6, .article article ul, .article article ol {
     max-width: var(--main);
     line-height: 2;
 }
