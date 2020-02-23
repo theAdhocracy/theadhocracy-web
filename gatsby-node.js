@@ -17,6 +17,9 @@ exports.sourceNodes = async ({ actions }) => {
     const fetchJournals = () => axios.get(`https://cms.theadhocracy.co.uk/journals.json`);
     const getJournals = await fetchJournals();
 
+    const fetchNotes = () => axios.get(`https://cms.theadhocracy.co.uk/notes.json`);
+    const getNotes = await fetchNotes();
+
     // Map feed and create nodes
     getFeed.data.data.map((post, i) => {
         // Create node object
@@ -88,8 +91,8 @@ exports.sourceNodes = async ({ actions }) => {
         createNode(articlesNode);
     });
 
-     // Map journals and create nodes
-     getJournals.data.data.map((journal, i) => {
+    // Map journals and create nodes
+    getJournals.data.data.map((journal, i) => {
         // Create node object
         const journalsNode = {
             // Required fields for Gatsby
@@ -127,6 +130,42 @@ exports.sourceNodes = async ({ actions }) => {
         createNode(journalsNode);
     });
 
+    // Map notes and create nodes
+    getNotes.data.data.map((note, i) => {
+        // Create node object
+        const notesNode = {
+            // Required fields for Gatsby
+            id: `${i}`,
+            parent: `__SOURCE__`,
+            internal: {
+                type: `Notes`, // name of the graphQL query --> allNotes {}
+            },
+            children: [],
+            // Fields specific to this endpoint
+            entryId: note.id,
+            title: note.title,
+            slug: note.slug,
+            date: note.date,
+            body: note.body,
+            snippet: note.snippet,
+            categories: note.categories,
+            tags: note.tags,
+            attribution: note.attribution,
+            source: note.source,
+            tweet: note.tweet
+        }
+
+        // Get content digest of node. (Required field)
+        const contentDigest = crypto
+            .createHash(`md5`)
+            .update(JSON.stringify(notesNode))
+            .digest(`hex`);
+        notesNode.internal.contentDigest = contentDigest;
+
+        // Create node with the gatsby createNode() API
+        createNode(notesNode);
+    });
+
     return;
 }
 
@@ -146,6 +185,11 @@ exports.createPages = ({ graphql, actions }) => {
                     slug
                     year
                     month
+                }
+            }
+            allNotes {
+                nodes {
+                    slug
                 }
             }
         }
@@ -207,6 +251,36 @@ exports.createPages = ({ graphql, actions }) => {
                     limit: journalsPerPage,
                     skip: i * journalsPerPage,
                     numJournalPages,
+                    currentPage: i + 1,
+                },
+            })
+        })
+
+        // Create notes
+        result.data.allNotes.nodes.forEach(({ slug }) => {
+            createPage({
+                path: `/note/${slug}`,
+                component: path.resolve(`./src/templates/note.js`),
+                context: {
+                    // Data passed to context is available
+                    // in page queries as GraphQL variables.
+                    slug: slug,
+                },
+            })
+        })
+
+        // Create notes list page
+        const notes = result.data.allNotes.nodes
+        const notesPerPage = 15
+        const numNotesPages = Math.ceil(notes.length / notesPerPage)
+        Array.from({ length: numNotesPages }).forEach((_, i) => {
+            createPage({
+                path: i === 0 ? `/notes` : `/notes/${i + 1}`,
+                component: path.resolve("./src/templates/notes.js"),
+                context: {
+                    limit: notesPerPage,
+                    skip: i * notesPerPage,
+                    numNotesPages,
                     currentPage: i + 1,
                 },
             })
