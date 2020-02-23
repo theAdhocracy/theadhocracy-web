@@ -6,11 +6,12 @@ import PageNav from "../components/page_nav"
 
 class Journal extends React.Component {
     render() {
-        
+
         // Set root for data
         const entries = this.props.data.allJournals.nodes
 
-        let testMonth = ""
+        // Create variable to track month values; allows month headers to be placed correctly.
+        let loopMonth = ""
 
         return (
             <Layout title="theAdhocracy" sidebar={false}>
@@ -20,23 +21,24 @@ class Journal extends React.Component {
                     </header>
                     <main className="content-grid">
                         {entries.map((entry) => {
-                            if(entry.month === testMonth) {
+                            if (entry.month === loopMonth) {
                                 return (
                                     <Card post={entry} type="journal" />
                                 )
                             } else {
-                                testMonth = entry.month
+                                loopMonth = entry.month
                                 return (
                                     <>
                                         <div className="journal-section">
                                             <h2>{entry.month}</h2>
+                                            {/* TODO: Create calendar component to sit here; allow it to highlight which days have posts */}
                                         </div>
                                         <Card post={entry} type="journal" />
                                     </>
                                 )
                             }
                         })}
-                        {entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/"/> : ""}
+                        {entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/" /> : ""}
                     </main>
                 </section>
             </Layout>
