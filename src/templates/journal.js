@@ -31,6 +31,7 @@ class Journal extends React.Component {
                                     <>
                                         <div className="journal-section">
                                             <h2>{entry.month}</h2>
+                                            {/* TODO: Create calendar component to sit here; allow it to highlight which days have posts */}
                                         </div>
                                         <Card post={entry} type="journal" />
                                     </>
