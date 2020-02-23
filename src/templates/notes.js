@@ -32,11 +32,8 @@ class Notes extends React.Component {
 export default Notes
 
 export const query = graphql`
-	query AllPostsQuery($skip: Int!, $limit: Int!) {
-        allNotes(
-            limit: $limit
-            skip: $skip
-        ) {
+	{
+        allNotes{
             nodes {
                 title
                 slug

@@ -42,7 +42,7 @@ export default ({ data }) => {
 
 export const query = graphql`
     query($slug: String!) {
-        note(slug: {eq: $slug }) {
+        notes(slug: {eq: $slug }) {
             title
             body
             categories
