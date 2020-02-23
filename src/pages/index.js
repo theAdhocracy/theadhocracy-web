@@ -24,8 +24,10 @@ const IndexPage = ({ data }) => {
                     <p>If you have any ideas or suggestions, I'm always happy to hear them. Feel free to DM or @ me on Twitter <a href="https://twitter.com/theadhocracy" target="_blank" rel="noopener noreferrer">@theAdhocracy</a> with your thoughts 👍</p>
                 </noscript>
                 <main className="content-grid">
+                    {/* TODO: Add Notes back onto homepage but in a more simplified manner */}
                     {data.allPosts.edges.map(({ node }) => (
-                        <Card post={node} type={node.contentType === "journals" ? "journal" : ""} />
+                        node.contentType === "notes" ? "" :
+                            <Card post={node} type={node.contentType === "journals" ? "journal" : ""} />
                     ))}
                     <a href="/articles/">Explore?</a>
                 </main>
