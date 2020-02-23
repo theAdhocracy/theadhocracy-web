@@ -6,8 +6,8 @@ import SEO from "../components/seo/seo"
 import "../styles/article.css"
 
 export default ({ data }) => {
-    const note = data.note
-    const body = note.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
+    const note = data.notes
+    const body = note.body
 
     return (
         <Layout>
@@ -16,21 +16,21 @@ export default ({ data }) => {
             />
             <main id="content" class="article">
                 <header>
-                    <h1>{note.title} | {note.attribution}</h1>
+                    <h1 className="article-header">{note.title} | {note.attribution}</h1>
                 </header>
                 <div className="full-width">
                     <ul className="article-details left-side">
                         <li>Source</li>
-                        <li>{note.source}</li>
+                        <li><a href={note.source}>Link to Original 🔗</a></li>
                         <li>Published</li>
                         <li>{note.date}</li>
                         <li>Categories</li>
                         <li>
-                            {note.categories.map(category => <a>{category}, </a>)}
+                            {note.categories.map((category, index, array) => (index < array.length - 1 ? <a>{category},&nbsp;</a> : <a>{category}</a>))}
                         </li>
                         <li>Tags</li>
                         <li>
-                            {note.tags.map(tag => <a>{tag}, </a>)}
+                            {note.tags.map((tag, index, array) => (index < array.length - 1 ? <a>{tag},&nbsp;</a> : <a>{tag}</a>))}
                         </li>
                     </ul>
                     <article dangerouslySetInnerHTML={{ __html: body }} />

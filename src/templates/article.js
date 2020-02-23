@@ -16,7 +16,7 @@ export default ({ data }) => {
             />
             <main id="content" class="article">
                 <header>
-                    <h1>{post.title}</h1>
+                    <h1 className="article-header">{post.title}</h1>
                 </header>
                 <div className="full-width">
                     <ul className="article-details left-side">
