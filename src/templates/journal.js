@@ -4,9 +4,6 @@ import Layout from "../components/layout"
 import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
 
-// CSS
-import styles from "../styles/note.css"
-
 class Journal extends React.Component {
     render() {
 

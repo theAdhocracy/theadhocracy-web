@@ -259,7 +259,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create notes
         result.data.allNotes.nodes.forEach(({ slug }) => {
             createPage({
-                path: `/note/${slug}`,
+                path: `/notes/${slug}`,
                 component: path.resolve(`./src/templates/note.js`),
                 context: {
                     // Data passed to context is available

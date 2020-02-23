@@ -1,8 +1,10 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
+
+// CSS
+import styles from "../styles/note.css"
 
 class Notes extends React.Component {
     render() {
@@ -24,9 +26,8 @@ class Notes extends React.Component {
                                 </header>
                                 <article dangerouslySetInnerHTML={{ __html: `${note.body}` }} />
                                 <footer>
-                                    <Link to={`/notes/${note.slug}`}><span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></Link>
-                                    <span role="img" title="Date published" aria-label="Date published">📆 {note.date} </span>
-                                    <ul className="flat-list">{note.categories.map(category => <li><strong>{category}</strong></li>)}{note.tags.map(tag => <li>{tag}</li>)}</ul>
+                                    <p role="img" title="Date published" aria-label="Date published">📆 {note.date}  &nbsp;|&nbsp;<Link to={`/notes/${note.slug}`}><span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></Link></p>
+                                    <ul className="flat-list">{note.categories.map(category => <li><strong>{category},&nbsp;</strong></li>)}{note.tags.map((tag, index, array) => (index < array.length - 1 ? <li>{tag},&nbsp;</li> : <li>{tag}</li>))}</ul>
                                 </footer>
                             </section>
                         ))}
