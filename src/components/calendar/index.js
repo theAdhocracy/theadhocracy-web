@@ -3,6 +3,8 @@ import { Link } from "gatsby"
 
 import "./calendar.css"
 
+// TODO: Need to align first day of the month to actual day headline
+
 const Calendar = ({ numDays }) => {
     let calendarDays = []
     for (let i = 0; i < numDays; i++) {
