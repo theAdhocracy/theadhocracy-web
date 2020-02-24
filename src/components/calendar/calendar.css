@@ -1,0 +1,17 @@
+.calendar-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 1em;
+    margin: 0;
+    gap: 0.5em;
+    text-align: center;
+}
+
+.calendar-list li {
+    color: var(--blue);
+}
+
+li.calendar-title {
+    color: var(--pink);
+}
