@@ -25,8 +25,7 @@ const IndexPage = ({ data }) => {
                 </noscript>
                 <main className="content-grid">
                     {/* TODO: Add Notes back onto homepage but in a more simplified manner */}
-                    {data.allPosts.edges.map(({ node }) => (
-                        node.contentType === "notes" ? "" :
+                    {data.allPosts.nodes.map(node => (
                             <Card post={node} type={node.contentType === "journals" ? "journal" : ""} />
                     ))}
                     <a href="/articles/">Explore?</a>
@@ -41,19 +40,17 @@ export default IndexPage
 export const query = graphql`
 	query LatestPostsQuery {
 		allPosts {
-			edges {
-				node {
-					title
-					slug
-					snippet
-					categories
-                    tags
-                    date(formatString: "DD MMM YYYY")
-                    month
-                    year
-                    contentType
-				}
-			}
+			nodes {
+                title
+                slug
+                snippet
+                categories
+                tags
+                date(formatString: "DD MMM YYYY")
+                month
+                year
+                contentType
+            }
 		}
 	}
 `

@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
+import Calendar from "../components/calendar"
 
 class Journal extends React.Component {
     render() {
@@ -12,6 +13,20 @@ class Journal extends React.Component {
 
         // Create variable to track month values; allows month headers to be placed correctly.
         let loopMonth = ""
+        let monthLookup = {
+            'January': '01',
+            'February': '02',
+            'March': '03',
+            'April': '04',
+            'May': '05',
+            'June': '06',
+            'July': '07',
+            'August': '08',
+            'September': '09',
+            'October': '10',
+            'November': '11',
+            'December': '12'
+        }
 
         return (
             <Layout title="theAdhocracy" sidebar={false}>
@@ -31,7 +46,7 @@ class Journal extends React.Component {
                                     <>
                                         <div className="journal-section">
                                             <h2>{entry.month}</h2>
-                                            {/* TODO: Create calendar component to sit here; allow it to highlight which days have posts */}
+                                            <Calendar month={loopMonth} year={entry.year} />
                                         </div>
                                         <Card post={entry} type="journal" />
                                     </>
