@@ -42,17 +42,11 @@ class Journal extends React.Component {
                                 )
                             } else {
                                 loopMonth = entry.month
-                                let loopMonthNumDays = new Date(entry.year, monthLookup[loopMonth], 0).getDate();
-                                let iterateCount = new Array(loopMonthNumDays)
                                 return (
                                     <>
                                         <div className="journal-section">
                                             <h2>{entry.month}</h2>
-                                            {/* <ul>{iterateCount.map(index => {
-                                                return <li>{index}</li>
-                                            })}</ul> */}
-                                            <Calendar numDays={loopMonthNumDays} />
-                                            {/* TODO: Create calendar component to sit here; allow it to highlight which days have posts */}
+                                            <Calendar month={loopMonth} year={entry.year} />
                                         </div>
                                         <Card post={entry} type="journal" />
                                     </>
