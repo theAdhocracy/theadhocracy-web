@@ -271,7 +271,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create notes list page
         const notes = result.data.allNotes.nodes
-        const notesPerPage = 15
+        const notesPerPage = 12
         const numNotesPages = Math.ceil(notes.length / notesPerPage)
         Array.from({ length: numNotesPages }).forEach((_, i) => {
             createPage({
