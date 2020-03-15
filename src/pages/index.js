@@ -8,10 +8,10 @@ const IndexPage = ({ data }) => {
     return (
         <Layout title="theAdhocracy" sidebar={false}>
             <section id="about" class="h-card">
-                <img className={"profile_photo u-photo"} src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/profile-photo-square.jpg" alt="Murray Adcock (site owner) wearing shades and raising a single eyebrow." />
+                <a class="u-url" href="https://theadhocracy.co.uk"><img className={"profile_photo u-photo"} src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/profile-photo-square.jpg" alt="Murray Adcock (site owner) wearing shades and raising a single eyebrow." /></a>
                 <h1>oh hi!</h1>
                 <p>I'm afraid you've stumbled into the personal playground of <span class="p-name">Murray Adcock.</span></p>
-                <p>Ad hoc thoughts from an ad hoc mind!</p>
+                <p class="p-note">Ad hoc thoughts from an ad hoc mind!</p>
             </section>
             <section id="content">
                 <header>
