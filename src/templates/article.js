@@ -14,16 +14,16 @@ export default ({ data }) => {
             <SEO
                 title={post.title}
             />
-            <main id="content" class="article">
+            <main id="content" class="article h-entry">
                 <header>
-                    <h1 className="article-header">{post.title}</h1>
+                    <h1 className="article-header p-name">{post.title}</h1>
                 </header>
-                <div className="full-width">
+                <article className="full-width">
                     <ul className="article-details left-side">
                         <li>Updated</li>
-                        <li>{post.date}</li>
+                        <li className="dt-updated">{post.date}</li>
                         <li>Published</li>
-                        <li>{post.date}</li>
+                        <li className="dt-published">{post.date}</li>
                         <li>Categories</li>
                         <li>
                             {post.categories.map(category => <a>{category}, </a>)}
@@ -33,7 +33,7 @@ export default ({ data }) => {
                             {post.tags.map(tag => <a>{tag}, </a>)}
                         </li>
                     </ul>
-                    <article dangerouslySetInnerHTML={{ __html: body }} />
+                    <div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
                     <section className="footnotes">
                         {post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
                         {post.footnotes.map((footnote, index) => {
@@ -41,7 +41,7 @@ export default ({ data }) => {
                             return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} />
                         })}
                     </section>
-                </div>
+                </article>
             </main>
         </Layout>
     )
