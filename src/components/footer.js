@@ -29,10 +29,10 @@ export default (props) => {
             </section>
             <section>
                 <h1>Connect With Me:</h1>
-                <p>Twitter <a href="https://twitter.com/theadhocracy"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/twitter-logo.svg" alt="Twitter" /></a></p>
-                <p>Instagram <a href="https://instagram.com/theadhocracy"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/instagram-logo.svg" alt="Instragram" /></a></p>
-                <p>500px <a href="https://500px.com/theadhocracy"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/500px-logo.svg" alt="500px" /></a></p>
-                <p>GitHub <a href="https://github.com/theadhocracy"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/github-logo.svg" alt="GitHub" /></a></p>
+                <p>Twitter <a href="https://twitter.com/theadhocracy" rel="me"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/twitter-logo.svg" alt="Twitter" /></a></p>
+                <p>Instagram <a href="https://instagram.com/theadhocracy" rel="me"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/instagram-logo.svg" alt="Instragram" /></a></p>
+                <p>500px <a href="https://500px.com/theadhocracy" rel="me"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/500px-logo.svg" alt="500px" /></a></p>
+                <p>GitHub <a href="https://github.com/theadhocracy" rel="me"><img src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Icons/github-logo.svg" alt="GitHub" /></a></p>
             </section>
             <section>
                 <h1>Keep Up To Date:</h1>
