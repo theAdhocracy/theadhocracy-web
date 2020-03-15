@@ -14,15 +14,15 @@ export default ({ data }) => {
             <SEO
                 title={note.title}
             />
-            <main id="content" class="article">
+            <main id="content" className="article h-entry">
                 <header>
-                    <h1 className="article-header">{note.title} | {note.attribution}</h1>
+                    <h1 className="article-header p-name">{note.title} | {note.attribution}</h1>
                 </header>
-                <div className="full-width">
+                <article className="full-width">
                     <ul className="article-details left-side">
                         <li>Source</li>
-                        <li><a href={note.source}>Link to Original <span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></a></li>
-                        <li>Published</li>
+                        <li className="h-cite"><a className="u-url" href={note.source}>Link to Original <span role="img" title="Permalink to note" aria-label="Link icon">🔗</span></a></li>
+                        <li className="dt-published">Published</li>
                         <li>{note.date}</li>
                         <li>Categories</li>
                         <li>
@@ -33,8 +33,8 @@ export default ({ data }) => {
                             {note.tags.map((tag, index, array) => (index < array.length - 1 ? <a>{tag},&nbsp;</a> : <a>{tag}</a>))}
                         </li>
                     </ul>
-                    <article dangerouslySetInnerHTML={{ __html: body }} />
-                </div>
+                    <div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
+                </article>
             </main>
         </Layout>
     )

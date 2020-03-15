@@ -14,7 +14,7 @@ export default ({ data }) => {
             <SEO
                 title={post.title}
             />
-            <main id="content" class="article h-entry">
+            <main id="content" className="article h-entry">
                 <header>
                     <h1 className="article-header p-name">{post.title}</h1>
                 </header>
