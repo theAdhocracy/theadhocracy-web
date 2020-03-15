@@ -31,7 +31,7 @@ class Notes extends React.Component {
                                 </footer>
                             </section>
                         ))}
-                        {notes.count < 16 ? <PageNav page={this.props.pageContext} root="notes/" /> : ""}
+                        <PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numNotesPages}  pageRoot="notes/" />
                     </main>
                 </section>
             </Layout>
@@ -42,8 +42,11 @@ class Notes extends React.Component {
 export default Notes
 
 export const query = graphql`
-	{
-        allNotes{
+query AllNotesQuery($skip: Int!, $limit: Int!) {
+        allNotes(
+            limit: $limit
+            skip: $skip
+        ){
             nodes {
                 title
                 slug

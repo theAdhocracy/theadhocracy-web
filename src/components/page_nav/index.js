@@ -3,12 +3,10 @@ import { Link } from "gatsby"
 
 import "./page_nav.css"
 
-const PageNav = ({page, root}) => {
+const PageNav = ({currentPage, totalPages, pageRoot}) => {
     // Defining pagination values
-    const { currentPage, numPages } = page
-    const pageRoot = root
     const isFirst = currentPage === 1
-    const isLast = currentPage === numPages
+    const isLast = currentPage === totalPages
     const prevPage = currentPage - 1 === 1 ? pageRoot : `${pageRoot}${(currentPage - 1).toString()}`
     const nextPage = `${pageRoot}${(currentPage + 1).toString()}`
 
