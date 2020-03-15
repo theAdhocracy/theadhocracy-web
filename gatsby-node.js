@@ -107,7 +107,7 @@ exports.sourceNodes = async ({ actions }) => {
             title: journal.title,
             slug: journal.slug,
             date: journal.date,
-            update: journal.updated,
+            updated: journal.updated,
             weekday: journal.weekday,
             day: journal.day,
             month: journal.month,

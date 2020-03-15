@@ -20,8 +20,7 @@ export default ({ data }) => {
                 </header>
                 <article className="full-width">
                     <ul className="article-details left-side">
-                        <li>Updated</li>
-                        <li className="dt-updated">{post.date}</li>
+                        {post.updated && post.updated !== post.date ? <><li>Updated</li><li className="dt-updated">{post.updated}</li></> : ""}
                         <li>Published</li>
                         <li className="dt-published">{post.date}</li>
                         <li>Categories</li>
@@ -56,6 +55,7 @@ export const query = graphql`
             categories
             tags
             date(formatString: "DD MMMM YYYY")
+            updated(formatString: "DD MMMM YYYY")
         }
     }
 `
