@@ -1,17 +1,41 @@
 .calendar-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    padding: 1em;
-    margin: 0;
-    gap: 0.5em;
-    text-align: center;
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	padding: 1em;
+	margin: 0;
+	gap: 0.5em;
+	text-align: center;
 }
 
 .calendar-list li {
-    color: var(--blue);
+	color: var(--blue);
 }
 
 li.calendar-title {
-    color: var(--pink);
+	color: var(--pink);
+}
+
+li.calendar-entry a {
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+li.calendar-entry a::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	display: block;
+	height: 1.75rem;
+	width: 1.75rem;
+	background-color: var(--pink);
+	border-radius: 50%;
+	top: -0.13rem;
+	left: -0.32rem;
+}
+
+li.calendar-entry a:hover::before {
+	background-color: var(--orange);
 }
