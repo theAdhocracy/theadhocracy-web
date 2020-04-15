@@ -6,78 +6,65 @@ import PageNav from "../components/page_nav"
 import Calendar from "../components/calendar"
 
 class Journal extends React.Component {
-    render() {
+	render() {
+		// Set root for data
+		const entries = this.props.data.allJournals.nodes
 
-        // Set root for data
-        const entries = this.props.data.allJournals.nodes
+		// Create variable to track month values; allows month headers to be placed correctly.
+		let loopMonth = ""
 
-        // Create variable to track month values; allows month headers to be placed correctly.
-        let loopMonth = ""
-        let monthLookup = {
-            'January': '01',
-            'February': '02',
-            'March': '03',
-            'April': '04',
-            'May': '05',
-            'June': '06',
-            'July': '07',
-            'August': '08',
-            'September': '09',
-            'October': '10',
-            'November': '11',
-            'December': '12'
-        }
+		return (
+			<Layout title="theAdhocracy" sidebar={false}>
+				<section id="content">
+					<header>
+						<h1>Journal Entries</h1>
+					</header>
+					<main className="content-grid">
+						{entries.map((entry) => {
+							if (entry.month === loopMonth) {
+								return <Card post={entry} type="journal" />
+							} else {
+								loopMonth = entry.month
+								let monthEntries = entries.filter((each) => {
+									return each.month === loopMonth
+								})
 
-        return (
-            <Layout title="theAdhocracy" sidebar={false}>
-                <section id="content">
-                    <header>
-                        <h1>Journal Entries</h1>
-                    </header>
-                    <main className="content-grid">
-                        {entries.map((entry) => {
-                            if (entry.month === loopMonth) {
-                                return (
-                                    <Card post={entry} type="journal" />
-                                )
-                            } else {
-                                loopMonth = entry.month
-                                return (
-                                    <>
-                                        <div className="journal-section">
-                                            <h2>{entry.month}</h2>
-                                            <Calendar month={loopMonth} year={entry.year} />
-                                        </div>
-                                        <Card post={entry} type="journal" />
-                                    </>
-                                )
-                            }
-                        })}
-                        {entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/" /> : ""}
-                    </main>
-                </section>
-            </Layout>
-        )
-    }
+								return (
+									<>
+										<div className="journal-section">
+											<h2>{entry.month}</h2>
+											<Calendar month={loopMonth} year={entry.year} entryArray={monthEntries} />
+										</div>
+										<Card post={entry} type="journal" />
+									</>
+								)
+							}
+						})}
+						{entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/" /> : ""}
+					</main>
+				</section>
+			</Layout>
+		)
+	}
 }
 
 export default Journal
 
 export const query = graphql`
 	{
-        allJournals {
-            nodes {
-                title
-                slug
-                date(formatString: "DD MMM YYYY")
-                weekday
-                day
-                month
-                year
-                dateSuffix
-                snippet
-                tags
-            }
-        }
+		allJournals {
+			nodes {
+				title
+				slug
+				date(formatString: "DD MMM YYYY", locale: "en-GB")
+				weekday
+				day
+				month
+				year
+				dateSuffix
+				snippet
+				tags
+			}
+		}
 	}
 `

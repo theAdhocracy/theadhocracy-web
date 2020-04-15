@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "gatsby": "^2.10.4",
+    "gatsby-cli": "^2.11.8",
     "gatsby-plugin-feed": "^2.3.4",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "react": "^16.8.6",
