@@ -4,10 +4,17 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const queries = require("./src/utilities/algolia")
+
+require("dotenv").config()
+
+console.log(queries)
+
 module.exports = {
 	siteMetadata: {
 		title: `theAdhocracy`,
 		description: `Ad hoc thoughts from an ad hoc mind.`,
+		author: `Murray Adcock`,
 		siteUrl: `https://theadhocracy.co.uk/`,
 		siteImage: `static/favicon.svg`,
 		twitterHandle: `@theAdhocracy`,
@@ -16,6 +23,15 @@ module.exports = {
 	plugins: [
 		{
 			resolve: `gatsby-plugin-react-helmet`
+		},
+		{
+			resolve: `gatsby-plugin-algolia`,
+			options: {
+				appId: process.env.GATSBY_ALGOLIA_APP_ID,
+				apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
+				queries,
+				chunkSize: 10000
+			}
 		},
 		{
 			resolve: `gatsby-plugin-feed`,
@@ -34,8 +50,8 @@ module.exports = {
 				`,
 				feeds: [
 					{
-						serialize: ({ query: { site, allPosts } }) => {
-							return allPosts.edges.map((edge) => {
+						serialize: ({ query: { site, allFeed } }) => {
+							return allFeed.edges.map((edge) => {
 								return Object.assign({}, edge.node.title, {
 									title: edge.node.title,
 									description: edge.node.snippet,
@@ -47,7 +63,7 @@ module.exports = {
 						},
 						query: `
 						{
-							allPosts {
+							allFeed {
 								edges {
 									node {
 										title

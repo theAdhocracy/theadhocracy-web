@@ -13,14 +13,18 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "algoliasearch": "^4.1.0",
     "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
     "gatsby": "^2.10.4",
     "gatsby-cli": "^2.11.8",
+    "gatsby-plugin-algolia": "^0.7.0",
     "gatsby-plugin-feed": "^2.3.4",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "react-instantsearch-dom": "^6.4.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
