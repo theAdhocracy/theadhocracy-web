@@ -16,7 +16,7 @@ module.exports = {
 		siteUrl: `https://theadhocracy.co.uk/`,
 		siteImage: `static/favicon.svg`,
 		twitterHandle: `@theAdhocracy`,
-		version: `3.2.4`
+		version: `3.3.0`
 	},
 	plugins: [
 		{
