@@ -8,8 +8,6 @@ const queries = require("./src/utilities/algolia")
 
 require("dotenv").config()
 
-console.log(queries)
-
 module.exports = {
 	siteMetadata: {
 		title: `theAdhocracy`,

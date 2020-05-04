@@ -6,8 +6,9 @@ const postQuery = `{
                 slug
                 categories
                 tags
+                silo
                 contentType
-                snippet
+                sanitised
                 date
                 year
                 month
@@ -16,14 +17,11 @@ const postQuery = `{
     }
   }`
 
-// const settings = { attributesToSnippet: [`excerpt:20`] }
-
 const queries = [
 	{
 		query: postQuery,
 		transformer: ({ data }) => data.posts.edges,
 		indexName: `theAdhocracy_Feed`
-		// settings
 	}
 ]
 

@@ -42,6 +42,8 @@ exports.sourceNodes = async ({ actions }) => {
 			month: post.month,
 			year: post.year,
 			snippet: post.snippet,
+			sanitised: post.sanitised,
+			silo: post.silo,
 			categories: post.categories,
 			tags: post.tags,
 			contentType: post.type
