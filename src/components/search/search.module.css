@@ -1,16 +1,23 @@
+.search_box {
+	display: flex;
+	align-items: center;
+}
+
 .search_box input {
-	width: 100%;
+	width: 90%;
+	flex-grow: 1;
 	border-radius: 6px;
 	border: double 3px transparent;
-	padding: 0.3rem 0.5rem;
+	padding: 0.5rem;
+	margin-right: 0.5rem;
 	background-clip: padding-box, border-box;
-	background-image: linear-gradient(white, white), linear-gradient(90deg, var(--orange), var(--yellow));
+	background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(90deg, var(--orange), var(--yellow));
 	background-origin: border-box;
 	color: var(--darkgrey);
 }
 
 .search_box input:focus {
-	background-image: linear-gradient(white, white), linear-gradient(90deg, var(--orange) 20%, var(--yellow), var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), var(--pink), var(--orange) 75%);
+	background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(90deg, var(--orange) 20%, var(--yellow), var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), var(--pink), var(--orange) 75%);
 	background-position: right center;
 	background-size: 400% auto;
 	animation: hoverSearch 5000ms ease-in-out infinite;
@@ -26,8 +33,16 @@
 	}
 }
 
+.search_box button {
+	font-size: 1.2rem;
+	padding: 0.3rem;
+	border: 0;
+	background-color: var(--blue);
+	border-radius: 3px;
+}
+
 .search_results {
-	list-style: none;
+	min-height: 20rem;
 	margin: 0;
 	padding: 0;
 }
