@@ -1,8 +1,7 @@
 import React from "react"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, Hits, PoweredBy, Configure } from "react-instantsearch-dom"
-
-import styles from "./search.css"
+import { InstantSearch, PoweredBy } from "react-instantsearch-dom"
+// Custom components
 import { PostPreview } from "./post_preview"
 import { CustomSearchBox } from "./search_box"
 
@@ -14,7 +13,6 @@ export default function Search() {
 		<>
 			<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 				<CustomSearchBox defaultRefinement="" />
-				{/* <Configure hitsPerPage={5} /> */}
 				<PostPreview />
 				<PoweredBy />
 			</InstantSearch>

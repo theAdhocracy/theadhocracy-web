@@ -1,0 +1,33 @@
+.search_box input {
+	width: 100%;
+	border-radius: 6px;
+	border: double 3px transparent;
+	padding: 0.3rem 0.5rem;
+	background-clip: padding-box, border-box;
+	background-image: linear-gradient(white, white), linear-gradient(90deg, var(--orange), var(--yellow));
+	background-origin: border-box;
+	color: var(--darkgrey);
+}
+
+.search_box input:focus {
+	background-image: linear-gradient(white, white), linear-gradient(90deg, var(--orange) 20%, var(--yellow), var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), var(--pink), var(--orange) 75%);
+	background-position: right center;
+	background-size: 400% auto;
+	animation: hoverSearch 5000ms ease-in-out infinite;
+}
+
+@keyframes hoverSearch {
+	from {
+		background-position: left center;
+	}
+
+	to {
+		background-position: right center;
+	}
+}
+
+.search_results {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}

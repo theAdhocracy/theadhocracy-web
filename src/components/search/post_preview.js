@@ -2,9 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import { Highlight, connectHits } from "react-instantsearch-dom"
 
-import styles from "./search.css"
+import styles from "./search.module.css"
 
-const HitPreview = ({ hits }) => {
+const CustomHitPreview = ({ hits }) => {
 	return (
 		<section className={styles.search_results}>
 			{hits.map((hit) => {
@@ -29,4 +29,4 @@ const HitPreview = ({ hits }) => {
 	)
 }
 
-export const PostPreview = connectHits(HitPreview)
+export const PostPreview = connectHits(CustomHitPreview)
