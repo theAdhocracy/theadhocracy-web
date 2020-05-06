@@ -40,6 +40,49 @@
 	border: 0;
 	background-color: var(--blue);
 	border-radius: 3px;
+	cursor: pointer;
+}
+
+.category_list {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	padding: 0;
+}
+
+.category_list label {
+	position: relative;
+	background-color: var(--green);
+	padding: 0.2rem 0.4rem;
+	border-radius: 6px;
+	display: inline-block;
+	height: 1.5rem;
+	font-size: 0.8rem;
+	line-height: 0;
+	color: #ffffff;
+}
+
+.category_list label input[type="checkbox"] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.category_list label span {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 2rem;
+	height: 1.5rem;
+	margin-left: 1rem;
+	margin-top: -0.2rem;
+	margin-right: -0.4rem;
+	border-radius: 0 6px 6px 0;
+	background-color: var(--lightgrey);
+	color: vaR(--green);
+	border: 2px solid var(--green);
 }
 
 .search_results {
