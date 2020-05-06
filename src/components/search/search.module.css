@@ -21,6 +21,7 @@
 	background-position: right center;
 	background-size: 400% auto;
 	animation: hoverSearch 5000ms ease-in-out infinite;
+	outline: none;
 }
 
 @keyframes hoverSearch {

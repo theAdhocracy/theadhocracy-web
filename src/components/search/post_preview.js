@@ -20,7 +20,7 @@ const CustomHitPreview = ({ hits }) => {
 							<Highlight attribute="node.sanitised" hit={hit} />
 						</p>
 						<p>
-							<Link to={`${url}/${searchResult.slug}`}>Read the full {type}.</Link> Date posted: {searchResult.month} {searchResult.year}
+							<Link to={`/${url}/${searchResult.slug}`}>Read the full {type}.</Link> Date posted: {searchResult.month} {searchResult.year}
 						</p>
 					</article>
 				)
