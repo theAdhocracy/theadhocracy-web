@@ -17,7 +17,7 @@ export default function Search() {
 		<>
 			<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 				<CustomSearchBox defaultRefinement={urlQuery} />
-				<CustomCategoryFilter attribute="categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter !== null ? "" : urlFilter} limit={20} />
+				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? "" : urlFilter} limit={20} />
 				<PostPreview />
 				<PoweredBy />
 			</InstantSearch>

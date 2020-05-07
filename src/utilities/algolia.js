@@ -20,7 +20,7 @@ const postQuery = `{
 const queries = [
 	{
 		query: postQuery,
-		transformer: ({ data }) => data.posts.edges.node,
+		transformer: ({ data }) => data.posts.edges,
 		indexName: `theAdhocracy_Feed`
 	}
 ]
