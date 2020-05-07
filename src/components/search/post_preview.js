@@ -11,17 +11,37 @@ const CustomHitPreview = ({ hits }) => {
 				let searchResult = hit.node
 				let type = searchResult.contentType.substring(0, searchResult.contentType.length - 1)
 				let url = searchResult.contentType === "articles" ? "article" : searchResult.contentType === "journals" ? `journal/${searchResult.year}/${searchResult.month.toLowerCase()}` : searchResult.contentType
+				console.log(searchResult)
 				return (
-					<article>
+					<article className="content-card">
 						<h2>
 							<Highlight attribute="node.title" hit={hit} />
 						</h2>
 						<p>
 							<Highlight attribute="node.sanitised" hit={hit} />
 						</p>
-						<p>
-							<Link to={`/${url}/${searchResult.slug}`}>Read the full {type}.</Link> Date posted: {searchResult.month} {searchResult.year}
-						</p>
+						<footer>
+							<Link to={`/${url}/${searchResult.slug}`}>
+								<span role="img" aria-label="Book icon">
+									📖
+								</span>{" "}
+								Read {type}.
+							</Link>
+							<p>
+								<span role="img" title="Date published" aria-label="Date published">
+									📆
+								</span>{" "}
+								{searchResult.month} {searchResult.year}
+							</p>
+							<p>
+								<span>Categories</span>
+							</p>
+							<ul className="flat-list">
+								{searchResult.categories.map((category) => (
+									<li>{category}</li>
+								))}
+							</ul>
+						</footer>
 					</article>
 				)
 			})}
