@@ -12,7 +12,7 @@ const searchIndex = "theAdhocracy_Feed"
 
 export default function Search() {
 	let urlQuery = globalHistory.location.search ? globalHistory.location.search.replace("?query=", "").replace(/&filter.*/, "") : ""
-	let urlFilter = globalHistory.location.search.search("&filter=") ? decodeURIComponent(globalHistory.location.search.replace(/.*&filter=/, "").replace(/\+/g, " ")).split(",") : ""
+	let urlFilter = globalHistory.location.search.search("&filter=") > 1 ? decodeURIComponent(globalHistory.location.search.replace(/.*&filter=/, "").replace(/\+/g, " ")).split(",") : ""
 	return (
 		<>
 			<InstantSearch indexName={searchIndex} searchClient={searchClient}>
