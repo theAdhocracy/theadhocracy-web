@@ -43,11 +43,13 @@ const ClearAllButton = connectCurrentRefinements(ClearAll)
 
 const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
 	return (
-		<form className={styles.search_box} noValidate action="javascript:void(0);" role="search" onSubmit={(e) => e.preventDefault()}>
-			<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} />
-			<ClearAllButton clearsQuery />
+		<>
+			<form className={styles.search_box} noValidate action="javascript:void(0);" role="search" onSubmit={(e) => e.preventDefault()}>
+				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} />
+				<ClearAllButton clearsQuery />
+			</form>
 			{isSearchStalled ? <p>Sorry, search is stalling, please wait a moment.</p> : ""}
-		</form>
+		</>
 	)
 }
 

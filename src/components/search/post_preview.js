@@ -11,7 +11,6 @@ const CustomHitPreview = ({ hits }) => {
 				let searchResult = hit.node
 				let type = searchResult.contentType.substring(0, searchResult.contentType.length - 1)
 				let url = searchResult.contentType === "articles" ? "article" : searchResult.contentType === "journals" ? `journal/${searchResult.year}/${searchResult.month.toLowerCase()}` : searchResult.contentType
-				console.log(searchResult)
 				return (
 					<article className="content-card">
 						<h2>
@@ -25,13 +24,13 @@ const CustomHitPreview = ({ hits }) => {
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}
-								Read {type}.
+								Read {type}
 							</Link>
 							<p>
 								<span role="img" title="Date published" aria-label="Date published">
 									📆
 								</span>{" "}
-								{searchResult.month} {searchResult.year}
+								{searchResult.month.slice(0, 3)} {searchResult.year}
 							</p>
 							<p>
 								<span>Categories</span>

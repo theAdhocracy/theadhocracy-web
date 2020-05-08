@@ -110,6 +110,10 @@
 	min-width: 20rem;
 }
 
+.search_results footer a {
+	text-transform: capitalize;
+}
+
 .powered_by {
 	margin: 0 auto;
 	text-align: center;

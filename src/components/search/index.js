@@ -1,13 +1,12 @@
 import React from "react"
 import algoliasearch from "algoliasearch/lite"
 import { orderBy } from "lodash"
-import { InstantSearch, PoweredBy } from "react-instantsearch-dom"
+import { InstantSearch } from "react-instantsearch-dom"
 // Custom components
 import { PostPreview } from "./post_preview"
 import { CustomSearchBox, CustomCategoryFilter } from "./search_box"
 import { globalHistory } from "@reach/router"
 import styles from "./search.module.css"
-import AlgoliaLogo from "./logo-algolia.svg"
 
 const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY)
 const searchIndex = "theAdhocracy_Feed"
