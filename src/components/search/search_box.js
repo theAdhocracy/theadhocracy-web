@@ -5,7 +5,7 @@ import styles from "./search.module.css"
 
 const handleFocus = (event) => event.target.select()
 const updateQuery = (query, filter) => {
-	window.history.replaceState(null, null, filter ? `?query=${encodeURIComponent(query)}&filter=${encodeURIComponent(filter).replace(/%20/g, "+")}` : query ? `?query=${encodeURIComponent(query)}` : "?")
+	window.history.replaceState(null, null, filter && filter.length ? `?query=${encodeURIComponent(query)}&filter=${encodeURIComponent(filter).replace(/%20/g, "+")}` : query ? `?query=${encodeURIComponent(query)}` : "?")
 }
 
 const userSearch = (event, refine) => {
@@ -34,7 +34,9 @@ const resetSearch = (refine, items) => {
 const ClearAll = ({ items, refine }) => {
 	return (
 		<button onClick={() => resetSearch(refine, items)} type="button" title="Reset search">
-			🔄
+			<span role="img" aria-label="Reset">
+				🔄
+			</span>
 		</button>
 	)
 }
@@ -44,7 +46,7 @@ const ClearAllButton = connectCurrentRefinements(ClearAll)
 const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
 	return (
 		<>
-			<form className={styles.search_box} noValidate action="javascript:void(0);" role="search" onSubmit={(e) => e.preventDefault()}>
+			<form className={styles.search_box} noValidate role="search" onSubmit={(e) => e.preventDefault()}>
 				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} />
 				<ClearAllButton clearsQuery />
 			</form>

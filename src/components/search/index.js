@@ -13,12 +13,12 @@ const searchIndex = "theAdhocracy_Feed"
 
 export default function Search() {
 	let urlQuery = globalHistory.location.search ? decodeURIComponent(globalHistory.location.search.replace("?query=", "").replace(/&filter.*/, "")) : ""
-	let urlFilter = globalHistory.location.search.search("&filter=") > 1 ? decodeURIComponent(globalHistory.location.search.replace(/.*&filter=/, "").replace(/\+/g, " ")).split(",") : ""
+	let urlFilter = globalHistory.location.search.search("&filter=") > 1 ? decodeURIComponent(globalHistory.location.search.replace(/.*&filter=/, "").replace(/\+/g, " ")).split(",") : []
 	return (
 		<>
 			<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 				<CustomSearchBox defaultRefinement={urlQuery} />
-				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? "" : urlFilter} limit={20} />
+				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? [] : urlFilter} limit={20} />
 				<PostPreview />
 				<footer className={styles.powered_by}>
 					Ad hoc search powered by{" "}
