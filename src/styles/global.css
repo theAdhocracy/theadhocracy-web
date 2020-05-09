@@ -311,7 +311,7 @@ footer.page-navigation > a {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: end;
+	align-items: flex-end;
 	background: linear-gradient(90deg, var(--orange), var(--pink));
 	-webkit-text-fill-color: transparent;
 	-webkit-background-clip: text;
