@@ -32,7 +32,7 @@ export default ({ data }) => {
 						<li className="dt-published">Published</li>
 						<li>{note.date}</li>
 						<li>Categories</li>
-						<li>{note.categories.map((category, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=&filter=${category}`}>{category},&nbsp;</Link> : <Link to={`/search/?query=&filter=${category}`}>{category}</Link>))}</li>
+						<li>{note.categories.map((category, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=&filter=${category}`}>{category},</Link> : <Link to={`/search/?query=&filter=${category}`}>{category}</Link>))}</li>
 						<li>Tags</li>
 						<li>{note.tags.map((tag, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=${tag}`}>{tag},</Link> : <Link to={`/search/?query=${tag}`}>{tag}</Link>))}</li>
 					</ul>

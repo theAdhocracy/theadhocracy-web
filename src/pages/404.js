@@ -9,7 +9,7 @@ const FourOhFour = () => {
 				<header>
 					<h1>
 						404: Someone screwed up{" "}
-						<span role="image" aria-label="Nervous and sad">
+						<span role="img" aria-label="Nervous and sad">
 							😥
 						</span>
 					</h1>
@@ -22,7 +22,7 @@ const FourOhFour = () => {
 				</p>
 				<p>
 					Thanks for dropping by{" "}
-					<span role="image" aria-label="Thumbs up">
+					<span role="img" aria-label="Thumbs up">
 						👍
 					</span>
 				</p>
