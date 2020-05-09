@@ -7,7 +7,7 @@ const SearchPage = () => {
 		<Layout title="theAdhocracy" sidebar={false}>
 			<main id="content">
 				<header>
-					<h1>Search</h1>
+					<h1>Archives</h1>
 				</header>
 				<section>
 					<Search />
