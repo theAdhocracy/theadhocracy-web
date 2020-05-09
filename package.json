@@ -22,8 +22,8 @@
     "gatsby-plugin-feed": "^2.3.4",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.1",
+    "react-dom": "npm:@hot-loader/react-dom",
+    "react-helmet": "^6.0.0",
     "react-instantsearch-dom": "^6.4.0"
   },
   "devDependencies": {

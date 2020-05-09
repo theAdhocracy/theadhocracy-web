@@ -3,8 +3,6 @@ import { Link } from "gatsby"
 
 import "./calendar.css"
 
-// TODO: Give days specific background if post exists
-
 const Calendar = ({ month, year, entryArray }) => {
 	let calendarDays = []
 	let monthLookup = {
@@ -44,7 +42,7 @@ const Calendar = ({ month, year, entryArray }) => {
 		} else if (entryDates.indexOf(dayNumeric) >= 0) {
 			calendarDays.push(
 				<li className="calendar-entry">
-					<a href={`https://theadhocracy.co.uk/journal/${year}/${month}/${entryArray[entryNumber].slug}`}>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</a>
+					<Link to={`/journal/${year}/${month.toLowerCase()}/${entryArray[entryNumber].slug}`}>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</Link>
 				</li>
 			)
 			dayNumeric++
@@ -55,10 +53,6 @@ const Calendar = ({ month, year, entryArray }) => {
 		}
 	}
 
-	// else if (entryDates.indexOf(i) >= 0) {
-	//     calendarDays.push(<li className="test">{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</li>)
-	//     dayNumeric++
-	// }
 	return (
 		<ul className="calendar-list">
 			<li className="calendar-title">M</li>

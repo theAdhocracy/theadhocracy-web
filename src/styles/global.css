@@ -1,381 +1,405 @@
 /* Global Variables */
 :root {
-    --green:        #A3BF3B;
-    --lightblue:    #2ABFB0;
-    --blue:         #1B7EA6;
-    --orange:       #F29F05;
-    --yellow:       #F2C12E;
-    --pink:         #F22E62;
+	--green: #a3bf3b;
+	--lightblue: #2abfb0;
+	--blue: #1b7ea6;
+	--orange: #f29f05;
+	--yellow: #f2c12e;
+	--pink: #f22e62;
 
-    --grey:         #d8d8d8;
-    --darkgrey:     #1D2A34;
-    --lightgrey:    #F8F8F8;
+	--grey: #d8d8d8;
+	--darkgrey: #1d2a34;
+	--lightgrey: #f8f8f8;
 }
 
 /* General reset to Box-Model */
-*, ::before, ::after { box-sizing: border-box; }
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
 
 /* Define text in responsive font-sizes */
 h1 {
-    font-size: 2rem;
-    margin: 0.67em 0;
+	font-size: 2rem;
+	margin: 0.67em 0;
 }
 h2 {
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 h3 {
-    font-size: 1.17rem;
+	font-size: 1.17rem;
 }
 h4 {
-    font-size: 1.00rem;
+	font-size: 1rem;
 }
 h5 {
-    font-size: 0.83rem;
+	font-size: 0.83rem;
 }
 h6 {
-    font-size: 0.67rem;
+	font-size: 0.67rem;
 }
 p {
-    font-size: 1rem;
+	font-size: 1rem;
 }
 
 /* Improve readability - uses em to allow for variable font size */
-h1, h2, h3, h4, h5, h6, p, ul, ol, dl, address{
-    line-height: 1.5em;
-    word-break: break-word;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+address {
+	line-height: 1.5em;
+	word-break: break-word;
 }
 
 /* General fixes */
 pre {
-    white-space: pre-wrap; /* Overflow by default is bad. */
+	white-space: pre-wrap; /* Overflow by default is bad. */
 }
 hr {
-    border: .5px solid;
+	border: 0.5px solid;
 }
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 /* Multimedia */
-img, video, canvas, audio, iframe, embed, object  { 
-    display: block;
+img,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
 }
-img, video {
-    max-width: 100%; /* Make images and video flexible by default. */
-    height: auto; /* Ensure images and video maintain their aspect ratio when max-width comes into play. */
+img,
+video {
+	max-width: 100%; /* Make images and video flexible by default. */
+	height: auto; /* Ensure images and video maintain their aspect ratio when max-width comes into play. */
 }
 img {
-    border-style: none; /* Remove the border on images inside links in IE 10 and earlier. */
+	border-style: none; /* Remove the border on images inside links in IE 10 and earlier. */
 }
 
 /* Utility Classes */
 .flat-list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-evenly;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-evenly;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .flat-list > li + li {
-    margin-left: 1rem;
+	margin-left: 1rem;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-    height: 100%;
-    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	-webkit-text-size-adjust: 100%;
+	height: 100%;
+	font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 body > div > div {
-    background-color: var(--lightgrey);
-    color: hsl(212, 20%, 20%);
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: auto minmax(auto, 3rem) auto auto minmax(100px, max-content);
-    grid-template-areas: 
-        "header header header header header header header header header header"
-        "nav nav nav nav nav nav nav nav nav nav"
-        "about about about about about about about about about about"
-        "content content content content content content content content content content"
-        "footer footer footer footer footer footer footer footer footer footer";
+	background-color: var(--lightgrey);
+	color: hsl(212, 20%, 20%);
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: auto minmax(auto, 3rem) auto auto minmax(100px, max-content);
+	grid-template-areas:
+		"header header header header header header header header header header"
+		"nav nav nav nav nav nav nav nav nav nav"
+		"about about about about about about about about about about"
+		"content content content content content content content content content content"
+		"footer footer footer footer footer footer footer footer footer footer";
 }
 
 @media screen and (min-width: 900px) {
-    body > div > div {
-        grid-template-areas: 
-            "header header header header header header header header header header"
-            "nav nav nav nav nav nav nav nav nav nav"
-            ". . about about about about about about . ."
-            ". . content content content content content content . ."
-            "footer footer footer footer footer footer footer footer footer footer";
-    }
+	body > div > div {
+		grid-template-areas:
+			"header header header header header header header header header header"
+			"nav nav nav nav nav nav nav nav nav nav"
+			". . about about about about about about . ."
+			". . content content content content content content . ."
+			"footer footer footer footer footer footer footer footer footer footer";
+	}
 }
 
 #header {
-    grid-area: header;
-    padding: 2rem 1rem;
-    background-color: var(--lightgrey);
-    border-top: 10px solid var(--pink);
-    border-image: linear-gradient(90deg, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink)) 1;
-    text-align: center;
+	grid-area: header;
+	padding: 2rem 1rem;
+	background-color: var(--lightgrey);
+	border-top: 10px solid var(--pink);
+	border-image: linear-gradient(90deg, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink)) 1;
+	text-align: center;
 }
 
 #header img {
-    margin: 0 auto;
-    max-height: 10rem;
+	margin: 0 auto;
+	max-height: 10rem;
 }
 
 #header a {
-    color: black;
-    text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 
 #header a h1 {
-    color: black;
-    background-image: linear-gradient(90deg, black 20%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-position: left center;
-    background-size: 400% auto;
+	color: black;
+	background-image: linear-gradient(90deg, black 20%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-position: left center;
+	background-size: 400% auto;
 }
 
 #header a:hover h1 {
-    background-position: right center;
-    color: #ef9671;
-    animation: hoverColour 3000ms ease-in-out infinite;
+	background-position: right center;
+	color: #ef9671;
+	animation: hoverColour 3000ms ease-in-out infinite;
 }
 
 @keyframes hoverColour {
-    from {
-        background-position: left center;
-    }
+	from {
+		background-position: left center;
+	}
 
-    to {
-        background-position: right center;
-    }
+	to {
+		background-position: right center;
+	}
 }
 
 #nav {
-    grid-area: nav;
-    background-color: #000;
-    color: #fff;
+	grid-area: nav;
+	background-color: #000;
+	color: #fff;
 }
 
 #nav a {
-    color: #fff;
+	color: #fff;
 }
 
 #nav > ul {
-    display: inline-flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+	display: inline-flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 #nav > ul li {
-    padding: 0.5rem;
+	padding: 0.5rem;
 }
 
 #about {
-    grid-area: about;
-    max-width: 100vw;
-    padding: 2rem;
-    background-color: #ffffff;
+	grid-area: about;
+	max-width: 100vw;
+	padding: 2rem;
+	background-color: #ffffff;
 }
 
 #about h1 {
-    color: var(--pink);
-    margin-bottom: 0;
+	color: var(--pink);
+	margin-bottom: 0;
 }
 
 .profile_photo {
-    width: 100%;
-    max-width: 12rem;
-    border-radius: 50%;
-    float: left;
-    margin-right: 2rem;
-    shape-outside: circle(50%);
-} 
+	width: 100%;
+	max-width: 12rem;
+	border-radius: 50%;
+	float: left;
+	margin-right: 2rem;
+	shape-outside: circle(50%);
+}
 
 #content {
-    grid-area: content;
-    max-width: 100vw;
-    padding: 1rem;
-    background-color: white;
+	grid-area: content;
+	max-width: 100%;
+	padding: 1rem;
+	background-color: white;
 }
 
 #content > header {
-    margin-bottom: 2rem;
-    border-bottom: 5px solid var(--orange);
-    border-image: linear-gradient(90deg, var(--orange), var(--yellow)) 1;
+	margin-bottom: 2rem;
+	border-bottom: 5px solid var(--orange);
+	border-image: linear-gradient(90deg, var(--orange), var(--yellow)) 1;
 }
 
 #content h1 {
-    display: inline-block;
-    margin: 0 0 0.2rem 0;
-    background: linear-gradient(90deg, var(--orange), var(--yellow));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: var(--orange); /* fallback if gradients aren't suppported */
+	display: inline-block;
+	margin: 0 0 0.2rem 0;
+	background: linear-gradient(90deg, var(--orange), var(--yellow));
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: var(--orange); /* fallback if gradients aren't suppported */
+}
+
+span[role="image"] {
+	-webkit-text-fill-color: #000000;
 }
 
 #content h1.article-header {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: var(--main);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: var(--main);
 }
 
 footer.page-navigation {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
+	grid-column: 1 / -1;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 footer.page-navigation > a {
-    width: 100%;
-    max-width: 20rem;
+	width: 100%;
+	max-width: 20rem;
 }
 
-.content-grid > a:last-child, footer.page-navigation > a {
-  margin: 0 auto;
-  grid-column: 1 / -1;
-  margin-bottom: 0.75rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(135deg, var(--pink), var(--yellow));
-  font-size: 1.5rem;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 0.1rem;
+.content-grid > a:last-child,
+footer.page-navigation > a {
+	margin: 0 auto;
+	grid-column: 1 / -1;
+	margin-bottom: 0.75rem;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background: linear-gradient(135deg, var(--pink), var(--yellow));
+	font-size: 1.5rem;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: 500;
+	letter-spacing: 0.1rem;
 }
 
 #sidebar {
-    grid-area: sidebar;
-    padding: 2rem;
+	grid-area: sidebar;
+	padding: 2rem;
 }
 
 #footer {
-    grid-area: footer;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2rem 2rem 1rem;
-    background-color: var(--darkgrey);
-    color: var(--pink);
+	grid-area: footer;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2rem 2rem 1rem;
+	background-color: var(--darkgrey);
+	color: var(--pink);
 }
 
 #footer section {
-    flex: 1;
-    flex-basis: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: end;
-    background: linear-gradient(90deg, var(--orange), var(--pink));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
+	flex: 1;
+	flex-basis: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	background: linear-gradient(90deg, var(--orange), var(--pink));
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
 }
 
 #footer h1 {
-    width: 100%;
-    text-align: center;
+	width: 100%;
+	text-align: center;
 }
 
 #footer p {
-    min-width: 8rem;
-    text-align: center;
+	min-width: 8rem;
+	text-align: center;
 }
 
 #footer a {
-    color: var(--grey);
-    text-decoration: none;
+	color: var(--grey);
+	text-decoration: none;
 }
 
 #footer img {
-    height: 50px;
-    margin: 1rem auto;
+	height: 50px;
+	margin: 1rem auto;
 }
 
 #footer img.wide-logo {
-    height: 40px;
-    margin: 1.4rem auto 1rem;
+	height: 40px;
+	margin: 1.4rem auto 1rem;
 }
 
 .copyright {
-    width: 100%;
-    margin-bottom: 0;
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--grey);
+	width: 100%;
+	margin-bottom: 0;
+	text-align: center;
+	font-size: 1.2rem;
+	color: var(--grey);
 }
 
 .copyright span {
-    padding-left: 1rem;
-    font-size: 1.3rem;
+	padding-left: 1rem;
+	font-size: 1.3rem;
 }
 
 /* Index Content Grid */
 
 .content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-    grid-gap: 3rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	grid-gap: 3rem;
 }
 
 /* Journal */
 
 .journal-section {
-    grid-column: 1;
-    background-image: linear-gradient(180deg, var(--grey), white);
+	grid-column: 1;
+	background-image: linear-gradient(180deg, var(--grey), white);
 }
 
 .journal-section > h2 {
-    margin: 0;
-    padding: 0.25rem 1rem 0.5rem 1rem;
-    background-image: linear-gradient(90deg, var(--pink), var(--yellow));
-    color: white;
+	margin: 0;
+	padding: 0.25rem 1rem 0.5rem 1rem;
+	background-image: linear-gradient(90deg, var(--pink), var(--yellow));
+	color: white;
 }
 
 /* Desktop */
 
 @media screen and (min-width: 400px) {
+	#header a h1 {
+		background-image: linear-gradient(90deg, black 15%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
+	}
 
-    #header a h1 {
-        background-image: linear-gradient(90deg, black 15%, var(--blue), var(--lightblue), var(--green), var(--yellow), var(--orange), var(--pink), black 75%);
-    }
-    
-    #content {
-        padding: 2rem;
-    }
+	#content {
+		padding: 2rem;
+	}
 
-    #footer {
-        padding: 2rem 4rem 1rem;
-    }
+	#footer {
+		padding: 2rem 4rem 1rem;
+	}
 
-    #footer section {
-        flex-basis: 0%;
-        min-width: 299px;
-        margin-right: 2rem;
-    }
+	#footer section {
+		flex-basis: 0%;
+		min-width: 299px;
+		margin-right: 2rem;
+	}
 
-    .content-grid {
-        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr))
-    }
-    
+	.content-grid {
+		grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+	}
 }
