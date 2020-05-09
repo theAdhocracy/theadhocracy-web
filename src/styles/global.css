@@ -231,7 +231,7 @@ body > div > div {
 
 #content {
 	grid-area: content;
-	max-width: 100vw;
+	max-width: 100%;
 	padding: 1rem;
 	background-color: white;
 }
