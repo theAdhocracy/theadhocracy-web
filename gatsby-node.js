@@ -265,9 +265,9 @@ exports.createPages = ({ graphql, actions }) => {
 		})
 
 		// Create journal entries
-		result.data.allJournals.nodes.forEach(({ slug, year, month }) => {
+		result.data.allJournals.nodes.forEach(({ slug }) => {
 			createPage({
-				path: `/journal/${year}/${month.toLowerCase()}/${slug}`,
+				path: `/wrote/${slug}`,
 				component: path.resolve(`./src/templates/journal_entry.js`),
 				context: {
 					// Data passed to context is available

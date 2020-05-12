@@ -54,8 +54,8 @@ module.exports = {
 									title: edge.node.title,
 									description: edge.node.snippet,
 									date: edge.node.date,
-									url: site.siteMetadata.siteUrl + "articles/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "articles/" + edge.node.slug
+									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
+									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
 								})
 							})
 						},
@@ -83,8 +83,8 @@ module.exports = {
 									title: edge.node.title,
 									description: edge.node.snippet,
 									date: edge.node.date,
-									url: site.siteMetadata.siteUrl + "/articles/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/articles/" + edge.node.slug
+									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
+									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
 								})
 							})
 						},
@@ -104,7 +104,7 @@ module.exports = {
 						`,
 						output: "/rss-articles.xml",
 						title: "theAdhocracy RSS Feed: Articles Only",
-						match: `^.*/article/`
+						match: `^.*/wrote/`
 					},
 					{
 						serialize: ({ query: { site, allJournals } }) => {
@@ -113,8 +113,8 @@ module.exports = {
 									title: edge.node.title,
 									description: edge.node.snippet,
 									date: edge.node.date,
-									url: site.siteMetadata.siteUrl + "/journal/" + edge.node.year + "/" + edge.node.month + "/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/journal/" + edge.node.year + "/" + edge.node.month + "/" + edge.node.slug
+									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
+									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
 								})
 							})
 						},
@@ -136,7 +136,7 @@ module.exports = {
 						`,
 						output: "/rss-journal.xml",
 						title: "theAdhocracy RSS Feed: Journal Only",
-						match: `^.*/journals/`
+						match: `^.*/wrote/`
 					},
 					{
 						serialize: ({ query: { site, allNotes } }) => {
@@ -145,8 +145,8 @@ module.exports = {
 									title: edge.node.title,
 									description: edge.node.snippet,
 									date: edge.node.date,
-									url: site.siteMetadata.siteUrl + "/notes/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/notes/" + edge.node.slug
+									url: site.siteMetadata.siteUrl + "/note/" + edge.node.slug,
+									guid: site.siteMetadata.siteUrl + "/note/" + edge.node.slug
 								})
 							})
 						},
@@ -159,7 +159,6 @@ module.exports = {
 											slug
 											snippet
 											date(formatString: "DD MMM YYYY")
-											
 										}
 									}
 								}
@@ -167,7 +166,7 @@ module.exports = {
 						`,
 						output: "/rss-notes.xml",
 						title: "theAdhocracy RSS Feed: Notes Only",
-						match: `^.*/notes/`
+						match: `^.*/note/`
 					}
 				]
 			}

@@ -42,7 +42,7 @@ const Calendar = ({ month, year, entryArray }) => {
 		} else if (entryDates.indexOf(dayNumeric) >= 0) {
 			calendarDays.push(
 				<li className="calendar-entry">
-					<Link to={`/journal/${year}/${month.toLowerCase()}/${entryArray[entryNumber].slug}`}>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</Link>
+					<Link to={`/wrote/${entryArray[entryNumber].slug}`}>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</Link>
 				</li>
 			)
 			dayNumeric++
