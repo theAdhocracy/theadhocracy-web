@@ -1,2 +1,9 @@
 # Redirect default Netlify subdomain to primary domain
-https://fervent-darwin-bec3e4.netlify.com/* https://www.theadhocracy.co.uk/:splat 301!
+https://fervent-darwin-bec3e4.netlify.com/* https://theadhocracy.co.uk/:splat 301!
+
+# Redirect specific articles that have changed content type
+/article/gretel-and-the-dark-spoilers /review/book/gretel-and-the-dark 301
+/article/deadpool-kills-the-marvel-universe /review/comic/deadpool-kills-the-marvel-universe 301
+/article/size-doesnt-matter-antman-spoilers /review/film/antman 301
+/article/agents-of-s-h-i-e-l-d-spoilers /review/tv/agents-of-shield 301
+/article/the-night-manager /review/tv/the-night-manager 301
