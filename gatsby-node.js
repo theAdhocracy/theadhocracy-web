@@ -237,7 +237,7 @@ exports.createPages = ({ graphql, actions }) => {
 		// Create articles
 		result.data.allArticle.nodes.forEach(({ slug }) => {
 			createPage({
-				path: `/article/${slug}`,
+				path: `/wrote/${slug}`,
 				component: path.resolve(`./src/templates/article.js`),
 				context: {
 					// Data passed to context is available
@@ -297,7 +297,7 @@ exports.createPages = ({ graphql, actions }) => {
 		// Create notes
 		result.data.allNotes.nodes.forEach(({ slug }) => {
 			createPage({
-				path: `/notes/${slug}`,
+				path: `/note/${slug}`,
 				component: path.resolve(`./src/templates/note.js`),
 				context: {
 					// Data passed to context is available
