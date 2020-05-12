@@ -252,7 +252,7 @@ body > div > div {
 	color: var(--orange); /* fallback if gradients aren't suppported */
 }
 
-span[role="image"] {
+span[role="img"] {
 	-webkit-text-fill-color: #000000;
 }
 
