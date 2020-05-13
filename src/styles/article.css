@@ -54,7 +54,9 @@ main.article * {
 .article h5,
 .article h6,
 #article-body ul,
-#article-body ol {
+#article-body ol,
+.footnotes ul,
+.footnotes ol {
 	max-width: var(--main);
 	line-height: 2;
 }

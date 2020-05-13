@@ -36,7 +36,8 @@ export default ({ data }) => {
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
 							let position = index + 1
-							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} />
+							// Regex explanation: search for any </li> OR </p> that is NOT followed by any further instance of </li> or </p> i.e. find the last closing tag. The [^] tells it to ignore whitespace/linebreaks when searching ahead i.e. multi paragraph. The first OR is in brackets so that the rendered closing tag is of the correct sort i.e. $1
+							return <aside id={`footnote${position}`} key={index} dangerouslySetInnerHTML={{ __html: footnote.replace(/<\/(li|p)>(?![^]*<\/(li|p)>)/im, ' <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></$1>') }} />
 						})}
 					</section>
 				</article>
