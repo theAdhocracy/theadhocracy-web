@@ -178,6 +178,10 @@ main.article * {
 	letter-spacing: 0.01em;
 }
 
+.article sup {
+	scroll-margin-top: 3rem;
+}
+
 .article sup a:not(.footnote-return):hover {
 	font-style: normal;
 	color: var(--orange);
