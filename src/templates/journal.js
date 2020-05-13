@@ -15,7 +15,7 @@ class Journal extends React.Component {
 		let loopYear = ""
 
 		return (
-			<Layout title="theAdhocracy" sidebar={false}>
+			<Layout title="Journal" sidebar={false}>
 				<section id="content">
 					<header>
 						<h1>Journal Entries</h1>

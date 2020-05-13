@@ -4,7 +4,7 @@ import Search from "../components/search"
 
 const SearchPage = () => {
 	return (
-		<Layout title="theAdhocracy" sidebar={false}>
+		<Layout title="Search" sidebar={false}>
 			<main id="content">
 				<header>
 					<h1>Archives</h1>

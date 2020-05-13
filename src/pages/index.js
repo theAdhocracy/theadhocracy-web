@@ -6,7 +6,7 @@ import Card from "../components/content_card"
 
 const IndexPage = ({ data }) => {
 	return (
-		<Layout title="theAdhocracy" sidebar={false}>
+		<Layout sidebar={false}>
 			<section id="about" className="h-card">
 				<a className="u-url u-uid" href="https://theadhocracy.co.uk" rel="me">
 					<img className={"profile_photo u-photo"} src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/profile-photo-square.jpg" alt="Murray Adcock (site owner) wearing shades and raising a single eyebrow." />
@@ -24,7 +24,7 @@ const IndexPage = ({ data }) => {
 				<main className="content-grid">
 					{/* TODO: Add Notes back onto homepage but in a more simplified manner */}
 					{data.allPosts.nodes.map((node, index) => (
-						<Card key={index} post={node} type={node.contentType === "journals" ? "journal" : ""} />
+						<Card key={index} post={node} />
 					))}
 					<a href="/articles/">Explore?</a>
 				</main>

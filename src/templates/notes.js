@@ -12,7 +12,7 @@ class Notes extends React.Component {
 		const notes = this.props.data.allNotes.nodes
 
 		return (
-			<Layout title="theAdhocracy | Notes" sidebar={false}>
+			<Layout title="Notes" sidebar={false}>
 				<section id="content">
 					<header>
 						<h1>Explore My Notes</h1>
