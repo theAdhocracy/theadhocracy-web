@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo/seo"
 
 import "../styles/article.css"
 
@@ -10,8 +9,7 @@ export default ({ data }) => {
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
 
 	return (
-		<Layout>
-			<SEO title={post.title} />
+		<Layout title={post.title}>
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">{post.title}</h1>

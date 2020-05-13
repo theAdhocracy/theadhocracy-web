@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo/seo"
 
 import "../styles/article.css"
 
@@ -10,8 +9,7 @@ export default ({ data }) => {
 	const body = note.body
 
 	return (
-		<Layout>
-			<SEO title={note.title} />
+		<Layout title={note.title}>
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">

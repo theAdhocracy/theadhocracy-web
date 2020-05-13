@@ -1,2 +1,29 @@
 # Redirect default Netlify subdomain to primary domain
-https://fervent-darwin-bec3e4.netlify.com/* https://www.theadhocracy.co.uk/:splat 301!
+https://fervent-darwin-bec3e4.netlify.com/* https://theadhocracy.co.uk/:splat 301!
+
+# Redirect specific articles that have changed content type
+
+## Article -> Review
+/article/gretel-and-the-dark-spoilers /review/book/gretel-and-the-dark 301
+/article/deadpool-kills-the-marvel-universe /review/comic/deadpool-kills-the-marvel-universe 301
+/article/size-doesnt-matter-antman-spoilers /review/film/antman 301
+/article/agents-of-s-h-i-e-l-d-spoilers /review/tv/agents-of-shield 301
+/article/the-night-manager /review/tv/the-night-manager 301
+
+## Article -> Note
+/article/thoughts-from-around-the-web /note/nine-design-tips-for-a-successful-company-logo 301
+/article/stickers-eclipses-and-lighthouses /note/google-lighthouse 301
+/article/spiders-dinosaurs-and-cvs-49 /note/lifemap 301
+
+## Note -> Article
+/notes/new-content-disabled-by-default-on-craft-cms /wrote/new-content-disabled-by-default-on-craft-cms 301
+/notes/code-institutes-5-day-coding-challenge-reviewed /wrote/code-institutes-5-day-coding-challenge-reviewed 301
+/notes/redactor-keyboard-shortcuts-for-craft-cms /wrote/redactor-keyboard-shortcuts-for-craft-cms 301
+/notes/gradient-borders-with-rounded-corners-on-input-fields /wrote/gradient-borders-with-rounded-corners-on-input-fields 301
+
+# Redirect old content-specific URLs to new wrote/note structure
+/article/* /wrote/:splat 301
+/journal/20:year/:month/* /wrote/:splat 301
+
+# Redirect original WordPress URL structure
+/201:year/:month/:day/* /wrote/:splat 301

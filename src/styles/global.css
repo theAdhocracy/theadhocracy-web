@@ -252,7 +252,7 @@ body > div > div {
 	color: var(--orange); /* fallback if gradients aren't suppported */
 }
 
-span[role="image"] {
+span[role="img"] {
 	-webkit-text-fill-color: #000000;
 }
 
@@ -376,6 +376,36 @@ footer.page-navigation > a {
 	padding: 0.25rem 1rem 0.5rem 1rem;
 	background-image: linear-gradient(90deg, var(--pink), var(--yellow));
 	color: white;
+}
+
+.year-break {
+	position: relative;
+	z-index: 1;
+	padding: 0.3rem 0;
+	grid-column: 1 / -1;
+	background-color: #ffffff;
+	color: var(--green);
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 0.25em;
+}
+
+.year-break h3 {
+	background-color: #ffffff;
+	width: max-content;
+	margin: 0 auto;
+	padding: 0 1em;
+}
+
+.year-break::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 50%;
+	z-index: -1;
+	width: 100%;
+	height: 3px;
+	background-color: var(--green);
 }
 
 /* Desktop */

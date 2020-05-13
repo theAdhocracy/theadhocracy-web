@@ -13,7 +13,7 @@ const ContentCard = ({ post, type }) => {
 					</header>
 					<article dangerouslySetInnerHTML={{ __html: `${post.snippet}` }} />
 					<footer>
-						<Link to={`/journal/${post.year}/${post.month.toLowerCase()}/${post.slug}`}>
+						<Link to={`/wrote/${post.slug}`}>
 							<span role="img" aria-label="Book icon">
 								📖
 							</span>{" "}
@@ -36,7 +36,7 @@ const ContentCard = ({ post, type }) => {
 					</header>
 					<article dangerouslySetInnerHTML={{ __html: `${post.snippet}` }} />
 					<footer>
-						<Link to={`/article/${post.slug}`}>
+						<Link to={`/wrote/${post.slug}`}>
 							<span role="img" aria-label="Book icon">
 								📖
 							</span>{" "}

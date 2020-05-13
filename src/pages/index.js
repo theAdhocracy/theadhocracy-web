@@ -6,7 +6,7 @@ import Card from "../components/content_card"
 
 const IndexPage = ({ data }) => {
 	return (
-		<Layout title="theAdhocracy" sidebar={false}>
+		<Layout sidebar={false}>
 			<section id="about" className="h-card">
 				<a className="u-url u-uid" href="https://theadhocracy.co.uk" rel="me">
 					<img className={"profile_photo u-photo"} src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/profile-photo-square.jpg" alt="Murray Adcock (site owner) wearing shades and raising a single eyebrow." />
@@ -21,34 +21,10 @@ const IndexPage = ({ data }) => {
 				<header>
 					<h1>What I'm Up To</h1>
 				</header>
-				<noscript>
-					<p>
-						<strong>JavaScript is Disabled - Cannot Load Latest Posts</strong>
-					</p>
-					<p>Sorry, I realise this is a bit rough, but currently articles on theAdhocracy only work with JavaScript. It's something I'm actively looking to address in the future, but right now I'm struggling to find a solution.</p>
-					<p>
-						If you're interested, the reason for the requirement is because the site is hosted on{" "}
-						<a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
-							Netlify
-						</a>{" "}
-						but dynamically loads content in from a{" "}
-						<a href="https://craftcms.com/" target="_blank" rel="noopener noreferrer">
-							Craft CMS
-						</a>{" "}
-						instance on an old-school webserver. That leaves me with a choice: client-side content rendering (aka JavaScript) or forcing a rebuild of the whole site for every edit. Neither seem particularly viable, so right now I've chosen JavaScript.
-					</p>
-					<p>
-						If you have any ideas or suggestions, I'm always happy to hear them. Feel free to DM or @ me on Twitter{" "}
-						<a href="https://twitter.com/theadhocracy" target="_blank" rel="noopener noreferrer">
-							@theAdhocracy
-						</a>{" "}
-						with your thoughts 👍
-					</p>
-				</noscript>
 				<main className="content-grid">
 					{/* TODO: Add Notes back onto homepage but in a more simplified manner */}
 					{data.allPosts.nodes.map((node, index) => (
-						<Card key={index} post={node} type={node.contentType === "journals" ? "journal" : ""} />
+						<Card key={index} post={node} />
 					))}
 					<a href="/articles/">Explore?</a>
 				</main>
