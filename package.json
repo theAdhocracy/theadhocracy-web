@@ -20,6 +20,7 @@
     "gatsby-cli": "^2.11.8",
     "gatsby-plugin-algolia": "^0.7.0",
     "gatsby-plugin-feed": "^2.3.4",
+    "gatsby-plugin-netlify": "^2.3.2",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "react": "^16.8.6",
     "react-dom": "npm:@hot-loader/react-dom",
