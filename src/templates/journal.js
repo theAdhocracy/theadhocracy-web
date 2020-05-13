@@ -25,9 +25,11 @@ class Journal extends React.Component {
 								return <Card post={entry} type="journal" />
 							} else {
 								loopMonth = entry.month
+								let loopYear = entry.year
 								let monthEntries = entries.filter((each) => {
-									return each.month === loopMonth
+									return each.month === loopMonth && each.year === loopYear
 								})
+								console.log(monthEntries)
 
 								return (
 									<>
