@@ -71,6 +71,10 @@ nav ul {
 	padding: 0;
 	margin: 0;
 }
+code,
+pre {
+	font-family: "Consolas", "Courier New", monospace;
+}
 
 /* Multimedia */
 img,
