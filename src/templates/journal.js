@@ -10,8 +10,9 @@ class Journal extends React.Component {
 		// Set root for data
 		const entries = this.props.data.allJournals.nodes
 
-		// Create variable to track month values; allows month headers to be placed correctly.
+		// Create variables to track month and year values; allows month headers to be placed correctly.
 		let loopMonth = ""
+		let loopYear = ""
 
 		return (
 			<Layout title="theAdhocracy" sidebar={false}>
@@ -20,21 +21,38 @@ class Journal extends React.Component {
 						<h1>Journal Entries</h1>
 					</header>
 					<main className="content-grid">
-						{entries.map((entry) => {
+						{entries.map((entry, index) => {
 							if (entry.month === loopMonth) {
 								return <Card post={entry} type="journal" />
 							} else {
-								loopMonth = entry.month
-								let loopYear = entry.year
+								loopMonth = entry.month // update current month
+
+								// Check current year vs previous and update if needed
+								let yearFlag = false
+								if (loopYear !== entry.year) {
+									yearFlag = true
+									loopYear = entry.year
+								}
+
+								// Create array of journal entries for the current month + year
 								let monthEntries = entries.filter((each) => {
 									return each.month === loopMonth && each.year === loopYear
 								})
-								console.log(monthEntries)
 
 								return (
 									<>
+										{/* Display year seperator except for the current year */}
+										{yearFlag && index > 0 ? (
+											<div className="year-break">
+												<h3>{entry.year}</h3>
+											</div>
+										) : (
+											""
+										)}
 										<div className="journal-section">
-											<h2>{entry.month}</h2>
+											<h2>
+												{entry.month} {entry.year}
+											</h2>
 											<Calendar month={loopMonth} year={entry.year} entryArray={monthEntries} />
 										</div>
 										<Card post={entry} type="journal" />
