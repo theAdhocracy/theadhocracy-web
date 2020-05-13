@@ -12,6 +12,20 @@
 	--lightgrey: #f8f8f8;
 }
 
+/* Motion Sensitive */
+
+@media screen and (prefers-reduced-motion: reduce), (update: slow) {
+	* {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+	}
+
+	html {
+		scroll-behavior: auto !important;
+	}
+}
+
 /* General reset to Box-Model */
 *,
 ::before,
@@ -71,6 +85,10 @@ nav ul {
 	padding: 0;
 	margin: 0;
 }
+code,
+pre {
+	font-family: "Consolas", "Courier New", monospace;
+}
 
 /* Multimedia */
 img,
@@ -104,6 +122,10 @@ img {
 
 .flat-list > li + li {
 	margin-left: 1rem;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 html,

@@ -1,40 +1,40 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
-  },
-  "dependencies": {
-    "algoliasearch": "^4.1.0",
-    "axios": "^0.19.0",
-    "dotenv": "^8.2.0",
-    "gatsby": "^2.10.4",
-    "gatsby-cli": "^2.11.8",
-    "gatsby-plugin-algolia": "^0.7.0",
-    "gatsby-plugin-feed": "^2.3.4",
-    "gatsby-plugin-netlify": "^2.3.2",
-    "gatsby-plugin-react-helmet": "^3.1.2",
-    "react": "^16.8.6",
-    "react-dom": "npm:@hot-loader/react-dom",
-    "react-helmet": "^6.0.0",
-    "react-instantsearch-dom": "^6.4.0"
-  },
-  "devDependencies": {
-    "prettier": "^1.18.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+	"name": "gatsby-starter-hello-world",
+	"private": true,
+	"description": "A simplified bare-bones starter for Gatsby",
+	"version": "0.1.0",
+	"license": "MIT",
+	"scripts": {
+		"build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+		"develop": "gatsby develop",
+		"format": "prettier --write src/**/*.{js,jsx}",
+		"start": "npm run develop",
+		"serve": "gatsby serve",
+		"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+	},
+	"dependencies": {
+		"algoliasearch": "^4.1.0",
+		"axios": "^0.19.0",
+		"dotenv": "^8.2.0",
+		"gatsby": "^2.10.4",
+		"gatsby-cli": "^2.11.8",
+		"gatsby-plugin-algolia": "^0.7.0",
+		"gatsby-plugin-feed": "^2.3.4",
+		"gatsby-plugin-netlify": "^2.3.2",
+		"gatsby-plugin-react-helmet": "^3.1.2",
+		"react": "^16.8.6",
+		"react-dom": "npm:@hot-loader/react-dom",
+		"react-helmet": "^6.0.0",
+		"react-instantsearch-dom": "^6.4.0"
+	},
+	"devDependencies": {
+		"prettier": "^1.18.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+	},
+	"bugs": {
+		"url": "https://github.com/gatsbyjs/gatsby/issues"
+	}
 }

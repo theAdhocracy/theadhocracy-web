@@ -1,7 +1,7 @@
 import React from "react"
 import algoliasearch from "algoliasearch/lite"
 import { orderBy } from "lodash"
-import { InstantSearch } from "react-instantsearch-dom"
+import { InstantSearch, Configure } from "react-instantsearch-dom"
 // Custom components
 import { PostPreview } from "./post_preview"
 import { CustomSearchBox, CustomCategoryFilter } from "./search_box"
@@ -18,7 +18,8 @@ export default function Search() {
 		<>
 			<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 				<CustomSearchBox defaultRefinement={urlQuery} />
-				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? [] : urlFilter} limit={20} />
+				<Configure hitsPerPage={1000} />
+				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? [] : urlFilter} limit={50} />
 				<PostPreview />
 				<footer className={styles.powered_by}>
 					Ad hoc search powered by{" "}

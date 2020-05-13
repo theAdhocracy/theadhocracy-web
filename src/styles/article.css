@@ -54,7 +54,9 @@ main.article * {
 .article h5,
 .article h6,
 #article-body ul,
-#article-body ol {
+#article-body ol,
+.footnotes ul,
+.footnotes ol {
 	max-width: var(--main);
 	line-height: 2;
 }
@@ -75,6 +77,13 @@ main.article * {
 	color: var(--green); /* fallback if gradients aren't suppported */
 }
 
+.article code {
+	padding: 0 0.2em;
+	font-size: 1.05em;
+	color: var(--orange);
+	font-weight: bold;
+}
+
 .article pre {
 	max-width: var(--part-span);
 	padding: 1rem 3rem;
@@ -83,10 +92,16 @@ main.article * {
 	border-left: 5px solid var(--orange);
 	border-image: linear-gradient(180deg, var(--orange), var(--yellow)) 1;
 	color: var(--yellow);
-	font-family: monospace, sans-serif;
 	line-height: 2.2;
 	tab-size: 4;
 	white-space: pre;
+}
+
+.article kbd {
+	padding: 0.1em 0.3em 0;
+	border: 1px solid var(--grey);
+	border-radius: 6px;
+	color: var(--green);
 }
 
 .article blockquote {
@@ -141,6 +156,35 @@ main.article * {
 	border-left: 3px solid var(--lightblue);
 	font-size: 0.8rem;
 	color: var(--lightblue);
+}
+
+.article del,
+.article del code {
+	color: var(--grey);
+}
+
+.article a {
+	color: var(--pink);
+	text-underline-offset: 0.1em;
+	text-decoration-thickness: 0.1em;
+}
+
+.article a:visited {
+	color: var(--green);
+}
+
+.article a:not(.footnote-return):hover {
+	font-style: italic;
+	letter-spacing: 0.01em;
+}
+
+.article sup {
+	scroll-margin-top: 3rem;
+}
+
+.article sup a:not(.footnote-return):hover {
+	font-style: normal;
+	color: var(--orange);
 }
 
 /* Article Details */

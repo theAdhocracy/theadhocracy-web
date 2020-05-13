@@ -23,7 +23,10 @@ https://fervent-darwin-bec3e4.netlify.com/* https://theadhocracy.co.uk/:splat 30
 
 # Redirect old content-specific URLs to new wrote/note structure
 /article/* /wrote/:splat 301
-/journal/20:year/:month/* /wrote/:splat 301
+/journal/2020/:month/:slug /wrote/:slug 301
 
 # Redirect original WordPress URL structure
-/201:year/:month/:day/* /wrote/:splat 301
+/2018/:month/:day/:slug /wrote/:slug 301
+/2017/:month/:day/:slug /wrote/:slug 301
+/2016/:month/:day/:slug /wrote/:slug 301
+/2015/:month/:day/:slug /wrote/:slug 301
