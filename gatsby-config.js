@@ -50,12 +50,13 @@ module.exports = {
 					{
 						serialize: ({ query: { site, allFeed } }) => {
 							return allFeed.edges.map((edge) => {
+								let urlSwitch = edge.node.contentType === "notes" ? "note" : "wrote"
 								return Object.assign({}, edge.node.title, {
 									title: edge.node.title,
 									description: edge.node.snippet,
 									date: edge.node.date,
-									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
+									url: site.siteMetadata.siteUrl + "/" + urlSwitch + "/" + edge.node.slug,
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -67,6 +68,7 @@ module.exports = {
 										title
 										slug
 										snippet
+										contentType
 										date(formatString: "DD MMM YYYY")
 									}
 								}
@@ -84,7 +86,7 @@ module.exports = {
 									description: edge.node.snippet,
 									date: edge.node.date,
 									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -114,7 +116,7 @@ module.exports = {
 									description: edge.node.snippet,
 									date: edge.node.date,
 									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -146,7 +148,7 @@ module.exports = {
 									description: edge.node.snippet,
 									date: edge.node.date,
 									url: site.siteMetadata.siteUrl + "/note/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/note/" + edge.node.slug
+									guid: edge.node.slug
 								})
 							})
 						},
