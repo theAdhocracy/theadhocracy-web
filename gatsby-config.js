@@ -74,7 +74,7 @@ module.exports = {
 						}
 						`,
 						output: "/rss.xml",
-						title: "theAdhocracy RSS Feed: All Posts"
+						title: "theAdhocracy | RSS"
 					},
 					{
 						serialize: ({ query: { site, allArticle } }) => {
@@ -103,7 +103,7 @@ module.exports = {
 							}
 						`,
 						output: "/rss-articles.xml",
-						title: "theAdhocracy RSS Feed: Articles Only",
+						title: "theAdhocracy | Articles",
 						match: `^.*/wrote/`
 					},
 					{
@@ -135,7 +135,7 @@ module.exports = {
 							}
 						`,
 						output: "/rss-journal.xml",
-						title: "theAdhocracy RSS Feed: Journal Only",
+						title: "theAdhocracy | Journal",
 						match: `^.*/wrote/`
 					},
 					{
@@ -165,7 +165,7 @@ module.exports = {
 							}
 						`,
 						output: "/rss-notes.xml",
-						title: "theAdhocracy RSS Feed: Notes Only",
+						title: "theAdhocracy | Notes",
 						match: `^.*/note/`
 					}
 				]
