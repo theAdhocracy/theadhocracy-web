@@ -50,12 +50,13 @@ module.exports = {
 					{
 						serialize: ({ query: { site, allFeed } }) => {
 							return allFeed.edges.map((edge) => {
+								let urlSwitch = edge.node.contentType === "notes" ? "note" : "wrote"
 								return Object.assign({}, edge.node.title, {
 									title: edge.node.title,
 									description: edge.node.snippet,
 									date: edge.node.date,
-									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
+									url: site.siteMetadata.siteUrl + "/" + urlSwitch + "/" + edge.node.slug,
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -67,6 +68,7 @@ module.exports = {
 										title
 										slug
 										snippet
+										contentType
 										date(formatString: "DD MMM YYYY")
 									}
 								}
@@ -74,7 +76,7 @@ module.exports = {
 						}
 						`,
 						output: "/rss.xml",
-						title: "theAdhocracy RSS Feed: All Posts"
+						title: "theAdhocracy | RSS"
 					},
 					{
 						serialize: ({ query: { site, allArticle } }) => {
@@ -84,7 +86,7 @@ module.exports = {
 									description: edge.node.snippet,
 									date: edge.node.date,
 									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -103,7 +105,7 @@ module.exports = {
 							}
 						`,
 						output: "/rss-articles.xml",
-						title: "theAdhocracy RSS Feed: Articles Only",
+						title: "theAdhocracy | Articles",
 						match: `^.*/wrote/`
 					},
 					{
@@ -114,7 +116,7 @@ module.exports = {
 									description: edge.node.snippet,
 									date: edge.node.date,
 									url: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/wrote/" + edge.node.slug
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -135,7 +137,7 @@ module.exports = {
 							}
 						`,
 						output: "/rss-journal.xml",
-						title: "theAdhocracy RSS Feed: Journal Only",
+						title: "theAdhocracy | Journal",
 						match: `^.*/wrote/`
 					},
 					{
@@ -146,7 +148,7 @@ module.exports = {
 									description: edge.node.snippet,
 									date: edge.node.date,
 									url: site.siteMetadata.siteUrl + "/note/" + edge.node.slug,
-									guid: site.siteMetadata.siteUrl + "/note/" + edge.node.slug
+									guid: edge.node.slug
 								})
 							})
 						},
@@ -165,7 +167,7 @@ module.exports = {
 							}
 						`,
 						output: "/rss-notes.xml",
-						title: "theAdhocracy RSS Feed: Notes Only",
+						title: "theAdhocracy | Notes",
 						match: `^.*/note/`
 					}
 				]
