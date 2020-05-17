@@ -235,20 +235,25 @@ exports.createPages = ({ graphql, actions }) => {
 		}
 	`).then((result) => {
 		// Create articles
-		result.data.allArticle.nodes.forEach(({ slug }) => {
+		const posts = result.data.allArticle.nodes
+		posts.forEach(({ slug }, index) => {
 			createPage({
 				path: `/wrote/${slug}`,
 				component: path.resolve(`./src/templates/article.js`),
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					prev: index === 0 ? null : posts[index - 1].slug,
+					next: index === posts.length - 1 ? null : posts[index + 1].slug,
+					index: index,
+					posts: posts
 				}
 			})
 		})
 
 		// Create articles list page
-		const posts = result.data.allArticle.nodes
+		// const posts = result.data.allArticle.nodes
 		const postsPerPage = 12
 		const numPages = Math.ceil(posts.length / postsPerPage)
 		Array.from({ length: numPages }).forEach((_, i) => {

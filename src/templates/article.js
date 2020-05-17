@@ -4,10 +4,9 @@ import Layout from "../components/layout"
 
 import "../styles/article.css"
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
 	const post = data.article
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
-
 	return (
 		<Layout title={post.title} article={true}>
 			<main id="content" className="article h-entry">
@@ -32,6 +31,10 @@ export default ({ data }) => {
 						<li>{post.tags.map((tag, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=${tag}`}>{tag},</Link> : <Link to={`/search/?query=${tag}`}>{tag}</Link>))}</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
+					<section className="prev-next">
+						<Link to={pageContext.prev}>Previous Article</Link>
+						<Link to={pageContext.next}>Next Article</Link>
+					</section>
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
