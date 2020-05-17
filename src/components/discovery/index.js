@@ -3,10 +3,10 @@ import { Link } from "gatsby"
 
 import styles from "./discovery.module.css"
 
-const Discovery = ({ context }) => {
+const Discovery = ({ context, title, url }) => {
 	return (
 		<section className={styles.discovery}>
-			<h2>Explore Other Articles</h2>
+			<h2>Explore Other {title}</h2>
 			{context.next && (
 				<>
 					<article>
@@ -18,12 +18,12 @@ const Discovery = ({ context }) => {
 								Newer
 							</p>
 						</header>
-						<Link to={`/wrote/${context.next.slug}`}>
+						<Link to={`/${url}/${context.next.slug}`}>
 							<h3>{context.next.title}</h3>
 						</Link>
 						<div dangerouslySetInnerHTML={{ __html: context.next.desc }} />
 						<footer>
-							<Link to={`/wrote/${context.next.slug}`} className={styles.discovery_button}>
+							<Link to={`/${url}/${context.next.slug}`} className={styles.discovery_button}>
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}
@@ -35,7 +35,7 @@ const Discovery = ({ context }) => {
 			)}
 			{context.prev && (
 				<>
-					<article>
+					<article className={styles.older}>
 						<header>
 							<p>
 								Older{" "}
@@ -44,12 +44,12 @@ const Discovery = ({ context }) => {
 								</span>
 							</p>
 						</header>
-						<Link to={`/wrote/${context.prev.slug}`}>
+						<Link to={`/${url}/${context.prev.slug}`}>
 							<h3>{context.prev.title}</h3>
 						</Link>
 						<div dangerouslySetInnerHTML={{ __html: context.prev.desc }} />
 						<footer>
-							<Link to={`/wrote/${context.prev.slug}`} className={styles.discovery_button}>
+							<Link to={`/${url}/${context.prev.slug}`} className={styles.discovery_button}>
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}

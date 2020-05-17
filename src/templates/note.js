@@ -2,9 +2,10 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
+import Discovery from "../components/discovery"
 import "../styles/article.css"
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
 	const note = data.notes
 	const body = note.body
 
@@ -35,6 +36,7 @@ export default ({ data }) => {
 						<li>{note.tags.map((tag, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=${tag}`}>{tag},</Link> : <Link to={`/search/?query=${tag}`}>{tag}</Link>))}</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
+					<Discovery context={pageContext} title="Notes" url="note" />
 				</article>
 			</main>
 		</Layout>

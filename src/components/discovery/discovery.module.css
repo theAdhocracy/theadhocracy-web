@@ -52,8 +52,16 @@
 	border-radius: 6px;
 }
 
+.older {
+	grid-column: 2;
+}
+
 .discovery div {
 	flex-grow: 1;
+}
+
+.discovery footer {
+	margin-top: 1.5rem;
 }
 
 .discovery footer a.discovery_button,
