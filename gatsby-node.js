@@ -218,6 +218,8 @@ exports.createPages = ({ graphql, actions }) => {
 			allArticle {
 				nodes {
 					slug
+					snippet
+					title
 				}
 			}
 			allJournals {
@@ -244,10 +246,8 @@ exports.createPages = ({ graphql, actions }) => {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
 					slug: slug,
-					prev: index === 0 ? null : posts[index - 1].slug,
-					next: index === posts.length - 1 ? null : posts[index + 1].slug,
-					index: index,
-					posts: posts
+					next: index === 0 ? null : { slug: posts[index - 1].slug, title: posts[index - 1].title, desc: posts[index - 1].snippet },
+					prev: index === posts.length - 1 ? null : { slug: posts[index + 1].slug, title: posts[index + 1].title, desc: posts[index + 1].snippet }
 				}
 			})
 		})
