@@ -218,6 +218,8 @@ exports.createPages = ({ graphql, actions }) => {
 			allArticle {
 				nodes {
 					slug
+					snippet
+					title
 				}
 			}
 			allJournals {
@@ -225,30 +227,37 @@ exports.createPages = ({ graphql, actions }) => {
 					slug
 					year
 					month
+					snippet
+					title
 				}
 			}
 			allNotes {
 				nodes {
 					slug
+					snippet
+					title
 				}
 			}
 		}
 	`).then((result) => {
 		// Create articles
-		result.data.allArticle.nodes.forEach(({ slug }) => {
+		const posts = result.data.allArticle.nodes
+		posts.forEach(({ slug }, index) => {
 			createPage({
 				path: `/wrote/${slug}`,
 				component: path.resolve(`./src/templates/article.js`),
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					next: index === 0 ? null : { slug: posts[index - 1].slug, title: posts[index - 1].title, desc: posts[index - 1].snippet },
+					prev: index === posts.length - 1 ? null : { slug: posts[index + 1].slug, title: posts[index + 1].title, desc: posts[index + 1].snippet }
 				}
 			})
 		})
 
 		// Create articles list page
-		const posts = result.data.allArticle.nodes
+		// const posts = result.data.allArticle.nodes
 		const postsPerPage = 12
 		const numPages = Math.ceil(posts.length / postsPerPage)
 		Array.from({ length: numPages }).forEach((_, i) => {
@@ -265,20 +274,22 @@ exports.createPages = ({ graphql, actions }) => {
 		})
 
 		// Create journal entries
-		result.data.allJournals.nodes.forEach(({ slug }) => {
+		const journals = result.data.allJournals.nodes
+		result.data.allJournals.nodes.forEach(({ slug }, index) => {
 			createPage({
 				path: `/wrote/${slug}`,
 				component: path.resolve(`./src/templates/journal_entry.js`),
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					next: index === 0 ? null : { slug: journals[index - 1].slug, title: journals[index - 1].title, desc: journals[index - 1].snippet },
+					prev: index === journals.length - 1 ? null : { slug: journals[index + 1].slug, title: journals[index + 1].title, desc: journals[index + 1].snippet }
 				}
 			})
 		})
 
 		// Create journals list page
-		const journals = result.data.allJournals.nodes
 		const journalsPerPage = 12
 		const numJournalPages = Math.ceil(journals.length / journalsPerPage)
 		Array.from({ length: numJournalPages }).forEach((_, i) => {
@@ -295,20 +306,22 @@ exports.createPages = ({ graphql, actions }) => {
 		})
 
 		// Create notes
-		result.data.allNotes.nodes.forEach(({ slug }) => {
+		const notes = result.data.allNotes.nodes
+		result.data.allNotes.nodes.forEach(({ slug }, index) => {
 			createPage({
 				path: `/note/${slug}`,
 				component: path.resolve(`./src/templates/note.js`),
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					next: index === 0 ? null : { slug: notes[index - 1].slug, title: notes[index - 1].title, desc: notes[index - 1].snippet },
+					prev: index === notes.length - 1 ? null : { slug: notes[index + 1].slug, title: notes[index + 1].title, desc: notes[index + 1].snippet }
 				}
 			})
 		})
 
 		// Create notes list page
-		const notes = result.data.allNotes.nodes
 		const notesPerPage = 12
 		const numNotesPages = Math.ceil(notes.length / notesPerPage)
 		Array.from({ length: numNotesPages }).forEach((_, i) => {

@@ -2,12 +2,12 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
+import Discovery from "../components/discovery"
 import "../styles/article.css"
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
 	const post = data.article
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
-
 	return (
 		<Layout title={post.title} article={true}>
 			<main id="content" className="article h-entry">
@@ -32,6 +32,23 @@ export default ({ data }) => {
 						<li>{post.tags.map((tag, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=${tag}`}>{tag},</Link> : <Link to={`/search/?query=${tag}`}>{tag}</Link>))}</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
+					<Discovery context={pageContext} title="Articles" url="wrote" />
+					<section className="resources">
+						{post.resources && (
+							<>
+								<h2>Further Reading & Sources</h2>
+								<ul>
+									{post.resources.map((item) => {
+										return (
+											<li>
+												<a href={item.url}>{item.title}</a>
+											</li>
+										)
+									})}
+								</ul>
+							</>
+						)}
+					</section>
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
@@ -53,6 +70,10 @@ export const query = graphql`
 			body
 			footnotes
 			categories
+			resources {
+				title
+				url
+			}
 			tags
 			date(formatString: "DD MMMM YYYY")
 			updated(formatString: "DD MMMM YYYY")

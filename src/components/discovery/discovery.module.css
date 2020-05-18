@@ -1,0 +1,97 @@
+/* Previous / Next Articles */
+
+.discovery {
+	margin-bottom: 3rem;
+	background-color: var(--lightgrey);
+}
+
+.discovery h2 {
+	text-align: center;
+	padding-top: 2rem;
+}
+
+.discovery header + a,
+.discovery h3 {
+	margin: 0;
+	text-decoration: none;
+}
+
+.discovery a h3 {
+	background: linear-gradient(90deg, var(--pink), var(--orange));
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: var(--pink);
+}
+
+.discovery a:visited h3 {
+	background: linear-gradient(90deg, var(--green), var(--lightblue));
+	color: var(--green);
+}
+
+.discovery a:hover h3 {
+	font-style: normal;
+	letter-spacing: 0;
+}
+
+.discovery a {
+	color: var(--pink);
+}
+
+.discovery header p {
+	margin: 0;
+	color: var(--orange);
+}
+
+.discovery article {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	background-color: white;
+	padding: 2rem;
+	border-radius: 6px;
+}
+
+.older {
+	grid-column: 2;
+}
+
+.discovery div {
+	flex-grow: 1;
+}
+
+.discovery footer {
+	margin-top: 1.5rem;
+}
+
+.discovery footer a.discovery_button,
+.discovery footer a.discovery_button:visited,
+.discovery footer a.discovery_button:hover,
+.discovery footer a.discovery_button:active {
+	height: 100%;
+	padding: 0.5rem;
+	background-color: var(--orange);
+	font-style: normal;
+	color: #ffffff;
+	border-radius: 0.5rem;
+	text-align: center;
+	text-decoration: none;
+	line-height: 1.6em;
+}
+
+.discovery footer a.discovery_button:hover {
+	background-color: var(--yellow);
+}
+
+/* Desktop */
+
+@media screen and (min-width: 699px) {
+	.discovery {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.discovery h2 {
+		grid-column: 1 / -1;
+		padding-top: 0;
+	}
+}

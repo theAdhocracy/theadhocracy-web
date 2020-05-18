@@ -16,11 +16,14 @@ module.exports = {
 		siteUrl: `https://theadhocracy.co.uk/`,
 		siteImage: `static/favicon.svg`,
 		twitterHandle: `@theAdhocracy`,
-		version: `3.3.4`
+		version: `3.3.5`
 	},
 	plugins: [
 		{
 			resolve: `gatsby-plugin-react-helmet`
+		},
+		{
+			resolve: `gatsby-plugin-sitemap`
 		},
 		{
 			resolve: `gatsby-plugin-algolia`,
