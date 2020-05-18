@@ -56,7 +56,8 @@ main.article * {
 #article-body ul,
 #article-body ol,
 .footnotes ul,
-.footnotes ol {
+.footnotes ol,
+.resources ul {
 	max-width: var(--main);
 	line-height: 2;
 }
@@ -216,6 +217,30 @@ main.article * {
 	text-decoration: none;
 }
 
+/* Article Resources */
+
+.resources ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.resources li {
+	display: flex;
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.resources li::before {
+	content: "📖";
+	margin-right: 0.75rem;
+	display: block;
+}
+
+.resources li * {
+	display: inline-block;
+	flex: 1;
+}
+
 /* Article Footnotes */
 
 .footnotes {
@@ -252,5 +277,9 @@ main.article * {
 	.article-details li {
 		width: auto;
 		margin-right: 3rem;
+	}
+
+	.resources ul {
+		padding-left: 1.5rem;
 	}
 }

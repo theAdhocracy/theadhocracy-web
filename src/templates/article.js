@@ -33,6 +33,22 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Articles" url="wrote" />
+					<section className="resources">
+						{post.resources && (
+							<>
+								<h2>Further Reading & Sources</h2>
+								<ul>
+									{post.resources.map((item) => {
+										return (
+											<li>
+												<a href={item.url}>{item.title}</a>
+											</li>
+										)
+									})}
+								</ul>
+							</>
+						)}
+					</section>
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
@@ -54,6 +70,10 @@ export const query = graphql`
 			body
 			footnotes
 			categories
+			resources {
+				title
+				url
+			}
 			tags
 			date(formatString: "DD MMMM YYYY")
 			updated(formatString: "DD MMMM YYYY")
