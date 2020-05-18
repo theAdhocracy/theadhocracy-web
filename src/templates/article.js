@@ -8,6 +8,7 @@ import "../styles/article.css"
 export default ({ data, pageContext }) => {
 	const post = data.article
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
+	const resources = post.resources[0].title ? post.resources : false
 	return (
 		<Layout title={post.title} article={true}>
 			<main id="content" className="article h-entry">
@@ -33,9 +34,9 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Articles" url="wrote" />
-					<section className="resources">
-						{post.resources && (
-							<>
+					{resources && (
+						<>
+							<section className="resources">
 								<h2>Further Reading & Sources</h2>
 								<ul>
 									{post.resources.map((item) => {
@@ -46,9 +47,9 @@ export default ({ data, pageContext }) => {
 										)
 									})}
 								</ul>
-							</>
-						)}
-					</section>
+							</section>
+						</>
+					)}
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
