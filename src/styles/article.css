@@ -226,18 +226,15 @@ main.article * {
 
 .resources li {
 	display: flex;
-	justify-content: flex-start;
-	text-align: left;
 }
 
 .resources li::before {
 	content: "📖";
 	margin-right: 0.75rem;
-	display: block;
+	display: inline-block;
 }
 
 .resources li * {
-	display: inline-block;
 	flex: 1;
 }
 
