@@ -8,7 +8,7 @@ import "../styles/article.css"
 export default ({ data, pageContext }) => {
 	const post = data.article
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
-	const resources = post.resources[0].title ? post.resources : false
+	const resources = post.resources ? (post.resources[0].title ? post.resources : false) : false
 	return (
 		<Layout title={post.title} article={true}>
 			<main id="content" className="article h-entry">
