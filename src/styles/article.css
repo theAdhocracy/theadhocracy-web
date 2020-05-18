@@ -176,7 +176,7 @@ main.article * {
 
 .article a:not(.footnote-return):hover {
 	font-style: italic;
-	letter-spacing: 0.02em;
+	letter-spacing: 0.01em;
 }
 
 .article sup {
@@ -239,6 +239,10 @@ main.article * {
 .resources li * {
 	display: inline-block;
 	flex: 1;
+}
+
+.resources ul li a:hover {
+	letter-spacing: 0.2em;
 }
 
 /* Article Footnotes */
