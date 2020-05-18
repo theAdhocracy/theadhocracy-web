@@ -1,14 +1,13 @@
 /* Previous / Next Articles */
 
 .discovery {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
 	margin-bottom: 3rem;
 	background-color: var(--lightgrey);
 }
 
 .discovery h2 {
-	grid-column: 1 / -1;
+	text-align: center;
+	padding-top: 2rem;
 }
 
 .discovery header + a,
@@ -81,4 +80,18 @@
 
 .discovery footer a.discovery_button:hover {
 	background-color: var(--yellow);
+}
+
+/* Desktop */
+
+@media screen and (min-width: 699px) {
+	.discovery {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.discovery h2 {
+		grid-column: 1 / -1;
+		padding-top: 0;
+	}
 }
