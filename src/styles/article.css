@@ -242,7 +242,7 @@ main.article * {
 }
 
 .article section.resources ul li a:hover {
-	letter-spacing: 0.02em;
+	letter-spacing: 0.012em;
 }
 
 /* Article Footnotes */
