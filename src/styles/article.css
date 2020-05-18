@@ -241,8 +241,8 @@ main.article * {
 	flex: 1;
 }
 
-.resources ul li a:hover {
-	letter-spacing: 0.2em;
+.article section.resources ul li a:hover {
+	letter-spacing: 0.02em;
 }
 
 /* Article Footnotes */
