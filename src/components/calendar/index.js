@@ -38,17 +38,17 @@ const Calendar = ({ month, year, entryArray }) => {
 	let entryNumber = 0
 	for (let i = 0; i < numDays; i++) {
 		if (i < firstDayOfMonth) {
-			calendarDays.push(<li>&nbsp;</li>)
+			calendarDays.push(<li key={i}>&nbsp;</li>)
 		} else if (entryDates.indexOf(dayNumeric) >= 0) {
 			calendarDays.push(
-				<li className="calendar-entry">
+				<li className="calendar-entry" key={i}>
 					<Link to={`/wrote/${entryArray[entryNumber].slug}`}>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</Link>
 				</li>
 			)
 			dayNumeric++
 			entryNumber++
 		} else {
-			calendarDays.push(<li>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</li>)
+			calendarDays.push(<li key={i}>{dayNumeric < 10 ? "0" + dayNumeric : dayNumeric}</li>)
 			dayNumeric++
 		}
 	}

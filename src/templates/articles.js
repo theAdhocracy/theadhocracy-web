@@ -21,10 +21,10 @@ class Articles extends React.Component {
                         <p>Timeline for pagination (some kind of calendar with mapped hot spots and year select at far right)</p>
                     </section> */}
 					<main className="content-grid">
-						{articles.map((article) => (
-							<Card post={article} />
+						{articles.map((article, index) => (
+							<Card post={article} key={index} />
 						))}
-						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numPages} pageRoot="articles/" />
+						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numPages} pageRoot="/articles/" />
 					</main>
 				</section>
 			</Layout>
@@ -36,7 +36,7 @@ export default Articles
 
 export const query = graphql`
 	query AllPostsQuery($skip: Int!, $limit: Int!) {
-		allArticle(limit: $limit, skip: $skip) {
+		allArticle(limit: $limit, skip: $skip, sort: { fields: [date], order: DESC }) {
 			nodes {
 				title
 				slug

@@ -18,8 +18,8 @@ class Notes extends React.Component {
 						<h1>Explore My Notes</h1>
 					</header>
 					<main>
-						{notes.map((note) => (
-							<section className="note">
+						{notes.map((note, index) => (
+							<section className="note" key={index}>
 								<header>
 									<h2>
 										<a href={note.source}>{note.title}</a>
@@ -47,17 +47,17 @@ class Notes extends React.Component {
 										</Link>
 									</p>
 									<ul className="flat-list">
-										{note.categories.map((category) => (
-											<li>
+										{note.categories.map((category, index) => (
+											<li key={index}>
 												<strong>{category},&nbsp;</strong>
 											</li>
 										))}
-										{note.tags.map((tag, index, array) => (index < array.length - 1 ? <li>{tag},&nbsp;</li> : <li>{tag}</li>))}
+										{note.tags.map((tag, index, array) => (index < array.length - 1 ? <li key={index}>{tag},&nbsp;</li> : <li key={index}>{tag}</li>))}
 									</ul>
 								</footer>
 							</section>
 						))}
-						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numNotesPages} pageRoot="notes/" />
+						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numNotesPages} pageRoot="/notes/" />
 					</main>
 				</section>
 			</Layout>
@@ -69,7 +69,7 @@ export default Notes
 
 export const query = graphql`
 	query AllNotesQuery($skip: Int!, $limit: Int!) {
-		allNotes(limit: $limit, skip: $skip) {
+		allNotes(limit: $limit, skip: $skip, sort: { fields: [date], order: DESC }) {
 			nodes {
 				title
 				slug

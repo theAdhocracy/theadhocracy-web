@@ -28,9 +28,33 @@ export default ({ data, pageContext }) => {
 						<li>Published</li>
 						<li className="dt-published">{post.date}</li>
 						<li>Categories</li>
-						<li>{post.categories.map((category, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=&filter=${category}`}>{category},</Link> : <Link to={`/search/?query=&filter=${category}`}>{category}</Link>))}</li>
+						<li>
+							{post.categories.map((category, index, array) =>
+								index < array.length - 1 ? (
+									<Link to={`/search/?query=&filter=${category}`} key={index}>
+										{category},
+									</Link>
+								) : (
+									<Link to={`/search/?query=&filter=${category}`} key={index}>
+										{category}
+									</Link>
+								)
+							)}
+						</li>
 						<li>Tags</li>
-						<li>{post.tags.map((tag, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=${tag}`}>{tag},</Link> : <Link to={`/search/?query=${tag}`}>{tag}</Link>))}</li>
+						<li>
+							{post.tags.map((tag, index, array) =>
+								index < array.length - 1 ? (
+									<Link to={`/search/?query=${tag}`} key={index}>
+										{tag},
+									</Link>
+								) : (
+									<Link to={`/search/?query=${tag}`} key={index}>
+										{tag}
+									</Link>
+								)
+							)}
+						</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Articles" url="wrote" />
@@ -39,9 +63,9 @@ export default ({ data, pageContext }) => {
 							<section className="resources">
 								<h2>Further Reading & Sources</h2>
 								<ul>
-									{post.resources.map((item) => {
+									{post.resources.map((item, index) => {
 										return (
-											<li>
+											<li key={index}>
 												<a href={item.url}>{item.title}</a>
 											</li>
 										)

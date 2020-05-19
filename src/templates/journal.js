@@ -23,7 +23,7 @@ class Journal extends React.Component {
 					<main className="content-grid">
 						{entries.map((entry, index) => {
 							if (entry.month === loopMonth) {
-								return <Card post={entry} type="journal" />
+								return <Card post={entry} type="journal" key={index} />
 							} else {
 								loopMonth = entry.month // update current month
 
@@ -40,7 +40,7 @@ class Journal extends React.Component {
 								})
 
 								return (
-									<>
+									<React.Fragment key={index}>
 										{/* Display year seperator except for the current year */}
 										{yearFlag && index > 0 ? (
 											<div className="year-break">
@@ -55,12 +55,12 @@ class Journal extends React.Component {
 											</h2>
 											<Calendar month={loopMonth} year={entry.year} entryArray={monthEntries} />
 										</div>
-										<Card post={entry} type="journal" />
-									</>
+										<Card post={entry} type="journal" key={index} />
+									</React.Fragment>
 								)
 							}
 						})}
-						{entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/" /> : ""}
+						{entries.count < 13 ? <PageNav page={this.props.pageContext} root="/journal/" /> : ""}
 					</main>
 				</section>
 			</Layout>
@@ -72,7 +72,7 @@ export default Journal
 
 export const query = graphql`
 	{
-		allJournals {
+		allJournals(sort: { fields: [date], order: DESC }) {
 			nodes {
 				title
 				slug
