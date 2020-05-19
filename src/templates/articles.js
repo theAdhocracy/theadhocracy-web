@@ -36,7 +36,7 @@ export default Articles
 
 export const query = graphql`
 	query AllPostsQuery($skip: Int!, $limit: Int!) {
-		allArticle(limit: $limit, skip: $skip) {
+		allArticle(limit: $limit, skip: $skip, sort: { fields: [date], order: DESC }) {
 			nodes {
 				title
 				slug

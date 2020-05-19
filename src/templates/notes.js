@@ -69,7 +69,7 @@ export default Notes
 
 export const query = graphql`
 	query AllNotesQuery($skip: Int!, $limit: Int!) {
-		allNotes(limit: $limit, skip: $skip) {
+		allNotes(limit: $limit, skip: $skip, sort: { fields: [date], order: DESC }) {
 			nodes {
 				title
 				slug

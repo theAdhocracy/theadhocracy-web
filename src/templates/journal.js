@@ -72,7 +72,7 @@ export default Journal
 
 export const query = graphql`
 	{
-		allJournals {
+		allJournals(sort: { fields: [date], order: DESC }) {
 			nodes {
 				title
 				slug

@@ -215,14 +215,14 @@ exports.createPages = ({ graphql, actions }) => {
 	const { createPage } = actions
 	return graphql(`
 		{
-			allArticle(sort: { fields: [date], order: DESC }) {
+			allArticle {
 				nodes {
 					slug
 					snippet
 					title
 				}
 			}
-			allJournals(sort: { fields: [date], order: DESC }) {
+			allJournals {
 				nodes {
 					slug
 					year
@@ -231,7 +231,7 @@ exports.createPages = ({ graphql, actions }) => {
 					title
 				}
 			}
-			allNotes(sort: { fields: [date], order: DESC }) {
+			allNotes {
 				nodes {
 					slug
 					snippet

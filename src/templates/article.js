@@ -63,9 +63,9 @@ export default ({ data, pageContext }) => {
 							<section className="resources">
 								<h2>Further Reading & Sources</h2>
 								<ul>
-									{post.resources.map((item) => {
+									{post.resources.map((item, index) => {
 										return (
-											<li>
+											<li key={index}>
 												<a href={item.url}>{item.title}</a>
 											</li>
 										)
