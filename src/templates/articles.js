@@ -24,7 +24,7 @@ class Articles extends React.Component {
 						{articles.map((article, index) => (
 							<Card post={article} key={index} />
 						))}
-						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numPages} pageRoot="articles/" />
+						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numPages} pageRoot="/articles/" />
 					</main>
 				</section>
 			</Layout>
@@ -44,12 +44,6 @@ export const query = graphql`
 				date(formatString: "DD MMM YYYY")
 				categories
 				tags
-			}
-		}
-		feed: allArticle {
-			nodes {
-				title
-				slug
 			}
 		}
 	}

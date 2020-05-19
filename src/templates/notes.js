@@ -57,7 +57,7 @@ class Notes extends React.Component {
 								</footer>
 							</section>
 						))}
-						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numNotesPages} pageRoot="notes/" />
+						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numNotesPages} pageRoot="/notes/" />
 					</main>
 				</section>
 			</Layout>

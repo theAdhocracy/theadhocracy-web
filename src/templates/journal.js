@@ -60,7 +60,7 @@ class Journal extends React.Component {
 								)
 							}
 						})}
-						{entries.count < 13 ? <PageNav page={this.props.pageContext} root="journal/" /> : ""}
+						{entries.count < 13 ? <PageNav page={this.props.pageContext} root="/journal/" /> : ""}
 					</main>
 				</section>
 			</Layout>
