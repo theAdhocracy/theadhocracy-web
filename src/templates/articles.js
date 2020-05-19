@@ -46,5 +46,11 @@ export const query = graphql`
 				tags
 			}
 		}
+		feed: allArticle {
+			nodes {
+				title
+				slug
+			}
+		}
 	}
 `
