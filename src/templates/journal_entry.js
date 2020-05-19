@@ -28,7 +28,19 @@ export default ({ data, pageContext }) => {
 						<li>Published</li>
 						<li className="dt-published">{post.date}</li>
 						<li>Tags</li>
-						<li>{post.tags.map((tag, index, array) => (index < array.length - 1 ? <Link to={`/search/?query=${tag}`}>{tag},</Link> : <Link to={`/search/?query=${tag}`}>{tag}</Link>))}</li>
+						<li>
+							{post.tags.map((tag, index, array) =>
+								index < array.length - 1 ? (
+									<Link to={`/search/?query=${tag}`} key={index}>
+										{tag},
+									</Link>
+								) : (
+									<Link to={`/search/?query=${tag}`} key={index}>
+										{tag}
+									</Link>
+								)
+							)}
+						</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Journal Entries" url="wrote" />
@@ -36,7 +48,7 @@ export default ({ data, pageContext }) => {
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
 							let position = index + 1
-							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} />
+							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} key={index} />
 						})}
 					</section>
 				</article>
