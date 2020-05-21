@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import algoliasearch from "algoliasearch/lite"
 import { orderBy } from "lodash"
 import { InstantSearch, Configure } from "react-instantsearch-dom"
@@ -14,11 +14,34 @@ const searchIndex = "theAdhocracy_Feed"
 export default function Search() {
 	let urlQuery = globalHistory.location.search ? decodeURIComponent(globalHistory.location.search.replace("?query=", "").replace(/&filter.*/, "")) : ""
 	let urlFilter = globalHistory.location.search.search("&filter=") > 1 ? decodeURIComponent(globalHistory.location.search.replace(/.*&filter=/, "").replace(/\+/g, " ")).split(",") : []
+
+	// Define initial search response limit; 9 for blank searches, effectively infinite for everything else
+	const initialLimit = urlQuery === "" && urlFilter.length === 0 ? 9 : 18
+	const [pageLimit, setPageLimit] = useState(initialLimit)
+	const initialUrlStatus = urlQuery === "" ? true : false
+	const [urlIgnore, setUrlIgnore] = useState(initialUrlStatus)
+
 	return (
 		<>
-			<InstantSearch indexName={searchIndex} searchClient={searchClient}>
+			<InstantSearch
+				indexName={searchIndex}
+				searchClient={searchClient}
+				onSearchStateChange={(searchState) => {
+					// Workaround to preserve URL query parameters if user only toggles filters but keeps search value the same
+					if (searchState.query && searchState.query !== urlQuery) {
+						setUrlIgnore(true)
+					}
+
+					// Dynamically set response limit. If query is blank, URL query can be safely ignored (i.e. query has been modified since page load), and filters are all empty, then limit to 9, otherwise allow more
+					if (!searchState.query && urlIgnore && (!searchState.refinementList || searchState.refinementList["node.categories"] === "")) {
+						setPageLimit(9)
+					} else {
+						setPageLimit(18)
+					}
+				}}
+			>
 				<CustomSearchBox defaultRefinement={urlQuery} />
-				<Configure hitsPerPage={1000} />
+				<Configure hitsPerPage={pageLimit} />
 				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? [] : urlFilter} limit={50} />
 				<PostPreview />
 				<footer className={styles.powered_by}>

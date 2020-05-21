@@ -110,8 +110,30 @@
 	min-width: 20rem;
 }
 
-.search_results footer a {
+.search_results article footer a {
 	text-transform: capitalize;
+}
+
+.search_results > footer {
+	width: 100%;
+}
+
+.search_results > footer button {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 0.75rem;
+	padding: 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	background: linear-gradient(135deg, var(--pink), var(--yellow));
+	font-size: 1.5rem;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: 500;
+	letter-spacing: 0.1rem;
+	cursor: pointer;
 }
 
 .powered_by {

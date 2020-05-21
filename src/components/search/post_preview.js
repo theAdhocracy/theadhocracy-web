@@ -1,10 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
-import { Highlight, connectHits } from "react-instantsearch-dom"
+import { Highlight, connectInfiniteHits } from "react-instantsearch-dom"
 
 import styles from "./search.module.css"
 
-const CustomHitPreview = ({ hits }) => {
+const CustomHitPreview = ({ hits, hasPrevious, refinePrevious, hasMore, refineNext }) => {
 	return (
 		<section className={styles.search_results}>
 			{hits.map((hit, index) => {
@@ -44,8 +44,15 @@ const CustomHitPreview = ({ hits }) => {
 					</article>
 				)
 			})}
+			{hasMore && (
+				<footer>
+					<button disabled={!hasMore} onClick={refineNext}>
+						Show more results
+					</button>
+				</footer>
+			)}
 		</section>
 	)
 }
 
-export const PostPreview = connectHits(CustomHitPreview)
+export const PostPreview = connectInfiniteHits(CustomHitPreview)
