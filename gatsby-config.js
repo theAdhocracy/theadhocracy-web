@@ -26,6 +26,9 @@ module.exports = {
 			resolve: `gatsby-plugin-sitemap`
 		},
 		{
+			resolve: `gatsby-plugin-robots-txt`
+		},
+		{
 			resolve: `gatsby-plugin-algolia`,
 			options: {
 				appId: process.env.GATSBY_ALGOLIA_APP_ID,
