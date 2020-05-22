@@ -418,7 +418,7 @@ exports.createPages = ({ graphql, actions }) => {
 		const reviews = result.data.allReviews.nodes
 		reviews.forEach(({ slug, type }, index) => {
 			createPage({
-				path: `/review/${type}/${slug}`,
+				path: `/review/${type.toLowerCase()}/${slug}`,
 				component: path.resolve(`./src/templates/review.js`),
 				context: {
 					// Data passed to context is available
