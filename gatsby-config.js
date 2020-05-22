@@ -14,7 +14,7 @@ module.exports = {
 		description: `Ad hoc thoughts from an ad hoc mind.`,
 		author: `Murray Adcock`,
 		siteUrl: `https://theadhocracy.co.uk/`,
-		siteImage: `static/favicon.svg`,
+		siteImage: `https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg`,
 		twitterHandle: `@theAdhocracy`,
 		version: `3.3.7`
 	},
