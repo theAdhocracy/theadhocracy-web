@@ -309,6 +309,12 @@ exports.createPages = ({ graphql, actions }) => {
 					title
 				}
 			}
+			allReviews {
+				nodes {
+					slug
+					type
+				}
+			}
 		}
 	`).then((result) => {
 		// Create articles
@@ -404,6 +410,20 @@ exports.createPages = ({ graphql, actions }) => {
 					skip: i * notesPerPage,
 					numNotesPages,
 					currentPage: i + 1
+				}
+			})
+		})
+
+		// Create reviews
+		const reviews = result.data.allReviews.nodes
+		reviews.forEach(({ slug, type }, index) => {
+			createPage({
+				path: `/review/${type}/${slug}`,
+				component: path.resolve(`./src/templates/review.js`),
+				context: {
+					// Data passed to context is available
+					// in page queries as GraphQL variables.
+					slug: slug
 				}
 			})
 		})
