@@ -20,6 +20,12 @@ exports.sourceNodes = async ({ actions }) => {
 	const fetchNotes = () => axios.get(`https://cms.theadhocracy.co.uk/notes.json`)
 	const getNotes = await fetchNotes()
 
+	const fetchReviews = () => axios.get(`https://cms.theadhocracy.co.uk/reviews.json`)
+	const getReviews = await fetchReviews()
+
+	const fetchCollections = () => axios.get(`https://cms.theadhocracy.co.uk/collections.json`)
+	const getCollections = await fetchCollections()
+
 	const fetchWholeFeed = () => axios.get(`https://cms.theadhocracy.co.uk/everything.json`)
 	const getFeed = await fetchWholeFeed()
 
@@ -204,6 +210,71 @@ exports.sourceNodes = async ({ actions }) => {
 
 		// Create node with the gatsby createNode() API
 		createNode(notesNode)
+	})
+
+	// Map reviews and create nodes
+	getReviews.data.data.map((review, i) => {
+		// Create node object
+		const reviewsNode = {
+			// Required fields for Gatsby
+			id: `${i}`,
+			parent: `__SOURCE__`,
+			internal: {
+				type: `Reviews` // name of the graphQL query --> allNotes {}
+			},
+			children: [],
+			// Fields specific to this endpoint
+			entryId: review.id,
+			slug: review.slug,
+			date: review.date,
+			updated: review.updated,
+			type: review.type,
+			title: review.title,
+			desc: review.desc,
+			rating: review.rating,
+			critiques: review.critiques,
+			collections: review.collections
+		}
+
+		// Get content digest of node. (Required field)
+		const contentDigest = crypto
+			.createHash(`md5`)
+			.update(JSON.stringify(reviewsNode))
+			.digest(`hex`)
+		reviewsNode.internal.contentDigest = contentDigest
+
+		// Create node with the gatsby createNode() API
+		createNode(reviewsNode)
+	})
+
+	// Map reviews and create nodes
+	getCollections.data.data.map((collection, i) => {
+		// Create node object
+		const collectionsNode = {
+			// Required fields for Gatsby
+			id: `${i}`,
+			parent: `__SOURCE__`,
+			internal: {
+				type: `Collections` // name of the graphQL query --> allNotes {}
+			},
+			children: [],
+			// Fields specific to this endpoint
+			entryId: collection.id,
+			slug: collection.slug,
+			title: collection.title,
+			desc: collection.desc,
+			reviews: collection.entries
+		}
+
+		// Get content digest of node. (Required field)
+		const contentDigest = crypto
+			.createHash(`md5`)
+			.update(JSON.stringify(collectionsNode))
+			.digest(`hex`)
+		collectionsNode.internal.contentDigest = contentDigest
+
+		// Create node with the gatsby createNode() API
+		createNode(collectionsNode)
 	})
 
 	return
