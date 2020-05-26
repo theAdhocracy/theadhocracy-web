@@ -31,6 +31,20 @@ export default ({ data }) => {
 							)
 						)}
 					</p>
+					<p>Series</p>
+					<p>
+						{review.series.map((series, index, array) =>
+							index < array.length - 1 ? (
+								<Link to={`/search/?query=${series}`} key={index}>
+									{series},
+								</Link>
+							) : (
+								<Link to={`/search/?query=${series}`} key={index}>
+									{series}
+								</Link>
+							)
+						)}
+					</p>
 				</header>
 				<article className="full-width">
 					<h2>Review</h2>
@@ -72,6 +86,7 @@ export const query = graphql`
 			desc
 			rating
 			collections
+			series
 			critiques {
 				title
 				copy

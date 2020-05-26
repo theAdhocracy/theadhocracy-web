@@ -23,6 +23,9 @@ exports.sourceNodes = async ({ actions }) => {
 	const fetchReviews = () => axios.get(`https://cms.theadhocracy.co.uk/reviews.json`)
 	const getReviews = await fetchReviews()
 
+	const fetchSeries = () => axios.get(`https://cms.theadhocracy.co.uk/series.json`)
+	const getSeries = await fetchSeries()
+
 	const fetchCollections = () => axios.get(`https://cms.theadhocracy.co.uk/collections.json`)
 	const getCollections = await fetchCollections()
 
@@ -233,6 +236,7 @@ exports.sourceNodes = async ({ actions }) => {
 			desc: review.desc,
 			rating: review.rating,
 			critiques: review.critiques,
+			series: review.series,
 			collections: review.collections
 		}
 
@@ -247,7 +251,7 @@ exports.sourceNodes = async ({ actions }) => {
 		createNode(reviewsNode)
 	})
 
-	// Map reviews and create nodes
+	// Map collections and create nodes
 	getCollections.data.data.map((collection, i) => {
 		// Create node object
 		const collectionsNode = {
@@ -275,6 +279,36 @@ exports.sourceNodes = async ({ actions }) => {
 
 		// Create node with the gatsby createNode() API
 		createNode(collectionsNode)
+	})
+
+	// Map series and create nodes
+	getSeries.data.data.map((series, i) => {
+		// Create node object
+		const seriesNode = {
+			// Required fields for Gatsby
+			id: `${i}`,
+			parent: `__SOURCE__`,
+			internal: {
+				type: `Series` // name of the graphQL query --> allNotes {}
+			},
+			children: [],
+			// Fields specific to this endpoint
+			entryId: series.id,
+			slug: series.slug,
+			title: series.title,
+			desc: series.desc,
+			reviews: series.entries
+		}
+
+		// Get content digest of node. (Required field)
+		const contentDigest = crypto
+			.createHash(`md5`)
+			.update(JSON.stringify(seriesNode))
+			.digest(`hex`)
+		seriesNode.internal.contentDigest = contentDigest
+
+		// Create node with the gatsby createNode() API
+		createNode(seriesNode)
 	})
 
 	return

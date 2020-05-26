@@ -11,7 +11,7 @@
 		"format": "prettier --write src/**/*.{js,jsx}",
 		"start": "npm run develop",
 		"serve": "gatsby serve",
-		"run": "gatsby build && gatsby serve"
+		"test": "gatsby build && gatsby serve"
 	},
 	"dependencies": {
 		"algoliasearch": "^4.1.0",
