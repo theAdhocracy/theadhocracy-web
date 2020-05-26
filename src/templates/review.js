@@ -8,7 +8,6 @@ import "../styles/article.css"
 
 export default ({ data }) => {
 	const review = data.reviews
-	const mainReview = review.critiques[0]
 	const tldr = review.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
 	return (
 		<Layout title={review.title} article={true}>
