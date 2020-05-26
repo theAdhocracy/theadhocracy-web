@@ -8,14 +8,14 @@ import "../styles/article.css"
 export default ({ data }) => {
 	const review = data.reviews
 	const mainReview = review.critiques[0]
-	console.log(mainReview)
+	const tldr = review.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
 	return (
 		<Layout title={review.title} article={true}>
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">{review.title}</h1>
 					<Rating value={review.rating} />
-					<div dangerouslySetInnerHTML={{ __html: review.desc }} />
+					<div dangerouslySetInnerHTML={{ __html: tldr }} />
 					<p>Collections</p>
 					<p>
 						{review.collections.map((tag, index, array) =>
@@ -45,8 +45,22 @@ export default ({ data }) => {
 						)}
 					</p>
 				</header>
+				{review.critiques.length > 1 && (
+					<nav>
+						<ul>
+							{review.critiques.map((critique, index) => {
+								let title = critique.title
+								return (
+									<li key={index}>
+										<a href={`#${title.toLowerCase()}`}>{title}</a>
+									</li>
+								)
+							})}
+						</ul>
+					</nav>
+				)}
 				<article className="full-width">
-					<h2>Review</h2>
+					{mainReview.title ? <h2 id={mainReview.title.toLowerCase()}>{mainReview.title}</h2> : <h2>Review</h2>}
 					<aside>
 						{mainReview.rewatchList.length > 0 && <span>#1</span>}
 						<span>{mainReview.date}</span>
