@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 import Rating from "../components/rating"
+import Review from "../components/review"
 import "../styles/article.css"
 
 export default ({ data }) => {
@@ -59,30 +60,9 @@ export default ({ data }) => {
 						</ul>
 					</nav>
 				)}
-				<article className="full-width">
-					{mainReview.title ? <h2 id={mainReview.title.toLowerCase()}>{mainReview.title}</h2> : <h2>Review</h2>}
-					<aside>
-						{mainReview.rewatchList.length > 0 && <span>#1</span>}
-						<span>{mainReview.date}</span>
-						<Rating value={mainReview.rating} />
-						{mainReview.location && <span>{mainReview.location}</span>}
-					</aside>
-					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: mainReview.copy }} />
-					{mainReview.rewatchList.map((rewatch, index) => {
-						return (
-							<section key={index}>
-								<h3>Rewatch</h3>
-								<aside>
-									<span>#{index + 2}</span>
-									<span>{rewatch.date}</span>
-									<Rating value={rewatch.rating} />
-									{rewatch.location && <span>{rewatch.location}</span>}
-								</aside>
-								<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: rewatch.copy }} />
-							</section>
-						)
-					})}
-				</article>
+				{review.critiques.map((critique, index) => (
+					<Review review={critique} key={index} />
+				))}
 			</main>
 		</Layout>
 	)
