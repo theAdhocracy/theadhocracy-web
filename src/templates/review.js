@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
+import Rating from "../components/rating"
 import "../styles/article.css"
 
 export default ({ data }) => {
@@ -13,9 +14,7 @@ export default ({ data }) => {
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">{review.title}</h1>
-					<span role="img" aria-label={`Rated ${review.rating} out of 5`}>
-						{"⭐".repeat(review.rating)}
-					</span>
+					<Rating value={review.rating} />
 					<div dangerouslySetInnerHTML={{ __html: review.desc }} />
 					<p>Collections</p>
 					<p>
@@ -51,9 +50,7 @@ export default ({ data }) => {
 					<aside>
 						{mainReview.rewatchList.length > 0 && <span>#1</span>}
 						<span>{mainReview.date}</span>
-						<span role="img" aria-label={`Initially rated ${mainReview.rating} out of 5`}>
-							{"⭐".repeat(mainReview.rating)}
-						</span>
+						<Rating value={mainReview.rating} />
 						{mainReview.location && <span>{mainReview.location}</span>}
 					</aside>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: mainReview.copy }} />
@@ -64,9 +61,7 @@ export default ({ data }) => {
 								<aside>
 									<span>#{index + 2}</span>
 									<span>{rewatch.date}</span>
-									<span role="img" aria-label={`Rewatch rated ${rewatch.rating} out of 5`}>
-										{"⭐".repeat(rewatch.rating)}
-									</span>
+									<Rating value={rewatch.rating} />
 									{rewatch.location && <span>{rewatch.location}</span>}
 								</aside>
 								<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: rewatch.copy }} />
