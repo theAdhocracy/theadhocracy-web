@@ -1,3 +1,16 @@
+/* Header */
+.review-header > h1 + span {
+	display: block;
+	width: var(--main);
+	margin-top: 0.75rem;
+}
+
+/* Series Navigation */
+
+.series-nav {
+	width: var(--main);
+}
+
 .series-nav ul {
 	display: flex;
 	flex-wrap: wrap;
@@ -6,8 +19,12 @@
 }
 
 .series-nav li {
-	margin: 0 1rem;
+	margin: 0;
 	padding: 0;
+}
+
+.series-nav li + li {
+	margin-left: 1.5rem;
 }
 
 .series-nav a {
@@ -17,6 +34,7 @@
 	border-radius: 6px;
 	text-decoration: none;
 	line-height: 0.6;
+	color: var(--green);
 }
 
 .article nav.series-nav ul li a:hover {

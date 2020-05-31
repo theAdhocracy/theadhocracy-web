@@ -39,7 +39,7 @@ export default ({ data }) => {
 	return (
 		<Layout title={review.title} article={true}>
 			<main id="content" className="article h-entry">
-				<header>
+				<header className="review-header">
 					<h1 className="article-header p-name">{review.title}</h1>
 					<Rating value={review.rating} />
 					<div dangerouslySetInnerHTML={{ __html: tldr }} />
