@@ -42,7 +42,7 @@
 	letter-spacing: normal;
 }
 
-.active-series,
+a.active-series,
 a.active-series:visited,
 a.active-series:active {
 	background-color: var(--green);

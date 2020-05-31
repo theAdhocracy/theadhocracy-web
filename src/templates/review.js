@@ -30,19 +30,21 @@ export default ({ data }) => {
 
 	// Initial render as dependency can never change (required for page to work w/o JS and sets initial state)
 	useEffect(() => {
-		let urlHash = window.location.hash
-		if (urlHash) {
-			// Decode URL hash, find match within critiques
-			let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
-			let seriesIndex = review.critiques.findIndex((obj) => obj["title"].toLowerCase() === title)
+		if (review.critiques.length > 1) {
+			let urlHash = window.location.hash
+			if (urlHash) {
+				// Decode URL hash, find match within critiques
+				let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
+				let seriesIndex = review.critiques.findIndex((obj) => obj["title"].toLowerCase() === title)
 
-			// Set initial state; defaults to 0 to account for typos or broken links
-			seriesIndex >= 0 ? setSeries(seriesIndex) : setSeries(0)
-			activeSeries(seriesIndex)
-		} else {
-			// Default to the first item in the array
-			setSeries(0)
-			activeSeries(0)
+				// Set initial state; defaults to 0 to account for typos or broken links
+				seriesIndex >= 0 ? setSeries(seriesIndex) : setSeries(0)
+				activeSeries(seriesIndex)
+			} else {
+				// Default to the first item in the array
+				setSeries(0)
+				activeSeries(0)
+			}
 		}
 	}, [review.critiques])
 
@@ -55,7 +57,7 @@ export default ({ data }) => {
 					<div dangerouslySetInnerHTML={{ __html: tldr }} />
 					{review.collections.length > 0 && (
 						<>
-							<p>Collections</p>
+							<h2>Collections</h2>
 							<p>
 								{review.collections.map((tag, index, array) =>
 									index < array.length - 1 ? (
@@ -73,7 +75,7 @@ export default ({ data }) => {
 					)}
 					{review.series.length > 0 && (
 						<>
-							<p>Series</p>
+							<h2>Series</h2>
 							<p>
 								{review.series.map((series, index, array) =>
 									index < array.length - 1 ? (
