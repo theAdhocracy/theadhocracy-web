@@ -13,16 +13,28 @@ export default ({ data }) => {
 	const review = data.reviews
 	const tldr = review.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
 
-	// Set state and prevent link scroll
-	function updateSeries(index, event) {
-		setSeries(index)
+	// Prevent link scroll, set state, and update URL
+	function updateSeries(index, event, title, urlHash) {
 		event.preventDefault()
+		setSeries(index)
+		window.history.pushState(null, null, `#${urlHash}`)
 	}
 
-	// Initial render (required to progressively enhance page)
+	// Initial render as dependency can never change (required for page to work w/o JS and sets initial state)
 	useEffect(() => {
-		setSeries(0)
-	}, [])
+		let urlHash = window.location.hash
+		if (urlHash) {
+			// Decode URL hash, find match within critiques
+			let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
+			let seriesIndex = review.critiques.findIndex((obj) => obj["title"].toLowerCase() === title)
+
+			// Set initial state; defaults to 0 to account for typos or broken links
+			seriesIndex >= 0 ? setSeries(seriesIndex) : setSeries(0)
+		} else {
+			// Default to the first item in the array
+			setSeries(0)
+		}
+	}, [review.critiques])
 
 	return (
 		<Layout title={review.title} article={true}>
@@ -65,9 +77,10 @@ export default ({ data }) => {
 						<ul>
 							{review.critiques.map((critique, index) => {
 								let title = critique.title ? critique.title : "Title"
+								let urlHash = encodeURIComponent(title.toLowerCase().replace(/\s/, "-"))
 								return (
 									<li key={index}>
-										<a href={`#${title.toLowerCase()}`} onClick={(event) => updateSeries(index, event)}>
+										<a href={`#${urlHash}`} onClick={(event) => updateSeries(index, event, title, urlHash)}>
 											{title}
 										</a>
 									</li>
