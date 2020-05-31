@@ -1,0 +1,25 @@
+.series-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: baseline;
+}
+
+.series-nav li {
+	margin: 0 1rem;
+	padding: 0;
+}
+
+.series-nav a {
+	display: inline-block;
+	padding: 0.5rem;
+	border: 2px solid var(--green);
+	border-radius: 6px;
+	text-decoration: none;
+	line-height: 0.6;
+}
+
+.article nav.series-nav ul li a:hover {
+	font-style: normal;
+	letter-spacing: normal;
+}

@@ -1,14 +1,29 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 import Rating from "../components/rating"
 import Review from "../components/review"
 import "../styles/article.css"
+import "../styles/reviews.css"
 
 export default ({ data }) => {
+	const [series, setSeries] = useState()
+
 	const review = data.reviews
 	const tldr = review.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
+
+	// Set state and prevent link scroll
+	function updateSeries(index, event) {
+		setSeries(index)
+		event.preventDefault()
+	}
+
+	// Initial render (required to progressively enhance page)
+	useEffect(() => {
+		setSeries(0)
+	}, [])
+
 	return (
 		<Layout title={review.title} article={true}>
 			<main id="content" className="article h-entry">
@@ -46,22 +61,22 @@ export default ({ data }) => {
 					</p>
 				</header>
 				{review.critiques.length > 1 && (
-					<nav>
+					<nav className="series-nav">
 						<ul>
 							{review.critiques.map((critique, index) => {
-								let title = critique.title
+								let title = critique.title ? critique.title : "Title"
 								return (
 									<li key={index}>
-										<a href={`#${title.toLowerCase()}`}>{title}</a>
+										<a href={`#${title.toLowerCase()}`} onClick={(event) => updateSeries(index, event)}>
+											{title}
+										</a>
 									</li>
 								)
 							})}
 						</ul>
 					</nav>
 				)}
-				{review.critiques.map((critique, index) => (
-					<Review review={critique} key={index} />
-				))}
+				{series >= 0 ? <Review review={review.critiques[series]} /> : review.critiques.map((critique, index) => <Review review={critique} key={index} />)}
 			</main>
 		</Layout>
 	)
