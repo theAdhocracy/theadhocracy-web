@@ -41,3 +41,10 @@
 	font-style: normal;
 	letter-spacing: normal;
 }
+
+.active-series,
+a.active-series:visited,
+a.active-series:active {
+	background-color: var(--green);
+	color: #ffffff;
+}

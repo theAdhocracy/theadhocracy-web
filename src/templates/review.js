@@ -14,10 +14,18 @@ export default ({ data }) => {
 	const tldr = review.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
 
 	// Prevent link scroll, set state, and update URL
-	function updateSeries(index, event, title, urlHash) {
+	function updateSeries(index, event, urlHash) {
 		event.preventDefault()
 		setSeries(index)
 		window.history.pushState(null, null, `#${urlHash}`)
+		activeSeries(index)
+	}
+
+	// Add/remove active class from links to show which series is selected
+	function activeSeries(index) {
+		let navOptions = document.querySelectorAll(".series-nav > ul > li > a")
+		navOptions.forEach((link) => link.classList.remove("active-series"))
+		navOptions[index].classList.add("active-series")
 	}
 
 	// Initial render as dependency can never change (required for page to work w/o JS and sets initial state)
@@ -30,9 +38,11 @@ export default ({ data }) => {
 
 			// Set initial state; defaults to 0 to account for typos or broken links
 			seriesIndex >= 0 ? setSeries(seriesIndex) : setSeries(0)
+			activeSeries(seriesIndex)
 		} else {
 			// Default to the first item in the array
 			setSeries(0)
+			activeSeries(0)
 		}
 	}, [review.critiques])
 
@@ -88,7 +98,7 @@ export default ({ data }) => {
 								let urlHash = encodeURIComponent(title.toLowerCase().replace(/\s/, "-"))
 								return (
 									<li key={index}>
-										<a href={`#${urlHash}`} onClick={(event) => updateSeries(index, event, title, urlHash)}>
+										<a href={`#${urlHash}`} onClick={(event) => updateSeries(index, event, urlHash)}>
 											{title}
 										</a>
 									</li>
