@@ -28,6 +28,29 @@ const ContentCard = ({ post, type }) => {
 					</footer>
 				</section>
 			)
+		case "review":
+			return (
+				<section className={"content-card journal-card"}>
+					<header>
+						<h2>{post.title}</h2>
+					</header>
+					<article dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
+					<footer>
+						<Link to={`/review/${post.type.toLowerCase()}/${post.slug}`}>
+							<span role="img" aria-label="Book icon">
+								📖
+							</span>{" "}
+							Read Entry
+						</Link>
+						<p>
+							<span role="img" title="Date published" aria-label="Date published">
+								📆
+							</span>{" "}
+							{post.date}
+						</p>
+					</footer>
+				</section>
+			)
 		default:
 			return (
 				<section className={"content-card"}>
