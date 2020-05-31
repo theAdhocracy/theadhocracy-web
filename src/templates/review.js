@@ -43,34 +43,42 @@ export default ({ data }) => {
 					<h1 className="article-header p-name">{review.title}</h1>
 					<Rating value={review.rating} />
 					<div dangerouslySetInnerHTML={{ __html: tldr }} />
-					<p>Collections</p>
-					<p>
-						{review.collections.map((tag, index, array) =>
-							index < array.length - 1 ? (
-								<Link to={`/search/?query=${tag}`} key={index}>
-									{tag},
-								</Link>
-							) : (
-								<Link to={`/search/?query=${tag}`} key={index}>
-									{tag}
-								</Link>
-							)
-						)}
-					</p>
-					<p>Series</p>
-					<p>
-						{review.series.map((series, index, array) =>
-							index < array.length - 1 ? (
-								<Link to={`/search/?query=${series}`} key={index}>
-									{series},
-								</Link>
-							) : (
-								<Link to={`/search/?query=${series}`} key={index}>
-									{series}
-								</Link>
-							)
-						)}
-					</p>
+					{review.collections.length > 0 && (
+						<>
+							<p>Collections</p>
+							<p>
+								{review.collections.map((tag, index, array) =>
+									index < array.length - 1 ? (
+										<Link to={`/search/?query=${tag}`} key={index}>
+											{tag},
+										</Link>
+									) : (
+										<Link to={`/search/?query=${tag}`} key={index}>
+											{tag}
+										</Link>
+									)
+								)}
+							</p>
+						</>
+					)}
+					{review.series.length > 0 && (
+						<>
+							<p>Series</p>
+							<p>
+								{review.series.map((series, index, array) =>
+									index < array.length - 1 ? (
+										<Link to={`/search/?query=${series}`} key={index}>
+											{series},
+										</Link>
+									) : (
+										<Link to={`/search/?query=${series}`} key={index}>
+											{series}
+										</Link>
+									)
+								)}
+							</p>
+						</>
+					)}
 				</header>
 				{review.critiques.length > 1 && (
 					<nav className="series-nav">
