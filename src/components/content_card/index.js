@@ -40,7 +40,7 @@ const ContentCard = ({ post, type }) => {
 						<p>
 							<Rating value={post.rating} />
 						</p>
-						<Link to={`/review/${post.type ? post.type.toLowerCase() : "film"}/${post.slug}`}>
+						<Link to={`/review/${post.type.toLowerCase()}/${post.slug}`}>
 							<span role="img" aria-label="Book icon">
 								📖
 							</span>{" "}

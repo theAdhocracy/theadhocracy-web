@@ -14,8 +14,8 @@ export default ({ data }) => {
 					<p dangerouslySetInnerHTML={{ __html: collection.desc }} />
 				</header>
 				<main className="content-grid">
-					{collection.reviews.map((review, index) => (
-						<Card post={review} type="review" key={index} />
+					{collection.reviews.map((review) => (
+						<Card post={review} type="review" key={review.slug} />
 					))}
 				</main>
 			</section>
@@ -29,11 +29,12 @@ export const query = graphql`
 			title
 			desc
 			reviews {
-				date(formatString: "DD MMM YYYY")
+				updated(formatString: "DD MMM YYYY")
 				desc
 				rating
 				slug
 				title
+				type
 			}
 		}
 	}
