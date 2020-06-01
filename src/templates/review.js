@@ -59,14 +59,14 @@ export default ({ data }) => {
 						<>
 							<h2>Collections</h2>
 							<p>
-								{review.collections.map((tag, index, array) =>
+								{review.collections.map((collection, index, array) =>
 									index < array.length - 1 ? (
-										<Link to={`/search/?query=${tag}`} key={index}>
-											{tag},
+										<Link to={`/review/collection/${collection.toLowerCase()}`} key={index}>
+											{collection},
 										</Link>
 									) : (
-										<Link to={`/search/?query=${tag}`} key={index}>
-											{tag}
+										<Link to={`/review/collection/${collection.toLowerCase()}`} key={index}>
+											{collection}
 										</Link>
 									)
 								)}

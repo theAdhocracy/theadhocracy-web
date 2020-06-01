@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import Rating from "../rating"
 import "./content_card.css"
 
 const ContentCard = ({ post, type }) => {
@@ -36,18 +37,15 @@ const ContentCard = ({ post, type }) => {
 					</header>
 					<article dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
 					<footer>
-						<Link to={`/review/${post.type.toLowerCase()}/${post.slug}`}>
+						<p>
+							<Rating value={post.rating} />
+						</p>
+						<Link to={`/review/${post.type ? post.type.toLowerCase() : "film"}/${post.slug}`}>
 							<span role="img" aria-label="Book icon">
 								📖
 							</span>{" "}
 							Read Entry
 						</Link>
-						<p>
-							<span role="img" title="Date published" aria-label="Date published">
-								📆
-							</span>{" "}
-							{post.date}
-						</p>
 					</footer>
 				</section>
 			)
