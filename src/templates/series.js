@@ -8,15 +8,18 @@ import "../styles/article.css"
 import "../styles/reviews.css"
 
 export default ({ data }) => {
-	const [series, setSeries] = useState()
+	const [review, setReview] = useState()
 
-	const review = data.series
-	const tldr = review.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
+	const series = data.series
+	const tldr = series.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
+	const reviews = series.reviews
+
+	const seriesRating = 0
 
 	// Prevent link scroll, set state, and update URL
 	function updateSeries(index, event, urlHash) {
 		event.preventDefault()
-		setSeries(index)
+		setReview(index)
 		window.history.pushState(null, null, `#${urlHash}`)
 		activeSeries(index)
 	}
@@ -29,41 +32,54 @@ export default ({ data }) => {
 	}
 
 	// Initial render as dependency can never change (required for page to work w/o JS and sets initial state)
-	// useEffect(() => {
-	// 	if (review.critiques.length > 1) {
-	// 		let urlHash = window.location.hash
-	// 		if (urlHash) {
-	// 			// Decode URL hash, find match within critiques
-	// 			let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
-	// 			let seriesIndex = review.critiques.findIndex((obj) => obj["title"].toLowerCase() === title)
+	useEffect(() => {
+		if (reviews.length > 1) {
+			let urlHash = window.location.hash
+			if (urlHash) {
+				// Decode URL hash, find match within critiques
+				let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
+				let reviewIndex = reviews.findIndex((obj) => obj["title"].toLowerCase() === title)
 
-	// 			// Set initial state; defaults to 0 to account for typos or broken links
-	// 			seriesIndex >= 0 ? setSeries(seriesIndex) : setSeries(0)
-	// 			activeSeries(seriesIndex)
-	// 		} else {
-	// 			// Default to the first item in the array
-	// 			setSeries(0)
-	// 			activeSeries(0)
-	// 		}
-	// 	}
-	// }, [review.critiques])
+				// Set initial state; defaults to 0 to account for typos or broken links
+				reviewIndex >= 0 ? setReview(reviewIndex) : setReview(0)
+				activeSeries(reviewIndex)
+			} else {
+				// Default to the first item in the array
+				setReview(0)
+				activeSeries(0)
+			}
+		}
+	}, [reviews])
 
 	return (
-		<Layout title={review.title} article={true}>
+		<Layout title={series.title} article={true}>
 			<main id="content" className="article h-entry">
 				<header className="review-header">
-					<h1 className="article-header p-name">{review.title}</h1>
-					<Rating value={review.rating} />
+					<h1 className="article-header p-name">{series.title}</h1>
+					<Rating value={seriesRating} />
 					<p dangerouslySetInnerHTML={{ __html: tldr }} />
+					{series.collections.length > 0 && (
+						<>
+							<h2>Collections</h2>
+							<p>
+								{series.collections.map((collection, index, array) => (
+									<Link to={`/review/collection/${collection.toLowerCase()}`} key={collection}>
+										{collection}
+										{index < array.length - 1 ? "," : null}
+									</Link>
+								))}
+							</p>
+						</>
+					)}
 				</header>
-				{/* {review.reviews.length > 1 && (
+				{reviews.length > 1 && (
 					<nav className="series-nav">
 						<ul>
-							{review.reviews.map((critique, index) => {
-								let title = critique.title ? critique.title : "Title"
+							{reviews.map((review, index) => {
+								let title = review.title ? review.title : "Title"
 								let urlHash = encodeURIComponent(title.toLowerCase().replace(/\s/, "-"))
 								return (
-									<li key={index}>
+									<li key={urlHash}>
 										<a href={`#${urlHash}`} onClick={(event) => updateSeries(index, event, urlHash)}>
 											{title}
 										</a>
@@ -73,7 +89,7 @@ export default ({ data }) => {
 						</ul>
 					</nav>
 				)}
-				{series >= 0 ? <Review review={review.critiques[series]} /> : review.critiques.map((critique, index) => <Review review={critique} key={index} />)} */}
+				{review >= 0 ? <Review review={reviews[review].critiques[0]} title={reviews[review].title} /> : reviews[0].critiques.map((critique, index) => <Review review={critique} key={index} />)}
 			</main>
 		</Layout>
 	)
@@ -85,12 +101,25 @@ export const query = graphql`
 			title
 			desc
 			type
+			collections
 			reviews {
 				date
 				desc
 				rating
 				slug
 				title
+				critiques {
+					copy
+					date
+					rating
+					location
+					rewatchList {
+						copy
+						date
+						rating
+						location
+					}
+				}
 			}
 		}
 	}

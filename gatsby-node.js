@@ -509,7 +509,7 @@ exports.createPages = ({ graphql, actions }) => {
 		const series = result.data.allSeries.nodes
 		series.forEach(({ slug, type }) => {
 			createPage({
-				path: `/review/${type.toLowerCase()}/${slug}`,
+				path: `/review/series/${type.toLowerCase()}/${slug}`,
 				component: path.resolve(`./src/templates/series.js`),
 				context: {
 					// Data passed to context is available

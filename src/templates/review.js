@@ -73,7 +73,7 @@ export default ({ data }) => {
 							<h2>Series</h2>
 							<p>
 								{review.series.map((series, index, array) => (
-									<Link to={`/review/${review.type}/${series}`} key={index}>
+									<Link to={`/review/series/${review.type.toLowerCase()}/${series.toLowerCase()}`} key={index}>
 										{series}
 										{index < array.length - 1 ? "," : null}
 									</Link>

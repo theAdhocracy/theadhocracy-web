@@ -3,10 +3,10 @@ import React from "react"
 import Rating from "../rating"
 import styles from "./review.module.css"
 
-const Review = ({ review }) => {
+const Review = ({ review, title }) => {
 	return (
 		<article className={`full-width ${styles.review}`}>
-			{review.title ? <h2 id={review.title.toLowerCase()}>{review.title}</h2> : <h2>Review</h2>}
+			{review.title ? <h2 id={review.title.toLowerCase()}>{review.title}</h2> : title ? <h2>{title}</h2> : <h2>Review</h2>}
 			<aside>
 				{review.rewatchList.length > 0 && <span>#1</span>}
 				<span>{review.date}</span>
