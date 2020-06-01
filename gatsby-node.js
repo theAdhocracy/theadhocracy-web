@@ -267,7 +267,7 @@ exports.sourceNodes = async ({ actions }) => {
 			slug: collection.slug,
 			title: collection.title,
 			desc: collection.desc,
-			reviews: collection.entries
+			reviews: collection.reviews
 		}
 
 		// Get content digest of node. (Required field)
@@ -295,10 +295,11 @@ exports.sourceNodes = async ({ actions }) => {
 			// Fields specific to this endpoint
 			entryId: series.id,
 			slug: series.slug,
+			type: series.type,
 			title: series.title,
 			desc: series.desc,
-			reviews: series.entries,
-			type: series.type
+			reviews: series.reviews,
+			collections: series.collections
 		}
 
 		// Get content digest of node. (Required field)

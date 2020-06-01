@@ -59,17 +59,12 @@ export default ({ data }) => {
 						<>
 							<h2>Collections</h2>
 							<p>
-								{review.collections.map((collection, index, array) =>
-									index < array.length - 1 ? (
-										<Link to={`/review/collection/${collection.toLowerCase()}`} key={index}>
-											{collection},
-										</Link>
-									) : (
-										<Link to={`/review/collection/${collection.toLowerCase()}`} key={index}>
-											{collection}
-										</Link>
-									)
-								)}
+								{review.collections.map((collection, index, array) => (
+									<Link to={`/review/collection/${collection.toLowerCase()}`} key={index}>
+										{collection}
+										{index < array.length - 1 ? "," : null}
+									</Link>
+								))}
 							</p>
 						</>
 					)}
@@ -77,17 +72,12 @@ export default ({ data }) => {
 						<>
 							<h2>Series</h2>
 							<p>
-								{review.series.map((series, index, array) =>
-									index < array.length - 1 ? (
-										<Link to={`/search/?query=${series}`} key={index}>
-											{series},
-										</Link>
-									) : (
-										<Link to={`/search/?query=${series}`} key={index}>
-											{series}
-										</Link>
-									)
-								)}
+								{review.series.map((series, index, array) => (
+									<Link to={`/review/${review.type}/${series}`} key={index}>
+										{series}
+										{index < array.length - 1 ? "," : null}
+									</Link>
+								))}
 							</p>
 						</>
 					)}
@@ -121,6 +111,7 @@ export const query = graphql`
 			title
 			desc
 			rating
+			type
 			collections
 			series
 			critiques {
