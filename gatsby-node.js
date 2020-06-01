@@ -297,7 +297,8 @@ exports.sourceNodes = async ({ actions }) => {
 			slug: series.slug,
 			title: series.title,
 			desc: series.desc,
-			reviews: series.entries
+			reviews: series.entries,
+			type: series.type
 		}
 
 		// Get content digest of node. (Required field)
@@ -344,6 +345,17 @@ exports.createPages = ({ graphql, actions }) => {
 				}
 			}
 			allReviews {
+				nodes {
+					slug
+					type
+				}
+			}
+			allCollections {
+				nodes {
+					slug
+				}
+			}
+			allSeries {
 				nodes {
 					slug
 					type
@@ -450,7 +462,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 		// Create reviews
 		const reviews = result.data.allReviews.nodes
-		reviews.forEach(({ slug, type }, index) => {
+		reviews.forEach(({ slug, type }) => {
 			createPage({
 				path: `/review/${type.toLowerCase()}/${slug}`,
 				component: path.resolve(`./src/templates/review.js`),
@@ -474,6 +486,34 @@ exports.createPages = ({ graphql, actions }) => {
 					skip: i * reviewsPerPage,
 					numReviewPages,
 					currentPage: i + 1
+				}
+			})
+		})
+
+		// Create collections
+		const collections = result.data.allCollections.nodes
+		collections.forEach(({ slug }) => {
+			createPage({
+				path: `/review/collection/${slug}`,
+				component: path.resolve(`./src/templates/collection.js`),
+				context: {
+					// Data passed to context is available
+					// in page queries as GraphQL variables.
+					slug: slug
+				}
+			})
+		})
+
+		// Create series
+		const series = result.data.allSeries.nodes
+		series.forEach(({ slug, type }) => {
+			createPage({
+				path: `/review/${type.toLowerCase()}/${slug}`,
+				component: path.resolve(`./src/templates/series.js`),
+				context: {
+					// Data passed to context is available
+					// in page queries as GraphQL variables.
+					slug: slug
 				}
 			})
 		})
