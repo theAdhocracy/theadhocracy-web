@@ -86,7 +86,7 @@ export default ({ data }) => {
 						</ul>
 					</nav>
 				)}
-				{review >= 0 ? <Review review={reviews[review].critiques[0]} title={reviews[review].title} /> : reviews[0].critiques.map((critique, index) => <Review review={critique} key={index} />)}
+				{review >= 0 ? <Review review={reviews[review].critiques[0]} title={reviews[review].title} slug={reviews[review].slug} /> : reviews.map((review) => review.critiques.map((critique, index) => <Review review={critique} key={review.slug} title={review.title} slug={review.slug} />))}
 			</main>
 		</Layout>
 	)
