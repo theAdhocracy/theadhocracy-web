@@ -298,6 +298,7 @@ exports.sourceNodes = async ({ actions }) => {
 			type: series.type,
 			title: series.title,
 			desc: series.desc,
+			rating: series.rating,
 			reviews: series.reviews,
 			collections: series.collections
 		}

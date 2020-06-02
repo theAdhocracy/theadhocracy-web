@@ -14,8 +14,6 @@ export default ({ data }) => {
 	const tldr = series.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
 	const reviews = series.reviews
 
-	const seriesRating = 0
-
 	// Prevent link scroll, set state, and update URL
 	function updateSeries(index, event, urlHash) {
 		event.preventDefault()
@@ -56,7 +54,7 @@ export default ({ data }) => {
 			<main id="content" className="article h-entry">
 				<header className="review-header">
 					<h1 className="article-header p-name">{series.title}</h1>
-					<Rating value={seriesRating} />
+					<Rating value={series.rating} />
 					<p dangerouslySetInnerHTML={{ __html: tldr }} />
 					{series.collections.length > 0 && (
 						<>
@@ -100,6 +98,7 @@ export const query = graphql`
 			title
 			desc
 			type
+			rating
 			collections {
 				slug
 				title
