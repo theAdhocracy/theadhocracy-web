@@ -37,8 +37,8 @@ export default ({ data }) => {
 			let urlHash = window.location.hash
 			if (urlHash) {
 				// Decode URL hash, find match within critiques
-				let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
-				let reviewIndex = reviews.findIndex((obj) => obj["title"].toLowerCase() === title)
+				let slug = decodeURI(urlHash.replace(/^#/, ""))
+				let reviewIndex = reviews.findIndex((obj) => obj["slug"] === slug)
 
 				// Set initial state; defaults to 0 to account for typos or broken links
 				reviewIndex >= 0 ? setReview(reviewIndex) : setReview(0)
@@ -77,10 +77,9 @@ export default ({ data }) => {
 						<ul>
 							{reviews.map((review, index) => {
 								let title = review.title ? review.title : "Title"
-								let urlHash = encodeURIComponent(title.toLowerCase().replace(/\s/, "-"))
 								return (
-									<li key={urlHash}>
-										<a href={`#${urlHash}`} onClick={(event) => updateSeries(index, event, urlHash)}>
+									<li key={review.slug}>
+										<a href={`#${review.slug}`} onClick={(event) => updateSeries(index, event, review.slug)}>
 											{title}
 										</a>
 									</li>
