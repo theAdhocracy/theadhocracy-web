@@ -34,7 +34,7 @@ export default ({ data }) => {
 			let urlHash = window.location.hash
 			if (urlHash) {
 				// Decode URL hash, find match within critiques
-				let title = decodeURI(urlHash.replace("-", " ").replace(/^#/, ""))
+				let title = decodeURI(urlHash.replace(/-/g, " ").replace(/^#/, ""))
 				let seriesIndex = review.critiques.findIndex((obj) => obj["title"].toLowerCase() === title)
 
 				// Set initial state; defaults to 0 to account for typos or broken links
@@ -60,8 +60,8 @@ export default ({ data }) => {
 							<h2>Collections</h2>
 							<p>
 								{review.collections.map((collection, index, array) => (
-									<Link to={`/review/collection/${collection.toLowerCase()}`} key={index}>
-										{collection}
+									<Link to={`/review/collection/${collection.slug}`} key={collection.slug}>
+										{collection.title}
 										{index < array.length - 1 ? "," : null}
 									</Link>
 								))}
@@ -73,8 +73,8 @@ export default ({ data }) => {
 							<h2>Series</h2>
 							<p>
 								{review.series.map((series, index, array) => (
-									<Link to={`/review/series/${review.type.toLowerCase()}/${series.toLowerCase()}`} key={index}>
-										{series}
+									<Link to={`/review/series/${review.type.toLowerCase()}/${series.slug}`} key={series.slug}>
+										{series.title}
 										{index < array.length - 1 ? "," : null}
 									</Link>
 								))}
@@ -87,7 +87,7 @@ export default ({ data }) => {
 						<ul>
 							{review.critiques.map((critique, index) => {
 								let title = critique.title ? critique.title : "Title"
-								let urlHash = encodeURIComponent(title.toLowerCase().replace(/\s/, "-"))
+								let urlHash = encodeURIComponent(title.toLowerCase().replace(/\s/g, "-"))
 								return (
 									<li key={index}>
 										<a href={`#${urlHash}`} onClick={(event) => updateSeries(index, event, urlHash)}>
@@ -112,8 +112,14 @@ export const query = graphql`
 			desc
 			rating
 			type
-			collections
-			series
+			collections {
+				title
+				slug
+			}
+			series {
+				title
+				slug
+			}
 			critiques {
 				title
 				copy

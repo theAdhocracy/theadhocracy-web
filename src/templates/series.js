@@ -63,8 +63,8 @@ export default ({ data }) => {
 							<h2>Collections</h2>
 							<p>
 								{series.collections.map((collection, index, array) => (
-									<Link to={`/review/collection/${collection.toLowerCase()}`} key={collection}>
-										{collection}
+									<Link to={`/review/collection/${collection.slug}`} key={collection.slug}>
+										{collection.title}
 										{index < array.length - 1 ? "," : null}
 									</Link>
 								))}
@@ -100,7 +100,10 @@ export const query = graphql`
 			title
 			desc
 			type
-			collections
+			collections {
+				slug
+				title
+			}
 			reviews {
 				date
 				desc
