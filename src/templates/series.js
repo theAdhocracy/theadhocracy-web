@@ -11,7 +11,6 @@ export default ({ data }) => {
 	const [review, setReview] = useState()
 
 	const series = data.series
-	const tldr = series.desc.replace(/^<p>/, "<p><strong>tl;dr: </strong>")
 	const reviews = series.reviews
 
 	// Prevent link scroll, set state, and update URL
@@ -54,8 +53,15 @@ export default ({ data }) => {
 			<main id="content" className="article h-entry">
 				<header className="review-header">
 					<h1 className="article-header p-name">{series.title}</h1>
-					<Rating value={series.rating} />
-					<p dangerouslySetInnerHTML={{ __html: tldr }} />
+					<p>
+						<Rating value={series.rating} />{" "}
+						<em>
+							averaged across {series.seriesCount} {series.type}s.
+						</em>
+					</p>
+					<p>
+						<strong>tldr;</strong> {series.desc}
+					</p>
 					{series.collections.length > 0 && (
 						<>
 							<h2>Collections</h2>
@@ -100,6 +106,7 @@ export const query = graphql`
 			desc
 			type
 			rating
+			seriesCount
 			collections {
 				slug
 				title
@@ -110,11 +117,13 @@ export const query = graphql`
 				rating
 				slug
 				title
+				viewCount
 				critiques {
 					copy
 					date
 					rating
 					location
+					viewCount
 					rewatchList {
 						copy
 						date

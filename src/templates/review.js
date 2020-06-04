@@ -53,7 +53,14 @@ export default ({ data }) => {
 			<main id="content" className="article h-entry">
 				<header className="review-header">
 					<h1 className="article-header p-name">{review.title}</h1>
-					<Rating value={review.rating} />
+					<p>
+						<Rating value={review.rating} />
+						<em>
+							{" "}
+							based on {review.viewCount} review{review.viewCount > 1 ? "s" : ""}.
+						</em>
+					</p>
+					{review.author && <p>Written by {review.author}.</p>}
 					<div dangerouslySetInnerHTML={{ __html: tldr }} />
 					{review.collections.length > 0 && (
 						<>
@@ -110,6 +117,9 @@ export const query = graphql`
 			desc
 			rating
 			type
+			author
+			viewCount
+			seasonCount
 			collections {
 				title
 				slug

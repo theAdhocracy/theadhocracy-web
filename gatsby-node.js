@@ -235,6 +235,9 @@ exports.sourceNodes = async ({ actions }) => {
 			title: review.title,
 			desc: review.desc,
 			rating: review.rating,
+			author: review.author,
+			viewCount: review.viewCount,
+			seasonCount: review.seasons,
 			critiques: review.critiques,
 			series: review.series,
 			collections: review.collections
@@ -299,6 +302,7 @@ exports.sourceNodes = async ({ actions }) => {
 			title: series.title,
 			desc: series.desc,
 			rating: series.rating,
+			seriesCount: series.count,
 			reviews: series.reviews,
 			collections: series.collections
 		}
@@ -317,7 +321,7 @@ exports.sourceNodes = async ({ actions }) => {
 	return
 }
 
-//******* PAGE CREATION
+// ****** PAGE CREATION
 
 exports.createPages = ({ graphql, actions }) => {
 	const { createPage } = actions
