@@ -58,11 +58,10 @@ export default ({ data }) => {
 					{review.collections.length > 0 && (
 						<>
 							<h2>Collections</h2>
-							<p>
+							<p className="collections">
 								{review.collections.map((collection, index, array) => (
 									<Link to={`/review/collection/${collection.slug}`} key={collection.slug}>
 										{collection.title}
-										{index < array.length - 1 ? "," : null}
 									</Link>
 								))}
 							</p>
@@ -71,11 +70,10 @@ export default ({ data }) => {
 					{review.series.length > 0 && (
 						<>
 							<h2>Series</h2>
-							<p>
+							<p className="collections">
 								{review.series.map((series, index, array) => (
 									<Link to={`/review/series/${review.type.toLowerCase()}/${series.slug}`} key={series.slug}>
 										{series.title}
-										{index < array.length - 1 ? "," : null}
 									</Link>
 								))}
 							</p>

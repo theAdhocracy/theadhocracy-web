@@ -5,6 +5,31 @@
 	margin-top: 0.75rem;
 }
 
+/* Series & Collections */
+
+.collections a,
+.collections a:visited {
+	display: inline-block;
+	padding: 0.5rem;
+	border: 2px solid var(--blue);
+	border-radius: 6px;
+	text-decoration: none;
+	line-height: 0.6;
+	color: var(--blue);
+}
+
+.collections a + a {
+	margin-left: 1rem;
+}
+
+.article .collections a:hover,
+.article .collections a:focus {
+	font-style: normal;
+	letter-spacing: normal;
+	color: #ffffff;
+	background-color: var(--blue);
+}
+
 /* Series Navigation */
 
 .series-nav {

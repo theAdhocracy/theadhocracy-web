@@ -59,12 +59,13 @@ export default ({ data }) => {
 					{series.collections.length > 0 && (
 						<>
 							<h2>Collections</h2>
-							<p>
+							<p className="collections">
 								{series.collections.map((collection, index, array) => (
-									<Link to={`/review/collection/${collection.slug}`} key={collection.slug}>
-										{collection.title}
-										{index < array.length - 1 ? "," : null}
-									</Link>
+									<>
+										<Link to={`/review/collection/${collection.slug}`} key={collection.slug}>
+											{collection.title}
+										</Link>
+									</>
 								))}
 							</p>
 						</>
