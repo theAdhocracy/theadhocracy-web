@@ -1,8 +1,7 @@
 /* Header */
-.review-header > h1 + span {
-	display: block;
-	width: var(--main);
-	margin-top: 0.75rem;
+.review-header > div {
+	max-width: var(--main);
+	padding-bottom: 1rem;
 }
 
 /* Series & Collections */
