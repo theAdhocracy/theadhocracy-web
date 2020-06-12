@@ -6,6 +6,7 @@ import Card from "../components/content_card"
 
 export default ({ data }) => {
 	const collection = data.collections
+	const reviews = collection.reviews.sort((a, b) => a.title.localeCompare(b.title)) // sorts collection alphabetically
 	return (
 		<Layout title={collection.title} article={false}>
 			<section id="content">
@@ -14,7 +15,7 @@ export default ({ data }) => {
 					<p dangerouslySetInnerHTML={{ __html: collection.desc }} />
 				</header>
 				<main className="content-grid">
-					{collection.reviews.map((review) => (
+					{reviews.map((review) => (
 						<Card post={review} type="review" key={review.slug} />
 					))}
 				</main>

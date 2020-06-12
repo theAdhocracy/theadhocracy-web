@@ -223,7 +223,7 @@ exports.sourceNodes = async ({ actions }) => {
 			id: `${i}`,
 			parent: `__SOURCE__`,
 			internal: {
-				type: `Reviews` // name of the graphQL query --> allNotes {}
+				type: `Reviews` // name of the graphQL query --> allReviews {}
 			},
 			children: [],
 			// Fields specific to this endpoint
@@ -237,6 +237,7 @@ exports.sourceNodes = async ({ actions }) => {
 			rating: review.rating,
 			author: review.author,
 			viewCount: review.viewCount,
+			latestReview: review.latestDate,
 			seasonCount: review.seasons,
 			critiques: review.critiques,
 			series: review.series,
@@ -262,7 +263,7 @@ exports.sourceNodes = async ({ actions }) => {
 			id: `${i}`,
 			parent: `__SOURCE__`,
 			internal: {
-				type: `Collections` // name of the graphQL query --> allNotes {}
+				type: `Collections` // name of the graphQL query --> allCollections {}
 			},
 			children: [],
 			// Fields specific to this endpoint
@@ -292,7 +293,7 @@ exports.sourceNodes = async ({ actions }) => {
 			id: `${i}`,
 			parent: `__SOURCE__`,
 			internal: {
-				type: `Series` // name of the graphQL query --> allNotes {}
+				type: `Series` // name of the graphQL query --> allSeries {}
 			},
 			children: [],
 			// Fields specific to this endpoint

@@ -27,7 +27,7 @@ export default ({ data, pageContext }) => {
 
 export const query = graphql`
 	query AllReviewsQuery($skip: Int!, $limit: Int!) {
-		allReviews(limit: $limit, skip: $skip, sort: { fields: [date], order: DESC }) {
+		allReviews(limit: $limit, skip: $skip, sort: { fields: [latestReview, updated], order: [DESC, DESC] }) {
 			nodes {
 				title
 				slug

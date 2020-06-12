@@ -81,7 +81,7 @@ export default ({ data }) => {
 					<nav className="series-nav">
 						<ul>
 							{reviews.map((review, index) => {
-								let title = review.title ? review.title : "Title"
+								let title = review.title.replace(series.title + ":", "")
 								return (
 									<li key={review.slug}>
 										<a href={`#${review.slug}`} onClick={(event) => updateSeries(index, event, review.slug)}>
