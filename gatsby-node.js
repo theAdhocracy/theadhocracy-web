@@ -300,7 +300,8 @@ exports.sourceNodes = async ({ actions }) => {
 			// Fields specific to this endpoint
 			entryId: series.id,
 			slug: series.slug,
-			type: series.type,
+			type: series.type.slug,
+			typeString: series.type.title,
 			title: series.title,
 			desc: series.desc,
 			rating: series.rating,

@@ -56,7 +56,7 @@ export default ({ data }) => {
 					<p>
 						<Rating value={series.rating} />{" "}
 						<em>
-							averaged across {series.seriesCount} {series.type}s.
+							averaged across {series.seriesCount} {series.typeString.toLowerCase()}s.
 						</em>
 					</p>
 					<p>
@@ -105,6 +105,7 @@ export const query = graphql`
 			title
 			desc
 			type
+			typeString
 			rating
 			seriesCount
 			collections {
