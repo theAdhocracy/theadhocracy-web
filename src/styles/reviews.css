@@ -1,0 +1,71 @@
+/* Header */
+.review-header > div {
+	max-width: var(--main);
+	padding-bottom: 1rem;
+}
+
+/* Series & Collections */
+
+.collections a,
+.collections a:visited {
+	display: inline-block;
+	padding: 0.5rem;
+	border: 2px solid var(--blue);
+	border-radius: 6px;
+	text-decoration: none;
+	line-height: 0.6;
+	color: var(--blue);
+}
+
+.collections a + a {
+	margin-left: 1rem;
+}
+
+.article .collections a:hover,
+.article .collections a:focus {
+	font-style: normal;
+	letter-spacing: normal;
+	color: #ffffff;
+	background-color: var(--blue);
+}
+
+/* Series Navigation */
+
+.series-nav {
+	width: var(--main);
+}
+
+.series-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+	justify-content: flex-start;
+	align-items: baseline;
+}
+
+.series-nav li {
+	margin: 0;
+	padding: 0;
+}
+
+.series-nav a {
+	display: inline-block;
+	padding: 0.5rem;
+	border: 2px solid var(--green);
+	border-radius: 6px;
+	text-decoration: none;
+	line-height: 0.6;
+	color: var(--green);
+}
+
+.article nav.series-nav ul li a:hover {
+	font-style: normal;
+	letter-spacing: normal;
+}
+
+a.active-series,
+a.active-series:visited,
+a.active-series:active {
+	background-color: var(--green);
+	color: #ffffff;
+}

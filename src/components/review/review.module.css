@@ -1,0 +1,15 @@
+.review aside {
+	display: flex;
+	flex-direction: column;
+	width: var(--main);
+	margin-top: -1rem;
+	color: var(--yellow);
+}
+
+.review aside span {
+	margin: 0;
+}
+
+.review aside span + span {
+	margin-top: 0.5rem;
+}

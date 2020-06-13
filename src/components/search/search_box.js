@@ -47,10 +47,10 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
 	return (
 		<>
 			<form className={styles.search_box} noValidate role="search" onSubmit={(e) => e.preventDefault()}>
-				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} />
+				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} aria-label="Search archives" />
 				<ClearAllButton clearsQuery />
 			</form>
-			{isSearchStalled ? <p>Sorry, search is stalling, please wait a moment.</p> : ""}
+			{isSearchStalled ? <p>Search seems to be taking a bit of time to load or has failed. If you have JavaScript disabled that will prevent it from loading properly (sorry)</p> : ""}
 		</>
 	)
 }
@@ -60,8 +60,8 @@ const CategoryFilter = ({ items, refine }) => {
 		<ul className={styles.category_list}>
 			{items.map((item) => (
 				<li key={item.label}>
-					<label style={{ backgroundColor: item.isRefined ? "var(--yellow)" : "var(--green)" }}>
-						<input type="checkbox" onClick={(event) => userFilter(item.value, refine)} />
+					<label style={{ backgroundColor: item.isRefined ? "var(--yellow)" : "var(--green)" }} htmlFor={`check_${item.label.toLowerCase()}`}>
+						<input type="checkbox" onClick={(event) => userFilter(item.value, refine)} id={`check_${item.label.toLowerCase()}`} />
 						{item.label} <span style={{ borderColor: item.isRefined ? "var(--yellow)" : "var(--green)" }}>{item.count}</span>
 					</label>
 				</li>
