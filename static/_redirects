@@ -22,8 +22,8 @@ https://fervent-darwin-bec3e4.netlify.com/* https://theadhocracy.co.uk/:splat 30
 /notes/gradient-borders-with-rounded-corners-on-input-fields /wrote/gradient-borders-with-rounded-corners-on-input-fields 301
 
 # Split/recombined articles
-/month-in-media-july-2017-41-part-two /month-in-media-july-2017-41 301
-/month-in-media-january-2017-5-part-two /month-in-media-january-2017-5 301
+/wrote/month-in-media-july-2017-41-part-two /month-in-media-july-2017 301
+/wrote/month-in-media-january-2017-5-part-two /month-in-media-january-2017 301
 
 # Redirect old content-specific URLs to new wrote/note structure
 /article/* /wrote/:splat 301
