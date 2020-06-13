@@ -50,7 +50,7 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
 				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} />
 				<ClearAllButton clearsQuery />
 			</form>
-			{isSearchStalled ? <p>Sorry, search is stalling, please wait a moment.</p> : ""}
+			{isSearchStalled ? <p>Search seems to be taking a bit of time to load or has failed. If you have JavaScript disabled that will prevent it from loading properly (sorry)</p> : ""}
 		</>
 	)
 }

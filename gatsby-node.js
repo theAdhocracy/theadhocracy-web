@@ -20,6 +20,15 @@ exports.sourceNodes = async ({ actions }) => {
 	const fetchNotes = () => axios.get(`https://cms.theadhocracy.co.uk/notes.json`)
 	const getNotes = await fetchNotes()
 
+	const fetchReviews = () => axios.get(`https://cms.theadhocracy.co.uk/reviews.json`)
+	const getReviews = await fetchReviews()
+
+	const fetchSeries = () => axios.get(`https://cms.theadhocracy.co.uk/series.json`)
+	const getSeries = await fetchSeries()
+
+	const fetchCollections = () => axios.get(`https://cms.theadhocracy.co.uk/collections.json`)
+	const getCollections = await fetchCollections()
+
 	const fetchWholeFeed = () => axios.get(`https://cms.theadhocracy.co.uk/everything.json`)
 	const getFeed = await fetchWholeFeed()
 
@@ -206,10 +215,114 @@ exports.sourceNodes = async ({ actions }) => {
 		createNode(notesNode)
 	})
 
+	// Map reviews and create nodes
+	getReviews.data.data.map((review, i) => {
+		// Create node object
+		const reviewsNode = {
+			// Required fields for Gatsby
+			id: `${i}`,
+			parent: `__SOURCE__`,
+			internal: {
+				type: `Reviews` // name of the graphQL query --> allReviews {}
+			},
+			children: [],
+			// Fields specific to this endpoint
+			entryId: review.id,
+			slug: review.slug,
+			date: review.date,
+			updated: review.updated,
+			type: review.type,
+			title: review.title,
+			desc: review.desc,
+			rating: review.rating,
+			author: review.author,
+			viewCount: review.viewCount,
+			latestReview: review.latestDate,
+			seasonCount: review.seasons,
+			critiques: review.critiques,
+			series: review.series,
+			collections: review.collections
+		}
+
+		// Get content digest of node. (Required field)
+		const contentDigest = crypto
+			.createHash(`md5`)
+			.update(JSON.stringify(reviewsNode))
+			.digest(`hex`)
+		reviewsNode.internal.contentDigest = contentDigest
+
+		// Create node with the gatsby createNode() API
+		createNode(reviewsNode)
+	})
+
+	// Map collections and create nodes
+	getCollections.data.data.map((collection, i) => {
+		// Create node object
+		const collectionsNode = {
+			// Required fields for Gatsby
+			id: `${i}`,
+			parent: `__SOURCE__`,
+			internal: {
+				type: `Collections` // name of the graphQL query --> allCollections {}
+			},
+			children: [],
+			// Fields specific to this endpoint
+			entryId: collection.id,
+			slug: collection.slug,
+			title: collection.title,
+			desc: collection.desc,
+			reviews: collection.reviews
+		}
+
+		// Get content digest of node. (Required field)
+		const contentDigest = crypto
+			.createHash(`md5`)
+			.update(JSON.stringify(collectionsNode))
+			.digest(`hex`)
+		collectionsNode.internal.contentDigest = contentDigest
+
+		// Create node with the gatsby createNode() API
+		createNode(collectionsNode)
+	})
+
+	// Map series and create nodes
+	getSeries.data.data.map((series, i) => {
+		// Create node object
+		const seriesNode = {
+			// Required fields for Gatsby
+			id: `${i}`,
+			parent: `__SOURCE__`,
+			internal: {
+				type: `Series` // name of the graphQL query --> allSeries {}
+			},
+			children: [],
+			// Fields specific to this endpoint
+			entryId: series.id,
+			slug: series.slug,
+			type: series.type,
+			title: series.title,
+			desc: series.desc,
+			rating: series.rating,
+			seriesCount: series.count,
+			reviews: series.reviews,
+			collections: series.collections
+		}
+
+		// Get content digest of node. (Required field)
+		const contentDigest = crypto
+			.createHash(`md5`)
+			.update(JSON.stringify(seriesNode))
+			.digest(`hex`)
+		seriesNode.internal.contentDigest = contentDigest
+
+		// Create node with the gatsby createNode() API
+		createNode(seriesNode)
+	})
+
 	return
 }
 
-//******* PAGE CREATION
+// ****** PAGE CREATION
 
 exports.createPages = ({ graphql, actions }) => {
 	const { createPage } = actions
@@ -236,6 +349,23 @@ exports.createPages = ({ graphql, actions }) => {
 					slug
 					snippet
 					title
+				}
+			}
+			allReviews {
+				nodes {
+					slug
+					type
+				}
+			}
+			allCollections {
+				nodes {
+					slug
+				}
+			}
+			allSeries {
+				nodes {
+					slug
+					type
 				}
 			}
 		}
@@ -333,6 +463,64 @@ exports.createPages = ({ graphql, actions }) => {
 					skip: i * notesPerPage,
 					numNotesPages,
 					currentPage: i + 1
+				}
+			})
+		})
+
+		// Create reviews
+		const reviews = result.data.allReviews.nodes
+		reviews.forEach(({ slug, type }) => {
+			createPage({
+				path: `/review/${type.toLowerCase()}/${slug}`,
+				component: path.resolve(`./src/templates/review.js`),
+				context: {
+					// Data passed to context is available
+					// in page queries as GraphQL variables.
+					slug: slug
+				}
+			})
+		})
+
+		// Create review hub page
+		const reviewsPerPage = 12
+		const numReviewPages = Math.ceil(reviews.length / reviewsPerPage)
+		Array.from({ length: numReviewPages }).forEach((_, i) => {
+			createPage({
+				path: i === 0 ? `/reviews` : `/reviews/${i + 1}`,
+				component: path.resolve("./src/templates/reviews.js"),
+				context: {
+					limit: reviewsPerPage,
+					skip: i * reviewsPerPage,
+					numReviewPages,
+					currentPage: i + 1
+				}
+			})
+		})
+
+		// Create collections
+		const collections = result.data.allCollections.nodes
+		collections.forEach(({ slug }) => {
+			createPage({
+				path: `/review/collection/${slug}`,
+				component: path.resolve(`./src/templates/collection.js`),
+				context: {
+					// Data passed to context is available
+					// in page queries as GraphQL variables.
+					slug: slug
+				}
+			})
+		})
+
+		// Create series
+		const series = result.data.allSeries.nodes
+		series.forEach(({ slug, type }) => {
+			createPage({
+				path: `/review/series/${type.toLowerCase()}/${slug}`,
+				component: path.resolve(`./src/templates/series.js`),
+				context: {
+					// Data passed to context is available
+					// in page queries as GraphQL variables.
+					slug: slug
 				}
 			})
 		})
