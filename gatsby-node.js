@@ -231,7 +231,8 @@ exports.sourceNodes = async ({ actions }) => {
 			slug: review.slug,
 			date: review.date,
 			updated: review.updated,
-			type: review.type,
+			type: review.type.slug,
+			typeString: review.type.title,
 			title: review.title,
 			desc: review.desc,
 			rating: review.rating,
@@ -471,7 +472,7 @@ exports.createPages = ({ graphql, actions }) => {
 		const reviews = result.data.allReviews.nodes
 		reviews.forEach(({ slug, type }) => {
 			createPage({
-				path: `/review/${type.toLowerCase()}/${slug}`,
+				path: `/review/${type}/${slug}`,
 				component: path.resolve(`./src/templates/review.js`),
 				context: {
 					// Data passed to context is available
@@ -515,7 +516,7 @@ exports.createPages = ({ graphql, actions }) => {
 		const series = result.data.allSeries.nodes
 		series.forEach(({ slug, type }) => {
 			createPage({
-				path: `/review/series/${type.toLowerCase()}/${slug}`,
+				path: `/review/series/${type}/${slug}`,
 				component: path.resolve(`./src/templates/series.js`),
 				context: {
 					// Data passed to context is available
