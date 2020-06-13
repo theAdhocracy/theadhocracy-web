@@ -79,7 +79,7 @@ export default ({ data }) => {
 							<h2>Series</h2>
 							<p className="collections">
 								{review.series.map((series, index, array) => (
-									<Link to={`/review/series/${review.type.toLowerCase()}/${series.slug}`} key={series.slug}>
+									<Link to={`/review/series/${review.type}/${series.slug}`} key={series.slug}>
 										{series.title}
 									</Link>
 								))}
