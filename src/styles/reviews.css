@@ -38,6 +38,7 @@
 .series-nav ul {
 	display: flex;
 	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
 	justify-content: flex-start;
 	align-items: baseline;
 }
@@ -45,10 +46,6 @@
 .series-nav li {
 	margin: 0;
 	padding: 0;
-}
-
-.series-nav li + li {
-	margin-left: 1.5rem;
 }
 
 .series-nav a {
