@@ -34,12 +34,12 @@ export default ({ data }) => {
 			let urlHash = window.location.hash
 			if (urlHash) {
 				// Decode URL hash, find match within critiques
-				let title = decodeURI(urlHash.replace(/-/g, " ").replace(/^#/, ""))
+				let title = decodeURIComponent(urlHash.replace(/-/g, " ").replace(/^#/, ""))
 				let seriesIndex = review.critiques.findIndex((obj) => obj["title"].toLowerCase() === title)
 
 				// Set initial state; defaults to 0 to account for typos or broken links
 				seriesIndex >= 0 ? setSeries(seriesIndex) : setSeries(0)
-				activeSeries(seriesIndex)
+				seriesIndex >= 0 ? activeSeries(seriesIndex) : activeSeries(0)
 			} else {
 				// Default to the first item in the array
 				setSeries(0)
