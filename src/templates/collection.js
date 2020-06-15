@@ -8,7 +8,7 @@ export default ({ data }) => {
 	const collection = data.collections
 	const reviews = collection.reviews.sort((a, b) => a.title.localeCompare(b.title)) // sorts collection alphabetically
 	return (
-		<Layout title={collection.title} article={false}>
+		<Layout title={collection.title} meta={{ desc: collection.desc }}>
 			<section id="content">
 				<header>
 					<h1>{collection.title}</h1>

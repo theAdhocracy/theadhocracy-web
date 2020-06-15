@@ -10,7 +10,7 @@ export default ({ data, pageContext }) => {
 	const body = note.body
 
 	return (
-		<Layout title={note.title}>
+		<Layout title={note.title} meta={{ desc: note.snippet }}>
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">
@@ -72,6 +72,7 @@ export const query = graphql`
 		notes(slug: { eq: $slug }) {
 			title
 			body
+			snippet
 			categories
 			tags
 			date(formatString: "DD MMMM YYYY")

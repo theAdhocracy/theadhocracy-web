@@ -49,7 +49,7 @@ export default ({ data }) => {
 	}, [review.critiques])
 
 	return (
-		<Layout title={review.title} article={true}>
+		<Layout title={review.title} meta={{ desc: review.desc }}>
 			<main id="content" className="article h-entry">
 				<header className="review-header">
 					<h1 className="article-header p-name">{review.title}</h1>

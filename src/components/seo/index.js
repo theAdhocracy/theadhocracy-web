@@ -5,17 +5,25 @@ import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
 const SEO = ({ title, meta }) => {
+	// Determine current URL
 	const { pathname } = useLocation()
-	const { site } = useStaticQuery(query)
 
+	// Get infromation from general site config
+	const { site } = useStaticQuery(query)
 	const { defaultTitle, titleTemplate, defaultDescription, siteUrl, defaultImage, twitterHandle } = site.siteMetadata
 
+	// Combine with page-specific overrides passed as prop
 	const seo = {
-		title: `${defaultTitle}${title && ` | ${title}`}`,
-		description: meta ? meta.desc : defaultDescription,
-		image: meta ? meta.image : defaultImage,
+		title: `${defaultTitle}${title ? ` | ${title}` : ""}`,
+		description: meta && meta.desc ? meta.desc.replace(/(<([^>]+)>)/gi, "") : defaultDescription,
+		image: meta && meta.image ? meta.image : defaultImage,
 		url: `${siteUrl}${pathname}`,
-		type: meta ? meta.type : "website"
+		type: meta && meta.type ? meta.type : "website"
+	}
+
+	// Create structured data JSON
+	const structuredJSON = {
+		"@context": "https://schema.org/"
 	}
 
 	return (
@@ -31,6 +39,7 @@ const SEO = ({ title, meta }) => {
 			<meta property="og:url" content={seo.url} />
 			<meta property="og:description" content={seo.description} />
 			<meta property="og:image" content={seo.image} />
+			<meta property="og:site_name" content={defaultTitle} />
 
 			{/* Twitter */}
 			<meta name="twitter:card" content="summary_large_image" />
@@ -38,6 +47,11 @@ const SEO = ({ title, meta }) => {
 			<meta name="twitter:title" content={seo.title} />
 			<meta name="twitter:description" content={seo.description} />
 			<meta name="twitter:image" content={seo.image} />
+
+			{/* Google Structured Data */}
+			<script className="structured-data-list" type="application/ld+json">
+				{JSON.stringify(structuredJSON)}
+			</script>
 		</Helmet>
 	)
 }

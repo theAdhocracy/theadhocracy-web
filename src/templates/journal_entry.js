@@ -10,7 +10,7 @@ export default ({ data, pageContext }) => {
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
 
 	return (
-		<Layout title={post.title}>
+		<Layout title={post.title} meta={{ desc: post.snippet }}>
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">{post.title}</h1>
@@ -61,6 +61,7 @@ export const query = graphql`
 	query($slug: String!) {
 		journals(slug: { eq: $slug }) {
 			title
+			snippet
 			body
 			footnotes
 			tags
