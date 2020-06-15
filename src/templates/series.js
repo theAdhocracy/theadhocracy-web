@@ -60,7 +60,7 @@ export default ({ data }) => {
 						</em>
 					</p>
 					<p>
-						<strong>tldr;</strong> {series.desc}
+						<strong>tl;dr:</strong> {series.desc}
 					</p>
 					{series.collections.length > 0 && (
 						<>
