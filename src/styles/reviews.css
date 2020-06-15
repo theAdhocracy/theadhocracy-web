@@ -33,18 +33,22 @@
 
 .series-nav {
 	width: var(--main);
+	max-width: calc(100% + 1rem);
 }
 
 .series-nav ul {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem 1rem;
 	justify-content: flex-start;
 	align-items: baseline;
+	margin-left: -1rem;
+	margin-bottom: -0.5rem;
 }
 
 .series-nav li {
 	margin: 0;
+	margin-left: 1rem;
+	margin-bottom: 0.5rem;
 	padding: 0;
 }
 
