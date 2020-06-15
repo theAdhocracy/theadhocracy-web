@@ -33,13 +33,16 @@ export default ({ data }) => {
 		if (reviews.length > 1) {
 			let urlHash = window.location.hash
 			if (urlHash) {
-				// Decode URL hash, find match within critiques
-				let slug = decodeURI(urlHash.replace(/^#/, ""))
+				// Decode URL hash, find match within critiques; caters for linking to rewatches
+				let slug = decodeURI(urlHash.replace(/^#/, "")).replace(/-review-[0-9]*$/, "")
 				let reviewIndex = reviews.findIndex((obj) => obj["slug"] === slug)
 
 				// Set initial state; defaults to 0 to account for typos or broken links
 				reviewIndex >= 0 ? setReview(reviewIndex) : setReview(0)
 				activeSeries(reviewIndex)
+
+				// Scroll to rewatch (also helps with load flicker)
+				document.getElementById(decodeURI(urlHash.replace(/^#/, ""))).scrollIntoView()
 			} else {
 				// Default to the first item in the array
 				setReview(0)
@@ -49,7 +52,7 @@ export default ({ data }) => {
 	}, [reviews])
 
 	return (
-		<Layout title={series.title} article={true}>
+		<Layout title={series.title} meta={{ desc: `${series.desc} Rated ${series.rating} out of 5.`, type: "article", category: series.typeString }}>
 			<main id="content" className="article h-entry">
 				<header className="review-header">
 					<h1 className="article-header p-name">{series.title}</h1>
@@ -60,7 +63,7 @@ export default ({ data }) => {
 						</em>
 					</p>
 					<p>
-						<strong>tldr;</strong> {series.desc}
+						<strong>tl;dr:</strong> {series.desc}
 					</p>
 					{series.collections.length > 0 && (
 						<>

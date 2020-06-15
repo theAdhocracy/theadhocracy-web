@@ -88,6 +88,7 @@ exports.sourceNodes = async ({ actions }) => {
 			month: post.month,
 			year: post.year,
 			snippet: post.snippet,
+			silo: post.silo,
 			categories: post.categories,
 			tags: post.tags,
 			contentType: post.type
@@ -125,6 +126,7 @@ exports.sourceNodes = async ({ actions }) => {
 			snippet: article.snippet,
 			footnotes: article.footnotes,
 			resources: article.resources,
+			silo: article.silo,
 			categories: article.categories,
 			tags: article.tags
 		}
@@ -165,6 +167,8 @@ exports.sourceNodes = async ({ actions }) => {
 			body: journal.body,
 			snippet: journal.snippet,
 			footnotes: journal.footnotes,
+			silo: journal.silo,
+			categories: journal.categories,
 			tags: journal.tags
 		}
 
@@ -195,8 +199,10 @@ exports.sourceNodes = async ({ actions }) => {
 			title: note.title,
 			slug: note.slug,
 			date: note.date,
+			updated: note.updated,
 			body: note.body,
 			snippet: note.snippet,
+			silo: note.silo,
 			categories: note.categories,
 			tags: note.tags,
 			attribution: note.attribution,

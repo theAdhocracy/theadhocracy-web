@@ -10,7 +10,7 @@ export default ({ data, pageContext }) => {
 	const body = post.body.replace(/<sup>\[([0-9]*)\]<\/sup>/gi, '<sup id="index$1"><a href="#footnote$1" title="Jump to footnote.">[$1]</a></sup>')
 	const resources = post.resources ? (post.resources[0].title ? post.resources : false) : false
 	return (
-		<Layout title={post.title} article={true}>
+		<Layout title={post.title} meta={{ desc: post.snippet, type: "article", category: post.silo, published: post.date, updated: post.updated, tags: post.tags }}>
 			<main id="content" className="article h-entry">
 				<header>
 					<h1 className="article-header p-name">{post.title}</h1>
@@ -92,9 +92,11 @@ export const query = graphql`
 	query($slug: String!) {
 		article(slug: { eq: $slug }) {
 			title
+			snippet
 			body
 			footnotes
 			categories
+			silo
 			resources {
 				title
 				url

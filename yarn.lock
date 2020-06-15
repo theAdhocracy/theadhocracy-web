@@ -6896,7 +6896,7 @@ graphql-import@^0.7.1:
   dependencies:
     lodash "^4.17.4"
     resolve-from "^4.0.0"
-    
+
 graphql-playground-html@1.6.25:
   version "1.6.25"
   resolved "https://registry.yarnpkg.com/graphql-playground-html/-/graphql-playground-html-1.6.25.tgz#2d8fa250cec4036a4f5b7f8ad069c86d6d64c95f"
@@ -13647,6 +13647,11 @@ websocket-driver@>=0.5.1:
     http-parser-js ">=0.5.1"
     safe-buffer ">=5.1.0"
     websocket-extensions ">=0.1.1"
+
+websocket-extensions@>=0.1.1:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 websocket@1.0.31:
   version "1.0.31"
