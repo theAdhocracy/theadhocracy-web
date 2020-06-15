@@ -23,7 +23,7 @@ const Review = ({ review, title, slug }) => {
 			{review.rewatchList.map((rewatch, index) => {
 				return (
 					<section key={index}>
-						<h3>Rewatch</h3>
+						<h3 id={`${slug}-review-${index + 2}`}>Rewatch</h3>
 						<aside>
 							<span>#{index + 2}</span>
 							<span>{rewatch.date}</span>
