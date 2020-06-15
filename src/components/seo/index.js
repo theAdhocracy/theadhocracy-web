@@ -10,7 +10,7 @@ const SEO = ({ title, meta }) => {
 
 	// Get infromation from general site config
 	const { site } = useStaticQuery(query)
-	const { defaultTitle, titleTemplate, defaultDescription, siteUrl, defaultImage, twitterHandle } = site.siteMetadata
+	const { defaultTitle, titleTemplate, defaultDescription, siteUrl, defaultImage, twitterHandle, author } = site.siteMetadata
 
 	// Combine with page-specific overrides passed as prop
 	const seo = {
@@ -27,32 +27,55 @@ const SEO = ({ title, meta }) => {
 	}
 
 	return (
-		<Helmet title={seo.title} titleTemplate={titleTemplate}>
-			{/* Meta Standards */}
-			<meta name="title" content={seo.title} />
-			<meta name="description" content={seo.description} />
-			<meta name="image" content={seo.image} />
+		<>
+			{/* Default metadata for all pages */}
+			<Helmet title={seo.title} titleTemplate={titleTemplate}>
+				{/* Meta Standards */}
+				<meta name="title" content={seo.title} />
+				<meta name="description" content={seo.description} />
+				<meta name="image" content={seo.image} />
+				<meta name="robots" content="index, follow" />
+				<meta name="author" content={author} />
 
-			{/* Open Graph (Facebook/LinkedIn) */}
-			<meta property="og:type" content={seo.type} />
-			<meta property="og:title" content={seo.title} />
-			<meta property="og:url" content={seo.url} />
-			<meta property="og:description" content={seo.description} />
-			<meta property="og:image" content={seo.image} />
-			<meta property="og:site_name" content={defaultTitle} />
+				{/* Open Graph (Facebook/LinkedIn) */}
+				<meta property="og:type" content={seo.type} />
+				<meta property="og:title" content={seo.title} />
+				<meta property="og:url" content={seo.url} />
+				<meta property="og:description" content={seo.description} />
+				<meta property="og:image" content={seo.image} />
+				<meta property="og:site_name" content={defaultTitle} />
 
-			{/* Twitter */}
-			<meta name="twitter:card" content="summary_large_image" />
-			<meta name="twitter:creator" content={twitterHandle} />
-			<meta name="twitter:title" content={seo.title} />
-			<meta name="twitter:description" content={seo.description} />
-			<meta name="twitter:image" content={seo.image} />
+				{/* Twitter */}
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:creator" content={twitterHandle} />
+				<meta name="twitter:title" content={seo.title} />
+				<meta name="twitter:description" content={seo.description} />
+				<meta name="twitter:image" content={seo.image} />
 
-			{/* Google Structured Data */}
-			<script className="structured-data-list" type="application/ld+json">
-				{JSON.stringify(structuredJSON)}
-			</script>
-		</Helmet>
+				{/* Google Structured Data */}
+				<script className="structured-data-list" type="application/ld+json">
+					{JSON.stringify(structuredJSON)}
+				</script>
+			</Helmet>
+
+			{/* Homepage profile information (OpenGraph) */}
+			{pathname === "/" && (
+				<Helmet>
+					<meta property="profile:first_name" content="Murray" />
+					<meta property="profile:last_name" content="Adcock" />
+				</Helmet>
+			)}
+
+			{/* Article details (OpenGraph) */}
+			{seo.type === "article" && (
+				<Helmet>
+					<meta property="article:author" content={siteUrl} />
+					{meta.category ? <meta property="article:section" content={meta.category} /> : ""}
+					{meta.published ? <meta property="article:published_time" content={new Date(meta.published).toISOString().split("T")[0]} /> : ""}
+					{meta.updated ? <meta property="article:modified_time" content={new Date(meta.updated).toISOString().split("T")[0]} /> : ""}
+				</Helmet>
+			)}
+		</>
 	)
 }
 
@@ -67,6 +90,7 @@ const query = graphql`
 				siteUrl
 				defaultImage: siteImage
 				twitterHandle
+				author
 			}
 		}
 	}
