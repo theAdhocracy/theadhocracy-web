@@ -13,7 +13,7 @@ module.exports = {
 		title: `theAdhocracy`,
 		description: `Ad hoc thoughts from an ad hoc mind.`,
 		author: `Murray Adcock`,
-		siteUrl: `https://theadhocracy.co.uk/`,
+		siteUrl: `https://theadhocracy.co.uk`,
 		siteImage: `https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg`,
 		twitterHandle: `@theAdhocracy`,
 		version: `3.4.2`
