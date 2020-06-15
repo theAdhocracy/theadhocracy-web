@@ -71,6 +71,7 @@ const SEO = ({ title, meta }) => {
 				<Helmet>
 					<meta property="article:author" content={siteUrl} />
 					{meta.category ? <meta property="article:section" content={meta.category} /> : ""}
+					{meta.tags ? <meta property="article:tag" content={meta.tags} /> : ""}
 					{meta.published ? <meta property="article:published_time" content={new Date(meta.published).toISOString().split("T")[0]} /> : ""}
 					{meta.updated ? <meta property="article:modified_time" content={new Date(meta.updated).toISOString().split("T")[0]} /> : ""}
 				</Helmet>
