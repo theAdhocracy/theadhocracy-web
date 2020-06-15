@@ -13,3 +13,18 @@
 .review aside span + span {
 	margin-top: 0.5rem;
 }
+
+.review .spoiler_warning {
+	background-color: var(--pink);
+	padding: 0.25rem 1rem;
+	text-align: center;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 0.8rem;
+	border-radius: 6px;
+}
+
+.review .spoiler_warning strong {
+	font-weight: bold;
+	text-transform: uppercase;
+}

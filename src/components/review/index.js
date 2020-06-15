@@ -16,6 +16,9 @@ const Review = ({ review, title, slug }) => {
 				<Rating value={review.rating} />
 				{review.location && <span>{review.location}</span>}
 			</aside>
+			<p className={styles.spoiler_warning}>
+				<strong>Spoilers Ahead:</strong> My reviews are not spoiler-free. You have been warned.
+			</p>
 			<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: review.copy }} />
 			{review.rewatchList.map((rewatch, index) => {
 				return (
