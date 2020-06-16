@@ -122,7 +122,7 @@
 }
 
 .rating_menu label:hover svg,
-.rating_menu label input:checked ~ label svg {
+.rating_menu label > input:checked ~ label svg {
 	fill: var(--orange);
 }
 
