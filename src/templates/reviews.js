@@ -5,6 +5,7 @@ import { InstantSearch, Hits, RatingMenu } from "react-instantsearch-dom"
 import { globalHistory } from "@reach/router"
 
 import { CustomSearchBox, CustomCategoryFilter } from "../components/search/search_box"
+import { CustomRatingMenu } from "../components/search/rating"
 import Layout from "../components/layout"
 import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
@@ -29,7 +30,7 @@ export default ({ data, pageContext }) => {
 				<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 					<CustomSearchBox defaultRefinement={urlQuery} />
 					<CustomCategoryFilter attribute="node.type" limit={50} />
-					<RatingMenu attribute="node.rating" />
+					<CustomRatingMenu attribute="node.rating" />
 					<Hits />
 				</InstantSearch>
 				<main className="content-grid">

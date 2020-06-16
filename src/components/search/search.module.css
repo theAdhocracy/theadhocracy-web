@@ -95,6 +95,49 @@
 	border: 2px solid var(--green);
 }
 
+.rating_menu {
+}
+
+.rating_menu label {
+	position: relative;
+	padding: 0.2rem 0.4rem;
+	border-radius: 6px;
+	display: inline-block;
+	height: 1.5rem;
+	font-size: 0.8rem;
+	line-height: 0;
+	color: #ffffff;
+}
+
+.rating_menu label input[type="radio"] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.rating_menu svg {
+	max-width: 1rem;
+	fill: #c4c4c4;
+}
+
+.rating_menu label:hover svg,
+.rating_menu label input:checked ~ label svg {
+	fill: var(--orange);
+}
+
+.rating_menu label span {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	/* width: 2rem;
+	height: 1.5rem;
+	margin-left: 1rem;
+	margin-top: -0.2rem;
+	margin-right: -0.4rem; */
+}
+
 .search_results {
 	display: flex;
 	flex-wrap: wrap;
