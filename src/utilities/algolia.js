@@ -29,9 +29,11 @@ const reviewQuery = `{
                 author
                 series {
                     title
+                    slug
                 }
                 collections {
                     title
+                    slug
                 }
             }
         }
