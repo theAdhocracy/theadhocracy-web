@@ -17,11 +17,37 @@ const postQuery = `{
     }
   }`
 
+const reviewQuery = `{
+      reviews: allReviews {
+        edges {
+            node {
+                title
+                slug
+                rating
+                type
+                date
+                author
+                series {
+                    title
+                }
+                collections {
+                    title
+                }
+            }
+        }
+    }
+  }`
+
 const queries = [
 	{
 		query: postQuery,
 		transformer: ({ data }) => data.posts.edges,
 		indexName: `theAdhocracy_Feed`
+	},
+	{
+		query: reviewQuery,
+		transformer: ({ data }) => data.reviews.edges,
+		indexName: `theAdhocracy_Reviews`
 	}
 ]
 
