@@ -241,6 +241,7 @@ exports.sourceNodes = async ({ actions }) => {
 			typeString: review.type.title,
 			title: review.title,
 			desc: review.desc,
+			sanitised: review.desc.replace(/<[^>]*>?/gm, "").replace(/&nbsp;/g, " "),
 			rating: review.rating,
 			author: review.author,
 			viewCount: review.viewCount,

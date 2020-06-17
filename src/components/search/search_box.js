@@ -43,11 +43,11 @@ const ClearAll = ({ items, refine }) => {
 
 const ClearAllButton = connectCurrentRefinements(ClearAll)
 
-const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
+const SearchBox = ({ currentRefinement, isSearchStalled, refine, label }) => {
 	return (
 		<>
 			<form className={styles.search_box} noValidate role="search" onSubmit={(e) => e.preventDefault()}>
-				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder="Search archives" onClick={handleFocus} aria-label="Search archives" />
+				<input type="search" value={currentRefinement} onChange={(event) => userSearch(event, refine)} placeholder={`Search ${label}`} onClick={handleFocus} aria-label={`Search ${label}`} />
 				<ClearAllButton clearsQuery />
 			</form>
 			{isSearchStalled ? <p>Search seems to be taking a bit of time to load or has failed. If you have JavaScript disabled that will prevent it from loading properly (sorry)</p> : ""}

@@ -25,7 +25,10 @@ const reviewQuery = `{
                 slug
                 rating
                 type
+                sanitised
                 date
+                updated
+                latestReview
                 author
                 series {
                     title

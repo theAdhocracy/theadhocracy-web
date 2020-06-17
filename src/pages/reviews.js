@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, Hits } from "react-instantsearch-dom"
+import { InstantSearch, Configure } from "react-instantsearch-dom"
 import { globalHistory } from "@reach/router"
 
 import { CustomSearchBox, CustomCategoryFilter } from "../components/search/search_box"
+import { ReviewPreview } from "../components/search/review_preview"
 import { CustomRatingMenu } from "../components/search/rating"
 import Layout from "../components/layout"
 import Card from "../components/content_card"
@@ -26,19 +27,22 @@ export default ({}) => {
 		<Layout title="Reviews" sidebar={false}>
 			<section id="content">
 				<header>
-					<h1>Latest Reviews</h1>
+					<h1>Ad hoc Reviews</h1>
 				</header>
+				<h2>Latest Reviews</h2>
+				<a href="/reviews/2">Explore?</a>
+				<h2>Latest Series</h2>
+				<h2>Latest Collections</h2>
+				<h2>Search Reviews</h2>
 				<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 					<CustomSearchBox defaultRefinement={urlQuery} label="reviews" />
+					<Configure hitsPerPage={"12"} />
 					<section className="search_control">
 						<CustomCategoryFilter attribute="node.type" limit={50} />
 						<CustomRatingMenu attribute="node.rating" />
 					</section>
-					<Hits />
+					<ReviewPreview />
 				</InstantSearch>
-				<main className="content-grid">
-					<a href="/reviews/2">Explore?</a>
-				</main>
 			</section>
 		</Layout>
 	)

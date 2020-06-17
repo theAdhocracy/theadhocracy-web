@@ -41,7 +41,7 @@ const Search = ({ searchIndex }) => {
 					}
 				}}
 			>
-				<CustomSearchBox defaultRefinement={urlQuery} />
+				<CustomSearchBox defaultRefinement={urlQuery} label="archives" />
 				<Configure hitsPerPage={pageLimit} />
 				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? [] : urlFilter} limit={50} />
 				<PostPreview />
