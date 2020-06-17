@@ -10,7 +10,7 @@ const RatingMenu = ({ refine, max }) => (
 			return (
 				<label htmlFor={`rating${key}`} key={`rating${key}`}>
 					<input
-						type="radio"
+						type="checkbox"
 						id={`rating${key}`}
 						name="rating"
 						value={key}
