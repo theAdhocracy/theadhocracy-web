@@ -73,3 +73,25 @@ a.active-series:active {
 	background-color: var(--green);
 	color: #ffffff;
 }
+
+/* Homepage */
+
+/* Search */
+
+.search_control {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.search_control > ul {
+	margin-right: 2rem;
+}
+
+.search_control span.label {
+	margin-right: 0.5rem;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	font-weight: bold;
+	color: var(--orange);
+}

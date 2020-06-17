@@ -10,6 +10,8 @@ import Layout from "../components/layout"
 import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
 
+import "../styles/reviews.css"
+
 export default ({ data, pageContext }) => {
 	// Set root for data
 	const reviews = data.allReviews.nodes
@@ -29,8 +31,10 @@ export default ({ data, pageContext }) => {
 				</header>
 				<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 					<CustomSearchBox defaultRefinement={urlQuery} />
-					<CustomCategoryFilter attribute="node.type" limit={50} />
-					<CustomRatingMenu attribute="node.rating" />
+					<section className="search_control">
+						<CustomCategoryFilter attribute="node.type" limit={50} />
+						<CustomRatingMenu attribute="node.rating" />
+					</section>
 					<Hits />
 				</InstantSearch>
 				<main className="content-grid">
