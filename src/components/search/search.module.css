@@ -95,12 +95,9 @@
 	border: 2px solid var(--green);
 }
 
-.rating_menu {
-}
-
 .rating_menu label {
 	position: relative;
-	padding: 0.2rem 0.4rem;
+	padding: 0.2rem;
 	border-radius: 6px;
 	display: inline-block;
 	height: 1.5rem;
@@ -124,6 +121,26 @@
 .rating_menu label:hover svg,
 .rating_menu input:checked + svg {
 	fill: var(--orange);
+	opacity: 50%;
+}
+
+.rating_menu input:checked + svg {
+	cursor: not-allowed;
+}
+
+.rating_menu input.range_limit,
+.rating_menu input.range_limit + svg {
+	cursor: pointer;
+	opacity: 100%;
+}
+
+.rating_menu input:not(:checked),
+.rating_menu input:not(:checked) + svg {
+	cursor: pointer;
+}
+
+.range_limit + svg {
+	fill: green;
 }
 
 .search_results {

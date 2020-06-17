@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, Hits, RatingMenu } from "react-instantsearch-dom"
+import { InstantSearch, Hits } from "react-instantsearch-dom"
 import { globalHistory } from "@reach/router"
 
 import { CustomSearchBox, CustomCategoryFilter } from "../components/search/search_box"
