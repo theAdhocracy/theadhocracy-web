@@ -10,6 +10,7 @@ const RatingMenu = ({ refine, min, max }) => {
 	// Update query limits on range state change
 	useEffect(() => {
 		refine({ max: maxRange, min: minRange })
+		console.log(`Max: ${maxRange} | Min: ${minRange}`)
 	}, [minRange, maxRange])
 
 	// Update user selected range and UI

@@ -33,7 +33,7 @@ export default ({ data }) => {
 				</header>
 				<section className="content-grid">
 					{reviews.map((review) => {
-						return <Card post={review} type="review" />
+						return <Card post={review} type="review" key={review.slug} />
 					})}
 				</section>
 				<Link className="bold-link" to="/reviews/1">
@@ -45,13 +45,13 @@ export default ({ data }) => {
 				<h2 id="series">Series Updates</h2>
 				<section className="content-grid">
 					{series.map((review) => {
-						return <Card post={review} type="review" />
+						return <Card post={review} type="review" key={review.slug} />
 					})}
 				</section>
 				<h2 id="collections">Collection Updates</h2>
 				<section className="content-grid">
 					{collections.map((review) => {
-						return <Card post={review} type="review" />
+						return <Card post={review} type="review" key={review.slug} />
 					})}
 				</section>
 				<h2 id="search">Search All Reviews</h2>

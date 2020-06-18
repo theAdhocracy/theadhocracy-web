@@ -72,8 +72,8 @@ const ContentCard = ({ post, type, search, hit }) => {
 								</p>
 								<ul className="flat-list">
 									{groups.map((group) => (
-										<Link to={`/review/${group.url}/${group.slug}`} className="card-button card-tag">
-											<li key={group}>{group.title}</li>
+										<Link to={`/review/${group.url}/${group.slug}`} className="card-button card-tag" key={group.slug}>
+											<li>{group.title}</li>
 										</Link>
 									))}
 								</ul>

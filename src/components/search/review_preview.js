@@ -8,7 +8,7 @@ const CustomHitPreview = ({ hits, hasMore, refineNext }) => {
 	return (
 		<section className={styles.search_results}>
 			{hits.map((hit) => {
-				return <Card post={hit.node} type="review" search={true} hit={hit} />
+				return <Card post={hit.node} type="review" search={true} hit={hit} key={hit.node.slug} />
 			})}
 			{hasMore && (
 				<footer>
