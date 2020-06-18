@@ -6,8 +6,8 @@
 
 /* Series & Collections */
 
-.collections a,
-.collections a:visited {
+.article .collections a,
+.article .collections a:visited {
 	display: inline-block;
 	padding: 0.5rem;
 	border: 2px solid var(--blue);
@@ -21,8 +21,8 @@
 	margin-left: 1rem;
 }
 
-.article .collections a:hover,
-.article .collections a:focus {
+.article .review-header p.collections a:hover,
+.article .review-header p.collections a:focus {
 	font-style: normal;
 	letter-spacing: normal;
 	color: #ffffff;
@@ -36,7 +36,7 @@
 	max-width: calc(100% + 1rem);
 }
 
-.series-nav ul {
+nav.series-nav ul {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
@@ -45,14 +45,14 @@
 	margin-bottom: -0.5rem;
 }
 
-.series-nav li {
+.series-nav ul li {
 	margin: 0;
 	margin-left: 1rem;
 	margin-bottom: 0.5rem;
 	padding: 0;
 }
 
-.series-nav a {
+.series-nav li a {
 	display: inline-block;
 	padding: 0.5rem;
 	border: 2px solid var(--green);
@@ -65,13 +65,20 @@
 .article nav.series-nav ul li a:hover {
 	font-style: normal;
 	letter-spacing: normal;
-}
-
-a.active-series,
-a.active-series:visited,
-a.active-series:active {
 	background-color: var(--green);
 	color: #ffffff;
+}
+
+.series-nav a.active-series,
+.series-nav a.active-series:visited,
+.series-nav a.active-series:active {
+	background-color: var(--green);
+	color: #ffffff;
+}
+
+.series-nav ul:hover a.active-series {
+	background-color: #ffffff;
+	color: var(--green);
 }
 
 /* Homepage */
