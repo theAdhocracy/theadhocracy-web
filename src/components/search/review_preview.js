@@ -5,16 +5,14 @@ import { Highlight, connectInfiniteHits } from "react-instantsearch-dom"
 import Rating from "../rating"
 import styles from "./search.module.css"
 
-const CustomHitPreview = ({ hits, hasPrevious, refinePrevious, hasMore, refineNext }) => {
+const CustomHitPreview = ({ hits, hasMore, refineNext }) => {
 	return (
 		<section className={styles.search_results}>
-			{hits.map((hit, index) => {
+			{hits.map((hit) => {
 				let searchResult = hit.node
-				let groups = searchResult.series.concat(searchResult.collections)
-				let type = "film"
-				let url = searchResult.contentType === "articles" ? "wrote" : searchResult.contentType === "journals" ? "wrote" : "note"
+				let groups = searchResult.series.map((series) => ({ ...series, url: `series\\${searchResult.type}` })).concat(searchResult.collections.map((collection) => ({ ...collection, url: "collection" })))
 				return (
-					<article className={`content-card journal-card ${styles.search_card}`}>
+					<article className={`content-card`}>
 						<h2>
 							<Highlight attribute="node.title" hit={hit} />
 						</h2>
@@ -22,10 +20,10 @@ const CustomHitPreview = ({ hits, hasPrevious, refinePrevious, hasMore, refineNe
 							<Highlight attribute="node.sanitised" hit={hit} />
 						</p>
 						<footer>
-							<p>
+							<p className="card-button card-info">
 								<Rating value={searchResult.rating} />
 							</p>
-							<Link to={`/review/${searchResult.type}/${searchResult.slug}`}>
+							<Link to={`/review/${searchResult.type}/${searchResult.slug}`} className="card-button">
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}
@@ -33,12 +31,14 @@ const CustomHitPreview = ({ hits, hasPrevious, refinePrevious, hasMore, refineNe
 							</Link>
 							{groups.length && (
 								<>
-									<p>
+									<p className="card-divider">
 										<span>Series & Collections</span>
 									</p>
 									<ul className="flat-list">
 										{groups.map((group) => (
-											<li key={group}>{group.title}</li>
+											<Link to={`/review/${group.url}/${group.slug}`} className="card-button card-tag">
+												<li key={group}>{group.title}</li>
+											</Link>
 										))}
 									</ul>
 								</>

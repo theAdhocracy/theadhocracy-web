@@ -20,24 +20,26 @@ const CustomHitPreview = ({ hits, hasPrevious, refinePrevious, hasMore, refineNe
 							<Highlight attribute="node.sanitised" hit={hit} />
 						</p>
 						<footer>
-							<Link to={`/${url}/${searchResult.slug}`}>
+							<Link to={`/${url}/${searchResult.slug}`} className="card-button">
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}
 								Read {type}
 							</Link>
-							<p>
+							<p className="card-button card-info">
 								<span role="img" title="Date published" aria-label="Date published">
 									📆
 								</span>{" "}
 								{searchResult.month.slice(0, 3)} {searchResult.year}
 							</p>
-							<p>
+							<p className="card-divider">
 								<span>Categories</span>
 							</p>
 							<ul className="flat-list">
 								{searchResult.categories.map((category, index) => (
-									<li key={index}>{category}</li>
+									<Link to={`/search/?query=&filter=${category}`} className="card-button card-tag">
+										<li key={category}>{category}</li>
+									</Link>
 								))}
 							</ul>
 						</footer>
