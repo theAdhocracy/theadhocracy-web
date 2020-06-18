@@ -40,50 +40,15 @@ export default ({ data }) => {
 				<Link to="/reviews/1">Explore?</Link>
 				<h2>Latest Series</h2>
 				<section className="content-grid">
-					{series.map((post) => {
-						return (
-							<article className={"content-card"}>
-								<header>
-									<h2>{post.title}</h2>
-								</header>
-
-								<div dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
-
-								<footer>
-									<p className="card-button card-info">{/* <Rating value={post.rating} /> */}</p>
-									<Link to={`/review/${post.type}/${post.slug}`} className="card-button">
-										<span role="img" aria-label="Book icon">
-											📖
-										</span>{" "}
-										Read Entry
-									</Link>
-								</footer>
-							</article>
-						)
+					{series.map((review) => {
+						return <Card post={review} type="review" />
 					})}
 				</section>
+
 				<h2>Latest Collections</h2>
 				<section className="content-grid">
-					{collections.map((post) => {
-						return (
-							<article className={"content-card"}>
-								<header>
-									<h2>{post.title}</h2>
-								</header>
-
-								<div dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
-
-								<footer>
-									<p className="card-button card-info">{/* <Rating value={post.rating} /> */}</p>
-									<Link to={`/review/${post.type}/${post.slug}`} className="card-button">
-										<span role="img" aria-label="Book icon">
-											📖
-										</span>{" "}
-										Read Entry
-									</Link>
-								</footer>
-							</article>
-						)
+					{collections.map((review) => {
+						return <Card post={review} type="review" />
 					})}
 				</section>
 				<h2>Search Reviews</h2>

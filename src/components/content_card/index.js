@@ -31,7 +31,8 @@ const ContentCard = ({ post, type, search, hit }) => {
 				</section>
 			)
 		case "review":
-			let groups = post.series.map((series) => ({ ...series, url: `series\\${post.type}` })).concat(post.collections.map((collection) => ({ ...collection, url: "collection" })))
+			let groups = post.series ? post.series.map((series) => ({ ...series, url: `series\\${post.type}` })).concat(post.collections.map((collection) => ({ ...collection, url: "collection" }))) : post.collections ? post.collections.map((collection) => ({ ...collection, url: "collection" })) : []
+			let url = post.series && post.collections ? `/review/${post.type}/${post.slug}` : !post.series && post.collections ? `/review/series/${post.type}/${post.slug}` : `/review/collection/${post.slug}`
 			return (
 				<article className={"content-card"}>
 					<header>
@@ -51,16 +52,20 @@ const ContentCard = ({ post, type, search, hit }) => {
 						<div dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
 					)}
 					<footer>
-						<p className="card-button card-info">
-							<Rating value={post.rating} />
-						</p>
-						<Link to={`/review/${post.type}/${post.slug}`} className="card-button">
+						{post.rating ? (
+							<p className="card-button card-info">
+								<Rating value={post.rating} />
+							</p>
+						) : (
+							<div></div>
+						)}
+						<Link to={url} className="card-button">
 							<span role="img" aria-label="Book icon">
 								📖
 							</span>{" "}
 							Read Entry
 						</Link>
-						{groups.length && (
+						{groups.length > 0 && (
 							<>
 								<p className="card-divider">
 									<span>Series & Collections</span>
