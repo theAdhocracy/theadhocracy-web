@@ -490,7 +490,7 @@ exports.createPages = ({ graphql, actions }) => {
 			})
 		})
 
-		// Create review hub page
+		// Create review hub pages
 		const reviewsPerPage = 12
 		const numReviewPages = Math.ceil(reviews.length / reviewsPerPage)
 		Array.from({ length: numReviewPages }).forEach((_, i) => {

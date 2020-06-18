@@ -21,7 +21,7 @@ export default ({ data, pageContext }) => {
 					{reviews.map((review, index) => (
 						<Card post={review} type="review" key={index} />
 					))}
-					<PageNav currentPage={pageContext.currentPage} totalPages={pageContext.numPages} pageRoot="/reviews/" />
+					<PageNav currentPage={pageContext.currentPage} totalPages={pageContext.numPages} pageRoot="/reviews/" type="review" />
 				</main>
 			</section>
 		</Layout>
