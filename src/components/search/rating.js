@@ -3,15 +3,19 @@ import { connectRange } from "react-instantsearch-dom"
 
 import styles from "./search.module.css"
 
-const RatingMenu = ({ refine, min, max }) => {
+const RatingMenu = ({ refine, min, max, count }) => {
 	const [minRange, setMin] = useState(min || 0)
 	const [maxRange, setMax] = useState(max || 6)
 
-	// Update query limits on range state change
+	// Update query limits on range state change or category filter (count.length)
 	useEffect(() => {
-		refine({ max: maxRange, min: minRange })
+		let minValue = minRange < min ? min : minRange
+		let maxValue = maxRange > max ? max : maxRange
+		refine({ max: maxValue, min: minValue })
+		setMax(parseInt(maxValue, 10))
+		setMin(parseInt(minValue, 10))
 		console.log(`Max: ${maxRange} | Min: ${minRange}`)
-	}, [minRange, maxRange])
+	}, [minRange, maxRange, count.length])
 
 	// Update user selected range and UI
 	function updateRange() {
@@ -34,8 +38,11 @@ const RatingMenu = ({ refine, min, max }) => {
 			setMax(0)
 			setMin(0)
 		} else {
-			setMax(checkboxRange[checkboxRange.length - 1])
-			setMin(checkboxRange[0])
+			// calculate min/max based on current search boundaries
+			let minValue = minBox < min ? min : minBox
+			let maxValue = maxBox > max ? max : maxBox
+			setMax(parseInt(maxValue, 10))
+			setMin(parseInt(minValue, 10))
 
 			// set range limit UI
 			checkboxes[minBox - 1].classList.add(styles.range_limit)
