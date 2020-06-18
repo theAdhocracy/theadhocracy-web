@@ -38,6 +38,14 @@ export const query = graphql`
 				date(formatString: "DD MMM YYYY")
 				rating
 				type
+				series {
+					title
+					slug
+				}
+				collections {
+					title
+					slug
+				}
 			}
 		}
 	}

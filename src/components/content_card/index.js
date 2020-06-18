@@ -1,10 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
+import { Highlight } from "react-instantsearch-dom"
 
 import Rating from "../rating"
 import "./content_card.css"
 
-const ContentCard = ({ post, type }) => {
+const ContentCard = ({ post, type, search, hit }) => {
 	switch (type) {
 		case "journal":
 			return (
@@ -30,12 +31,25 @@ const ContentCard = ({ post, type }) => {
 				</section>
 			)
 		case "review":
+			let groups = post.series.map((series) => ({ ...series, url: `series\\${post.type}` })).concat(post.collections.map((collection) => ({ ...collection, url: "collection" })))
 			return (
-				<section className={"content-card"}>
+				<article className={"content-card"}>
 					<header>
-						<h2>{post.title}</h2>
+						{search ? (
+							<h2>
+								<Highlight attribute="node.title" hit={hit} />
+							</h2>
+						) : (
+							<h2>{post.title}</h2>
+						)}
 					</header>
-					<article dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
+					{search ? (
+						<p>
+							<Highlight attribute="node.sanitised" hit={hit} />
+						</p>
+					) : (
+						<div dangerouslySetInnerHTML={{ __html: `${post.desc}` }} />
+					)}
 					<footer>
 						<p className="card-button card-info">
 							<Rating value={post.rating} />
@@ -46,8 +60,22 @@ const ContentCard = ({ post, type }) => {
 							</span>{" "}
 							Read Entry
 						</Link>
+						{groups.length && (
+							<>
+								<p className="card-divider">
+									<span>Series & Collections</span>
+								</p>
+								<ul className="flat-list">
+									{groups.map((group) => (
+										<Link to={`/review/${group.url}/${group.slug}`} className="card-button card-tag">
+											<li key={group}>{group.title}</li>
+										</Link>
+									))}
+								</ul>
+							</>
+						)}
 					</footer>
-				</section>
+				</article>
 			)
 		default:
 			return (

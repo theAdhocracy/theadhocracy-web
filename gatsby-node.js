@@ -495,7 +495,7 @@ exports.createPages = ({ graphql, actions }) => {
 		const numReviewPages = Math.ceil(reviews.length / reviewsPerPage)
 		Array.from({ length: numReviewPages }).forEach((_, i) => {
 			createPage({
-				path: i === 0 ? `/reviews` : `/reviews/${i + 1}`,
+				path: i === 0 ? `/reviews/1` : `/reviews/${i + 1}`,
 				component: path.resolve("./src/templates/reviews.js"),
 				context: {
 					limit: reviewsPerPage,

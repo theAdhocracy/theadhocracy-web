@@ -15,7 +15,8 @@
 }
 
 .content-card article,
-.content-card > p {
+.content-card > p,
+.content-card > div {
 	flex: 1;
 	margin: 1rem 0;
 	padding: 0 0.75rem;
