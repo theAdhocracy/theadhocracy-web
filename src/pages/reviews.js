@@ -29,29 +29,32 @@ export default ({ data }) => {
 		<Layout title="Reviews" sidebar={false}>
 			<section id="content">
 				<header>
-					<h1>Ad hoc Reviews</h1>
+					<h1>Latest Reviews</h1>
 				</header>
-				<h2>Latest Reviews</h2>
 				<section className="content-grid">
 					{reviews.map((review) => {
 						return <Card post={review} type="review" />
 					})}
 				</section>
-				<Link to="/reviews/1">Explore?</Link>
-				<h2>Latest Series</h2>
+				<Link className="bold-link" to="/reviews/1">
+					Explore All Reviews?
+				</Link>
+				<p className="banner-text">
+					⬇ Otherwise, you can <a href="#search">search reviews</a> or check out the latest updates to <a href="#series">series</a> and <a href="#collections">collections</a> ⬇
+				</p>
+				<h2 id="series">Series Updates</h2>
 				<section className="content-grid">
 					{series.map((review) => {
 						return <Card post={review} type="review" />
 					})}
 				</section>
-
-				<h2>Latest Collections</h2>
+				<h2 id="collections">Collection Updates</h2>
 				<section className="content-grid">
 					{collections.map((review) => {
 						return <Card post={review} type="review" />
 					})}
 				</section>
-				<h2>Search Reviews</h2>
+				<h2 id="search">Search All Reviews</h2>
 				<InstantSearch indexName={searchIndex} searchClient={searchClient}>
 					<CustomSearchBox defaultRefinement={urlQuery} label="reviews" />
 					<Configure hitsPerPage={"6"} />
@@ -68,7 +71,7 @@ export default ({ data }) => {
 
 export const query = graphql`
 	{
-		reviews: allReviews(limit: 3, sort: { fields: [latestReview, updated], order: [DESC, DESC] }) {
+		reviews: allReviews(limit: 6, sort: { fields: [latestReview, updated], order: [DESC, DESC] }) {
 			nodes {
 				title
 				slug
@@ -86,7 +89,7 @@ export const query = graphql`
 				}
 			}
 		}
-		series: allSeries(limit: 3, sort: { fields: reviews___updated, order: DESC }) {
+		series: allSeries(limit: 6, sort: { fields: reviews___updated, order: DESC }) {
 			nodes {
 				title
 				slug
@@ -99,7 +102,7 @@ export const query = graphql`
 				}
 			}
 		}
-		collections: allCollections(limit: 3, sort: { fields: reviews___updated, order: DESC }) {
+		collections: allCollections(limit: 6, sort: { fields: reviews___updated, order: DESC }) {
 			nodes {
 				title
 				slug
