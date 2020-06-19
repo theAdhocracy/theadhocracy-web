@@ -121,7 +121,7 @@
 .rating_menu label:hover svg,
 .rating_menu input:checked + svg {
 	fill: var(--orange);
-	opacity: 50%;
+	opacity: 0.5;
 }
 
 .rating_menu input:checked + svg {
@@ -131,7 +131,7 @@
 .rating_menu input.range_limit,
 .rating_menu input.range_limit + svg {
 	cursor: pointer;
-	opacity: 100%;
+	opacity: 1;
 }
 
 .rating_menu input:not(:checked),
