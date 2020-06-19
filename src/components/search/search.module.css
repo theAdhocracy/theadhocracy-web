@@ -97,6 +97,7 @@
 
 .rating_menu label {
 	position: relative;
+	width: 1.4rem;
 	padding: 0.2rem;
 	border-radius: 6px;
 	display: inline-block;
@@ -174,7 +175,8 @@
 	width: 100%;
 }
 
-.search_results > footer button {
+.search_results > footer button,
+.results_footer button {
 	display: block;
 	margin: 0 auto;
 	margin-bottom: 0.75rem;
@@ -190,6 +192,21 @@
 	font-weight: 500;
 	letter-spacing: 0.1rem;
 	cursor: pointer;
+}
+
+.search_results > footer button:active,
+.results_footer button:active {
+	outline: none;
+}
+
+.search_results > footer button:focus,
+.results_footer button:focus {
+	outline: none;
+	border: 2px solid var(--pink);
+}
+
+.results_footer {
+	grid-column: 1 / -1;
 }
 
 .powered_by {

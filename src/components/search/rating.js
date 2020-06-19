@@ -14,7 +14,6 @@ const RatingMenu = ({ refine, min, max, count }) => {
 		refine({ max: maxValue, min: minValue })
 		setMax(parseInt(maxValue, 10))
 		setMin(parseInt(minValue, 10))
-		console.log(`Max: ${maxRange} | Min: ${minRange}`)
 	}, [minRange, maxRange, count.length])
 
 	// Update user selected range and UI
