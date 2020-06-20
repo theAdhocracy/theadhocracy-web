@@ -67,6 +67,8 @@
 
 .content-card footer ul {
 	grid-column: 1 / 3;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	gap: 0.5rem;
 }
 
@@ -89,6 +91,14 @@
 	font-size: 0.75rem;
 	font-weight: 600;
 	text-transform: uppercase;
+}
+
+.card-tag:nth-of-type(3n) {
+	grid-column: 1 / -1;
+}
+
+.card-tag:only-of-type {
+	grid-column: 1 / -1;
 }
 
 .card-button.card-info {
