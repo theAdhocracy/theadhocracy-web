@@ -59,6 +59,11 @@
 	flex-wrap: wrap;
 	gap: 0.4rem;
 	padding: 0;
+	margin: 0.6rem 0 1rem -0.4rem;
+}
+
+.category_list li {
+	margin: 0.4rem 0 0 0.4rem;
 }
 
 .category_list label {
@@ -210,7 +215,7 @@
 }
 
 .powered_by {
-	margin: 0 auto;
+	margin: 1.5rem auto 0;
 	text-align: center;
 	color: var(--blue);
 	display: flex;
