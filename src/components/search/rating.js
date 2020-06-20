@@ -14,6 +14,7 @@ const RatingMenu = ({ refine, min, max, count }) => {
 		refine({ max: maxValue, min: minValue })
 		setMax(parseInt(maxValue, 10))
 		setMin(parseInt(minValue, 10))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [minRange, maxRange, count.length])
 
 	// Update user selected range and UI
@@ -67,6 +68,7 @@ const RatingMenu = ({ refine, min, max, count }) => {
 									updateRange()
 								}}
 								className={index === min || index === max - 1 ? styles.range_limit : ""}
+								aria-labelledby={`star_icon_${key}`}
 							/>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-labelledby={`star_icon_${key}`} role="img">
 								<title id={`star_icon_${key}`}>Select {key} star reviews.</title>

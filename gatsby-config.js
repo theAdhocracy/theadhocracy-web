@@ -175,6 +175,36 @@ module.exports = {
 						output: "/rss-notes.xml",
 						title: "theAdhocracy | Notes",
 						match: `^.*/note/`
+					},
+					{
+						serialize: ({ query: { site, allNotes } }) => {
+							return allNotes.edges.map((edge) => {
+								return Object.assign({}, edge.node.title, {
+									title: edge.node.title,
+									description: edge.node.sanitised,
+									date: edge.node.updated,
+									url: site.siteMetadata.siteUrl + "/review/" + edge.node.type + "/" + edge.node.slug,
+									guid: edge.node.slug
+								})
+							})
+						},
+						query: `
+							{
+								allReviews {
+									edges {
+										node {
+											title
+											slug
+											type
+											sanitised
+											updated(formatString: "DD MMM YYYY")
+										}
+									}
+								}
+							}
+						`,
+						output: "/rss-reviews.xml",
+						title: "theAdhocracy | Reviews"
 					}
 				]
 			}
