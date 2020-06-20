@@ -1,74 +1,95 @@
+.note > header h2 {
+	color: var(--lightblue);
+}
+
+.note > header h2 a {
+	color: var(--blue);
+}
+
+.note > section.article pre {
+	border-left-color: var(--lightblue);
+	border-image: linear-gradient(180deg, var(--lightblue), var(--blue)) 1;
+	color: var(--lightblue);
+	background-color: vaR(--lightgrey);
+}
+
+.note > section.article code {
+	color: var(--lightblue);
+}
+
 .note > footer {
-    padding-bottom: 0.99rem;
-    text-align: right;
+	padding-bottom: 0.99rem;
+	text-align: right;
 }
 
 .note > footer ul,
 .note > footer p,
 .note > footer span,
 .note > footer a {
-    font-size: 0.8rem;
+	font-size: 0.8rem;
 }
 
-.note > footer a {
-    text-decoration: none;
+.note > footer a,
+.note > footer li {
+	text-decoration: none;
+	color: var(--darkgrey);
+}
+
+.note > footer ul a:hover {
+	font-style: italic;
 }
 
 .note > footer ul {
-    justify-content: end;
+	justify-content: flex-end;
 }
 
 .note > footer li {
-    margin: 0;
+	margin: 0;
 }
 
 /* Mobile */
 
 @media screen and (min-width: 275px) {
-
-
 }
 
 /* Desktop */
 
 @media screen and (min-width: 599px) {
+	.note {
+		display: grid;
+		grid-template-columns: 65% 1fr;
+		grid-template-columns: minmax(50%, 65%) minmax(150px, 1fr);
+		grid-column-gap: 5%;
+		/* grid-column-gap: 5rem; */
+	}
 
-    .note {
-        display: grid;
-        grid-template-columns: 65% 1fr;
-        grid-template-columns: minmax(50%, 65%) minmax(150px, 1fr);
-        grid-column-gap: 5%;
-        /* grid-column-gap: 5rem; */
-    }
+	.note > header h2 {
+		margin-bottom: 1rem;
+	}
 
-    .note > header h2 {
-        margin-bottom: 1rem;
-    }
+	.note > article {
+		grid-column: 1;
+	}
 
-    .note > article {
-        grid-column: 1;
-    }
+	.note > section > *:first-child {
+		margin-top: 0;
+	}
 
-    .note > article > *:first-child {
-        margin-top: 0;
-    }
+	.note > footer {
+		grid-column: 2;
+		grid-row: 1 / 3;
+		align-self: end;
+		padding-bottom: 0.99rem;
+		text-align: right;
+	}
 
-    .note > footer {
-        grid-column: 2;
-        grid-row: 1 / 3;
-        align-self: end;
-        padding-bottom: 0.99rem;
-        text-align: right;
-    }
-
-    .note + .page-navigation {
-        margin-top: 2.5rem;
-    }
-
+	.note + .page-navigation {
+		margin-top: 2.5rem;
+	}
 }
 
 @media screen and (min-width: 1550px) {
-    .note {
-        grid-column-gap: 5rem;
-    }
+	.note {
+		grid-column-gap: 5rem;
+	}
 }
