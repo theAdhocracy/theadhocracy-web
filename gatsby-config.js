@@ -177,8 +177,8 @@ module.exports = {
 						match: `^.*/note/`
 					},
 					{
-						serialize: ({ query: { site, allNotes } }) => {
-							return allNotes.edges.map((edge) => {
+						serialize: ({ query: { site, allReviews } }) => {
+							return allReviews.edges.map((edge) => {
 								return Object.assign({}, edge.node.title, {
 									title: edge.node.title,
 									description: edge.node.sanitised,
@@ -190,7 +190,7 @@ module.exports = {
 						},
 						query: `
 							{
-								allReviews {
+								allReviews(sort: { fields: [latestReview, updated], order: [DESC, DESC] }) {
 									edges {
 										node {
 											title
