@@ -277,6 +277,19 @@ body > div > div {
 	color: var(--orange); /* fallback if gradients aren't suppported */
 }
 
+#content > h2 {
+	display: inline-block;
+	margin: 3rem 0 1.5rem;
+	width: 100%;
+	background: linear-gradient(90deg, var(--pink), var(--orange));
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	border-bottom: 5px solid var(--orange);
+	border-image: linear-gradient(90deg, var(--orange), var(--yellow)) 1;
+	color: var(--pink); /* fallback if gradients aren't suppported */
+}
+
 span[role="img"] {
 	-webkit-text-fill-color: #000000;
 }
@@ -300,7 +313,8 @@ footer.page-navigation > a {
 }
 
 .content-grid > a:last-child,
-footer.page-navigation > a {
+footer.page-navigation > a,
+#content a.bold-link {
 	margin: 0 auto;
 	grid-column: 1 / -1;
 	margin-bottom: 0.75rem;
@@ -314,6 +328,30 @@ footer.page-navigation > a {
 	text-decoration: none;
 	font-weight: 500;
 	letter-spacing: 0.1rem;
+}
+
+#content a.bold-link {
+	display: block;
+	margin-top: 2rem;
+}
+
+.banner-text {
+	text-align: center;
+	font-size: 1.2rem;
+	color: var(--green);
+	font-weight: bold;
+}
+
+.banner-text a {
+	color: var(--green);
+	text-decoration: underline var(--pink);
+	text-decoration-style: wavy;
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 0.4rem;
+}
+
+.banner-text a:hover {
+	text-underline-offset: 0.6rem;
 }
 
 #sidebar {

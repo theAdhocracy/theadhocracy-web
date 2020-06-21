@@ -14,7 +14,9 @@
 	color: white;
 }
 
-.content-card article {
+.content-card article,
+.content-card > p,
+.content-card > div {
 	flex: 1;
 	margin: 1rem 0;
 	padding: 0 0.75rem;
@@ -23,56 +25,26 @@
 .content-card footer {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	gap: 0.5rem;
+	padding: 0 1rem 1rem 0.75rem;
 	justify-content: center;
 	align-items: center;
 	color: #ffffff;
 }
 
-.content-card footer * {
-	margin: 0;
-}
-
-.content-card footer > * {
-	padding: 1rem;
-}
-
-.content-card footer p,
-.content-card footer a {
-	height: 100%;
-	padding: 0.5rem;
-	background-color: var(--orange);
-	border-radius: 0.5rem;
-	line-height: 1.6;
-	display: flex;
-	align-items: center;
-	text-align: center;
-	gap: 0.3em;
-	justify-content: center;
-}
-
-.content-card footer a {
-	margin: 0 0.25rem 0 0.75rem;
-}
-
-.content-card footer a:hover {
-	background-color: var(--yellow);
-}
-
-.content-card footer > p:nth-of-type(1) {
-	margin: 0 1rem 0 0.25rem;
-	background-color: var(--lightblue);
-}
-
-.content-card footer > p:nth-of-type(2) {
+.content-card .card-divider {
 	grid-column: 1 / 3;
+	display: flex;
 	position: relative;
-	margin: 0 1rem 0 0.75rem;
+	margin-top: 0;
+	margin-bottom: 0.1rem;
 	padding: 0.2rem 0 0 0;
 	background-color: transparent;
 	color: #000000;
+	justify-content: center;
 }
 
-.content-card footer > p:nth-of-type(2) span {
+.content-card .card-divider span {
 	position: relative;
 	z-index: 1;
 	padding: 0 1rem;
@@ -82,7 +54,7 @@
 	text-transform: uppercase;
 }
 
-.content-card footer > p:nth-of-type(2)::before {
+.content-card .card-divider::before {
 	content: "";
 	display: block;
 	position: absolute;
@@ -95,30 +67,41 @@
 
 .content-card footer ul {
 	grid-column: 1 / 3;
-	padding-top: 0;
-	padding-left: 0.25rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5rem;
 }
 
-.content-card footer li {
+.card-button {
 	flex: 1;
 	padding: 0.5rem;
-	margin: 0.5rem 0 0 0.5rem;
+	background-color: var(--orange);
 	border-radius: 0.5rem;
-	background-color: var(--blue);
-	white-space: nowrap;
+	line-height: 1.6;
 	text-align: center;
+	white-space: nowrap;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.card-button.card-tag {
+	margin: 0;
+	background-color: var(--blue);
+	line-height: 2;
 	font-size: 0.75rem;
 	font-weight: 600;
 	text-transform: uppercase;
 }
 
-.content-card footer a {
-	text-decoration: none;
-	color: #ffffff;
+.card-tag:last-child:nth-child(odd) {
+	grid-column: 1 / -1;
 }
 
-/* Journal Entries */
+.card-button.card-info {
+	margin: 0;
+	background-color: var(--lightblue);
+}
 
-.journal-card {
-	padding-bottom: 1rem;
+.content-card a.card-button:hover {
+	background-color: var(--yellow);
 }

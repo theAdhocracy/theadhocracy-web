@@ -241,6 +241,7 @@ exports.sourceNodes = async ({ actions }) => {
 			typeString: review.type.title,
 			title: review.title,
 			desc: review.desc,
+			sanitised: review.desc.replace(/<[^>]*>?/gm, "").replace(/&nbsp;/g, " "),
 			rating: review.rating,
 			author: review.author,
 			viewCount: review.viewCount,
@@ -489,12 +490,12 @@ exports.createPages = ({ graphql, actions }) => {
 			})
 		})
 
-		// Create review hub page
+		// Create review hub pages
 		const reviewsPerPage = 12
 		const numReviewPages = Math.ceil(reviews.length / reviewsPerPage)
 		Array.from({ length: numReviewPages }).forEach((_, i) => {
 			createPage({
-				path: i === 0 ? `/reviews` : `/reviews/${i + 1}`,
+				path: i === 0 ? `/reviews/1` : `/reviews/${i + 1}`,
 				component: path.resolve("./src/templates/reviews.js"),
 				context: {
 					limit: reviewsPerPage,

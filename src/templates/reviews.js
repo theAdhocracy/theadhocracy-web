@@ -1,8 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
+
 import Layout from "../components/layout"
 import Card from "../components/content_card"
 import PageNav from "../components/page_nav"
+
+import "../styles/reviews.css"
 
 export default ({ data, pageContext }) => {
 	// Set root for data
@@ -18,7 +21,7 @@ export default ({ data, pageContext }) => {
 					{reviews.map((review, index) => (
 						<Card post={review} type="review" key={index} />
 					))}
-					<PageNav currentPage={pageContext.currentPage} totalPages={pageContext.numPages} pageRoot="/reviews/" />
+					<PageNav currentPage={pageContext.currentPage} totalPages={pageContext.numPages} pageRoot="/reviews/" type="review" />
 				</main>
 			</section>
 		</Layout>
@@ -35,6 +38,14 @@ export const query = graphql`
 				date(formatString: "DD MMM YYYY")
 				rating
 				type
+				series {
+					title
+					slug
+				}
+				collections {
+					title
+					slug
+				}
 			}
 		}
 	}

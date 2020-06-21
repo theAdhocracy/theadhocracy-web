@@ -10,7 +10,7 @@ const SearchPage = () => {
 					<h1>Archives</h1>
 				</header>
 				<section>
-					<Search />
+					<Search searchIndex="theAdhocracy_Feed" />
 				</section>
 			</main>
 		</Layout>

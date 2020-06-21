@@ -17,8 +17,7 @@ theAdhocracy is built on the Jamstack, a modern tech stack wtih ReactJS at the h
 
 -   [**Gatsby**](https://www.gatsbyjs.org)
 -   [**Craft CMS**](https://craftcms.com/)
--   [**Netlify**](https://www.netlify.com/)
-    -   [![Netlify Status](https://api.netlify.com/api/v1/badges/c49878f2-401f-4ffe-a02a-8adb4359c4f8/deploy-status)](https://app.netlify.com/sites/fervent-darwin-bec3e4/deploys)
+-   [**Netlify**](https://www.netlify.com/) [![Netlify Status](https://api.netlify.com/api/v1/badges/c49878f2-401f-4ffe-a02a-8adb4359c4f8/deploy-status)](https://app.netlify.com/sites/fervent-darwin-bec3e4/deploys)
 -   ![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square "Gitmoji")
 -   ❤
 

@@ -8,10 +8,11 @@ import { CustomSearchBox, CustomCategoryFilter } from "./search_box"
 import { globalHistory } from "@reach/router"
 import styles from "./search.module.css"
 
-const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY)
-const searchIndex = "theAdhocracy_Feed"
+const Search = ({ searchIndex }) => {
+	// Search index keys
+	const searchClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY)
 
-export default function Search() {
+	// URL
 	let urlQuery = globalHistory.location.search ? decodeURIComponent(globalHistory.location.search.replace("?query=", "").replace(/&filter.*/, "")) : ""
 	let urlFilter = globalHistory.location.search.search("&filter=") > 1 ? decodeURIComponent(globalHistory.location.search.replace(/.*&filter=/, "").replace(/\+/g, " ")).split(",") : []
 
@@ -40,7 +41,7 @@ export default function Search() {
 					}
 				}}
 			>
-				<CustomSearchBox defaultRefinement={urlQuery} />
+				<CustomSearchBox defaultRefinement={urlQuery} label="archives" />
 				<Configure hitsPerPage={pageLimit} />
 				<CustomCategoryFilter attribute="node.categories" transformItems={(items) => orderBy(items, ["count", "label"], ["desc", "asc"])} defaultRefinement={urlFilter === null ? [] : urlFilter} limit={50} />
 				<PostPreview />
@@ -66,3 +67,5 @@ export default function Search() {
 		</>
 	)
 }
+
+export default Search

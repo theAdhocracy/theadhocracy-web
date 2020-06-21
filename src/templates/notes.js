@@ -5,6 +5,7 @@ import PageNav from "../components/page_nav"
 
 // CSS
 import "../styles/note.css"
+import "../styles/article.css"
 
 class Notes extends React.Component {
 	render() {
@@ -19,7 +20,7 @@ class Notes extends React.Component {
 					</header>
 					<main>
 						{notes.map((note, index) => (
-							<section className="note" key={index}>
+							<article className="note" key={index}>
 								<header>
 									<h2>
 										<a href={note.source}>{note.title}</a>
@@ -33,7 +34,7 @@ class Notes extends React.Component {
 										)}
 									</h2>
 								</header>
-								<article dangerouslySetInnerHTML={{ __html: `${note.body}` }} />
+								<section className="article" dangerouslySetInnerHTML={{ __html: `${note.body}` }} />
 								<footer>
 									<p>
 										<span role="img" title="Date published" aria-label="Date published">
@@ -48,14 +49,16 @@ class Notes extends React.Component {
 									</p>
 									<ul className="flat-list">
 										{note.categories.map((category, index) => (
-											<li key={index}>
-												<strong>{category},&nbsp;</strong>
-											</li>
+											<Link to={`/search/?query=&filter=${category}`}>
+												<li key={index}>
+													<strong>{category},&nbsp;</strong>
+												</li>
+											</Link>
 										))}
-										{note.tags.map((tag, index, array) => (index < array.length - 1 ? <li key={index}>{tag},&nbsp;</li> : <li key={index}>{tag}</li>))}
+										{note.tags.map((tag, index, array) => (index < array.length - 1 ? <li key={index}>{tag},&nbsp;</li> : <li key={index}>{tag}&nbsp;</li>))}
 									</ul>
 								</footer>
-							</section>
+							</article>
 						))}
 						<PageNav currentPage={this.props.pageContext.currentPage} totalPages={this.props.pageContext.numNotesPages} pageRoot="/notes/" />
 					</main>

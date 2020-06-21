@@ -16,7 +16,7 @@ module.exports = {
 		siteUrl: `https://theadhocracy.co.uk`,
 		siteImage: `https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg`,
 		twitterHandle: `@theAdhocracy`,
-		version: `3.4.2`
+		version: `3.4.3`
 	},
 	plugins: [
 		{
@@ -175,6 +175,36 @@ module.exports = {
 						output: "/rss-notes.xml",
 						title: "theAdhocracy | Notes",
 						match: `^.*/note/`
+					},
+					{
+						serialize: ({ query: { site, allReviews } }) => {
+							return allReviews.edges.map((edge) => {
+								return Object.assign({}, edge.node.title, {
+									title: edge.node.title,
+									description: edge.node.sanitised,
+									date: edge.node.updated,
+									url: site.siteMetadata.siteUrl + "/review/" + edge.node.type + "/" + edge.node.slug,
+									guid: edge.node.slug
+								})
+							})
+						},
+						query: `
+							{
+								allReviews(sort: { fields: [latestReview, updated], order: [DESC, DESC] }) {
+									edges {
+										node {
+											title
+											slug
+											type
+											sanitised
+											updated(formatString: "DD MMM YYYY")
+										}
+									}
+								}
+							}
+						`,
+						output: "/rss-reviews.xml",
+						title: "theAdhocracy | Reviews"
 					}
 				]
 			}
