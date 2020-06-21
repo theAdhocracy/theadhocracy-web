@@ -5,7 +5,7 @@ import { Highlight } from "react-instantsearch-dom"
 import Rating from "../rating"
 import "./content_card.css"
 
-const ContentCard = ({ post, type, search, hit }) => {
+const ContentCard = ({ post, type, search, hit, articleUrl }) => {
 	switch (type) {
 		case "journal":
 			return (
@@ -32,7 +32,7 @@ const ContentCard = ({ post, type, search, hit }) => {
 			)
 		case "review":
 			let groups = post.series ? post.series.map((series) => ({ ...series, url: `series\\${post.type}` })).concat(post.collections.map((collection) => ({ ...collection, url: "collection" }))) : post.collections ? post.collections.map((collection) => ({ ...collection, url: "collection" })) : []
-			let url = post.series && post.collections ? `/review/${post.type}/${post.slug}` : !post.series && post.collections ? `/review/series/${post.type}/${post.slug}` : `/review/collection/${post.slug}`
+			let url = articleUrl ? articleUrl : post.series && post.collections ? `/review/${post.type}/${post.slug}` : !post.series && post.collections ? `/review/series/${post.type}/${post.slug}` : `/review/collection/${post.slug}`
 			return (
 				<article className={"content-card"}>
 					<header>

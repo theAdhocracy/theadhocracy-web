@@ -16,7 +16,7 @@ export default ({ data }) => {
 				</header>
 				<main className="content-grid">
 					{reviews.map((review) => (
-						<Card post={review} type="review" key={review.slug} />
+						<Card post={review} type="review" key={review.slug} articleUrl={`/review/${review.type}/${review.slug}`} />
 					))}
 				</main>
 			</section>
