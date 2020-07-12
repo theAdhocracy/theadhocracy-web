@@ -20,22 +20,30 @@ export default ({ data, pageContext }) => {
 						{post.updated && post.updated !== post.date ? (
 							<>
 								<li>Updated</li>
-								<li className="dt-updated">{post.updated}</li>
+								<li className="dt-updated">
+									<time className="dt-published" dateTime={new Date(`${post.updated} 12:00 GMT`).toISOString()}>
+										{post.updated}
+									</time>
+								</li>
 							</>
 						) : (
 							""
 						)}
 						<li>Published</li>
-						<li className="dt-published">{post.date}</li>
+						<li>
+							<time className="dt-published" dateTime={new Date(`${post.date} 12:00 GMT`).toISOString()}>
+								{post.date}
+							</time>
+						</li>
 						<li>Tags</li>
 						<li>
 							{post.tags.map((tag, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag},
 									</Link>
 								) : (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag}
 									</Link>
 								)
@@ -50,6 +58,18 @@ export default ({ data, pageContext }) => {
 							let position = index + 1
 							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} key={index} />
 						})}
+					</section>
+					<section className="microformats">
+						<ul>
+							<li className="p-summary">{post.snippet}</li>
+							{post.categories.map((tag) => (
+								<li className="p-category">{tag}</li>
+							))}
+						</ul>
+						<a className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
+							{data.site.siteMetadata.author}
+						</a>
+						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/wrote/${post.slug}`} />
 					</section>
 				</article>
 			</main>
@@ -66,8 +86,16 @@ export const query = graphql`
 			footnotes
 			tags
 			silo
+			categories
+			slug
 			date(formatString: "DD MMMM YYYY")
 			updated(formatString: "DD MMMM YYYY")
+		}
+		site {
+			siteMetadata {
+				author
+				siteUrl
+			}
 		}
 	}
 `

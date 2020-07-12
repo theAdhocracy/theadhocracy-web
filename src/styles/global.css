@@ -163,6 +163,10 @@ body > div > div {
 	}
 }
 
+.microformats {
+	display: none;
+}
+
 #header {
 	grid-area: header;
 	padding: 2rem 1rem;
