@@ -74,7 +74,7 @@ export default ({ data, pageContext }) => {
 								</time>
 							</li>
 						</ul>
-						<img class="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+						<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
 						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
 							{data.site.siteMetadata.author}
 						</a>

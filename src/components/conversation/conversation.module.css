@@ -1,0 +1,19 @@
+.conversation {
+	max-width: var(--part-span);
+}
+
+.conversation article header {
+	display: grid;
+	grid-template-columns: var(--gutter) var(--main) 1fr;
+	align-items: center;
+	justify-items: start;
+	justify-content: end;
+	align-content: end;
+	text-align: left;
+}
+
+.conversation article header img {
+	height: 5em;
+	width: 5em;
+	border-radius: 50%;
+}

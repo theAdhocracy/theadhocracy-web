@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
+import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
 import "../styles/article.css"
 
@@ -59,6 +60,7 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} key={index} />
 						})}
 					</section>
+					<Conversation url={pageContext.url} mentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
 							<li className="p-summary">{post.snippet}</li>
@@ -69,7 +71,7 @@ export default ({ data, pageContext }) => {
 						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
 							{data.site.siteMetadata.author}
 						</a>
-						<img class="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+						<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
 						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/wrote/${post.slug}`}>
 							Journal permalink
 						</a>
@@ -101,24 +103,22 @@ export const query = graphql`
 			}
 		}
 		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
-			edges {
-				node {
-					wmTarget
-					wmSource
-					wmProperty
-					wmId
-					type
+			nodes {
+				wmTarget
+				wmSource
+				wmProperty
+				type
+				url
+				likeOf
+				author {
 					url
-					likeOf
-					author {
-						url
-						type
-						photo
-						name
-					}
-					content {
-						text
-					}
+					photo
+					name
+				}
+				published
+				content {
+					text
+					html
 				}
 			}
 		}
