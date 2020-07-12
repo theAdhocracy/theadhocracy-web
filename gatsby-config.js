@@ -48,7 +48,7 @@ module.exports = {
 				mentions: true,
 				pingbacks: true,
 				domain: "theadhocracy.co.uk",
-				token: process.env.GATSNY_WEBMENTION_TOKEN
+				token: process.env.GATSBY_WEBMENTION_TOKEN
 			}
 		},
 		{

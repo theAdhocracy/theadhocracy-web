@@ -86,7 +86,7 @@ export default ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-	query($slug: String!) {
+	query($slug: String!, $url: String!) {
 		notes(slug: { eq: $slug }) {
 			title
 			body
@@ -103,6 +103,28 @@ export const query = graphql`
 			siteMetadata {
 				author
 				siteUrl
+			}
+		}
+		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
+			edges {
+				node {
+					wmTarget
+					wmSource
+					wmProperty
+					wmId
+					type
+					url
+					likeOf
+					author {
+						url
+						type
+						photo
+						name
+					}
+					content {
+						text
+					}
+				}
 			}
 		}
 	}

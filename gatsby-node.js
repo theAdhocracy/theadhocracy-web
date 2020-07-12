@@ -379,6 +379,7 @@ exports.createPages = ({ graphql, actions }) => {
 			}
 		}
 	`).then((result) => {
+		const baseUrl = "https://theadhocracy.co.uk"
 		// Create articles
 		const posts = result.data.allArticle.nodes
 		posts.forEach(({ slug }, index) => {
@@ -389,6 +390,7 @@ exports.createPages = ({ graphql, actions }) => {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
 					slug: slug,
+					url: `${baseUrl}/wrote/${slug}`,
 					next: index === 0 ? null : { slug: posts[index - 1].slug, title: posts[index - 1].title, desc: posts[index - 1].snippet },
 					prev: index === posts.length - 1 ? null : { slug: posts[index + 1].slug, title: posts[index + 1].title, desc: posts[index + 1].snippet }
 				}
@@ -422,6 +424,7 @@ exports.createPages = ({ graphql, actions }) => {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
 					slug: slug,
+					url: `${baseUrl}/wrote/${slug}`,
 					next: index === 0 ? null : { slug: journals[index - 1].slug, title: journals[index - 1].title, desc: journals[index - 1].snippet },
 					prev: index === journals.length - 1 ? null : { slug: journals[index + 1].slug, title: journals[index + 1].title, desc: journals[index + 1].snippet }
 				}
@@ -454,6 +457,7 @@ exports.createPages = ({ graphql, actions }) => {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
 					slug: slug,
+					url: `${baseUrl}/note/${slug}`,
 					next: index === 0 ? null : { slug: notes[index - 1].slug, title: notes[index - 1].title, desc: notes[index - 1].snippet },
 					prev: index === notes.length - 1 ? null : { slug: notes[index + 1].slug, title: notes[index + 1].title, desc: notes[index + 1].snippet }
 				}
@@ -485,7 +489,8 @@ exports.createPages = ({ graphql, actions }) => {
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					url: `${baseUrl}/review/${type}/${slug}`
 				}
 			})
 		})
@@ -515,7 +520,8 @@ exports.createPages = ({ graphql, actions }) => {
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					url: `${baseUrl}/review/collection/${slug}`
 				}
 			})
 		})
@@ -529,7 +535,8 @@ exports.createPages = ({ graphql, actions }) => {
 				context: {
 					// Data passed to context is available
 					// in page queries as GraphQL variables.
-					slug: slug
+					slug: slug,
+					url: `${baseUrl}/review/series/${type}/${slug}`
 				}
 			})
 		})
