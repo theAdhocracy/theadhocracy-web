@@ -20,22 +20,30 @@ export default ({ data, pageContext }) => {
 						{post.updated && post.updated !== post.date ? (
 							<>
 								<li>Updated</li>
-								<li className="dt-updated">{post.updated}</li>
+								<li>
+									<time className="dt-updated" dateTime={new Date(`${post.updated} 12:00 GMT`).toISOString()}>
+										{post.updated}
+									</time>
+								</li>
 							</>
 						) : (
 							""
 						)}
 						<li>Published</li>
-						<li className="dt-published">{post.date}</li>
+						<li>
+							<time className="dt-published" dateTime={new Date(`${post.date} 12:00 GMT`).toISOString()}>
+								{post.date}
+							</time>
+						</li>
 						<li>Categories</li>
 						<li>
 							{post.categories.map((category, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=&filter=${category}`} key={index}>
+									<Link to={`/search/?query=&filter=${category}`} key={index} className="p-category">
 										{category},
 									</Link>
 								) : (
-									<Link to={`/search/?query=&filter=${category}`} key={index}>
+									<Link to={`/search/?query=&filter=${category}`} key={index} className="p-category">
 										{category}
 									</Link>
 								)
@@ -45,11 +53,11 @@ export default ({ data, pageContext }) => {
 						<li>
 							{post.tags.map((tag, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag},
 									</Link>
 								) : (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag}
 									</Link>
 								)
@@ -82,6 +90,15 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} key={index} dangerouslySetInnerHTML={{ __html: footnote.replace(/<\/(li|p)>(?![^]*<\/(li|p)>)/im, ' <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></$1>') }} />
 						})}
 					</section>
+					<section className="microformats">
+						<ul>
+							<li className="p-summary">{post.snippet}</li>
+						</ul>
+						<a className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
+							{data.site.siteMetadata.author}
+						</a>
+						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/wrote/${post.slug}`} />
+					</section>
 				</article>
 			</main>
 		</Layout>
@@ -104,6 +121,12 @@ export const query = graphql`
 			tags
 			date(formatString: "DD MMMM YYYY")
 			updated(formatString: "DD MMMM YYYY")
+		}
+		site {
+			siteMetadata {
+				author
+				siteUrl
+			}
 		}
 	}
 `

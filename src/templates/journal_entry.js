@@ -20,8 +20,8 @@ export default ({ data, pageContext }) => {
 						{post.updated && post.updated !== post.date ? (
 							<>
 								<li>Updated</li>
-								<li className="dt-updated">
-									<time className="dt-published" dateTime={new Date(`${post.updated} 12:00 GMT`).toISOString()}>
+								<li>
+									<time className="dt-updated" dateTime={new Date(`${post.updated} 12:00 GMT`).toISOString()}>
 										{post.updated}
 									</time>
 								</li>

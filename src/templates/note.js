@@ -28,17 +28,21 @@ export default ({ data, pageContext }) => {
 								</span>
 							</a>
 						</li>
-						<li className="dt-published">Published</li>
-						<li>{note.date}</li>
+						<li>Published</li>
+						<li>
+							<time className="dt-published" dateTime={new Date(`${note.date} 12:00 GMT`).toISOString()}>
+								{note.date}
+							</time>
+						</li>
 						<li>Categories</li>
 						<li>
 							{note.categories.map((category, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=&filter=${category}`} key={index}>
+									<Link to={`/search/?query=&filter=${category}`} key={index} className="p-category">
 										{category},
 									</Link>
 								) : (
-									<Link to={`/search/?query=&filter=${category}`} key={index}>
+									<Link to={`/search/?query=&filter=${category}`} key={index} className="p-category">
 										{category}
 									</Link>
 								)
@@ -48,11 +52,11 @@ export default ({ data, pageContext }) => {
 						<li>
 							{note.tags.map((tag, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag},
 									</Link>
 								) : (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag}
 									</Link>
 								)
@@ -61,6 +65,19 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Notes" url="note" />
+					<section className="microformats">
+						<ul>
+							<li className="p-summary">{note.snippet}</li>
+							<li>
+								<time className="dt-updated" dateTime={new Date(`${note.updated} 12:00 GMT`).toISOString()}>
+									{note.updated}
+								</time>
+							</li>
+						</ul>
+						<a className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
+							{data.site.siteMetadata.author}
+						</a>
+					</section>
 				</article>
 			</main>
 		</Layout>
@@ -80,6 +97,12 @@ export const query = graphql`
 			updated(formatString: "DD MMMM YYYY")
 			attribution
 			source
+		}
+		site {
+			siteMetadata {
+				author
+				siteUrl
+			}
 		}
 	}
 `
