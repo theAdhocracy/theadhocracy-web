@@ -38,6 +38,20 @@ module.exports = {
 			}
 		},
 		{
+			resolve: `gatsby-plugin-webmention`,
+			options: {
+				username: "theadhocracy.co.uk", // webmention.io username
+				identity: {
+					github: "theAdhocracy",
+					twitter: "theAdhocracy" // no @
+				},
+				mentions: true,
+				pingbacks: true,
+				domain: "theadhocracy.co.uk",
+				token: process.env.GATSNY_WEBMENTION_TOKEN
+			}
+		},
+		{
 			resolve: `gatsby-plugin-feed`,
 			options: {
 				query: `
