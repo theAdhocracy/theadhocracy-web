@@ -21,15 +21,18 @@ const Conversation = ({ url, mentions }) => {
 
 				return (
 					<article>
+						<img src={mention.author.photo || defaultImage} alt="" />
 						<header>
-							<img src={mention.author.photo || defaultImage} alt="" />
 							<h2>{mention.author.name || "Reply"}</h2>
+							<a href={mention.wmSource}>{website}</a>
+						</header>
+						<section>{mention.content.html ? <div dangerouslySetInnerHTML={{ __html: mention.content.html }} /> : <p>{mention.content.text}</p>}</section>
+						<footer>
+							<p>📅</p>
 							<p>
 								<time dateTime={mention.published}>{`${date} ${time}`}</time>
 							</p>
-							<a href={mention.wmSource}>{website}</a>
-						</header>
-						{mention.content.html ? <div dangerouslySetInnerHTML={{ __html: mention.content.html }} /> : <p>{mention.content.text}</p>}
+						</footer>
 					</article>
 				)
 			})}
