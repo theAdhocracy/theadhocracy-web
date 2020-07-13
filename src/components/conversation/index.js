@@ -28,7 +28,11 @@ const Conversation = ({ url, mentions }) => {
 						</header>
 						<section>{mention.content.html ? <div dangerouslySetInnerHTML={{ __html: mention.content.html }} /> : <p>{mention.content.text}</p>}</section>
 						<footer>
-							<p>📅</p>
+							<p>
+								<span role="img" aria-label="Date posted">
+									📅
+								</span>
+							</p>
 							<p>
 								<time dateTime={mention.published}>{`${date} ${time}`}</time>
 							</p>
