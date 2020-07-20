@@ -60,7 +60,7 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} key={index} />
 						})}
 					</section>
-					<Conversation url={pageContext.url} mentions={data.allWebMentionEntry.nodes} />
+					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
 							<li className="p-summary">{post.snippet}</li>
