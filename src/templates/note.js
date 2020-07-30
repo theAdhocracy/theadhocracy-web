@@ -78,6 +78,9 @@ export default ({ data, pageContext }) => {
 						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
 							{data.site.siteMetadata.author}
 						</a>
+						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/note/${note.slug}`}>
+							Journal permalink
+						</a>
 					</section>
 				</article>
 			</main>
