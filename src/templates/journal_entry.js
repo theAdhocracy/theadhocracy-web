@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
+import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
 import "../styles/article.css"
 
@@ -20,22 +21,30 @@ export default ({ data, pageContext }) => {
 						{post.updated && post.updated !== post.date ? (
 							<>
 								<li>Updated</li>
-								<li className="dt-updated">{post.updated}</li>
+								<li>
+									<time className="dt-updated" dateTime={new Date(`${post.updated} 12:00 GMT`).toISOString()}>
+										{post.updated}
+									</time>
+								</li>
 							</>
 						) : (
 							""
 						)}
 						<li>Published</li>
-						<li className="dt-published">{post.date}</li>
+						<li>
+							<time className="dt-published" dateTime={new Date(`${post.date} 12:00 GMT`).toISOString()}>
+								{post.date}
+							</time>
+						</li>
 						<li>Tags</li>
 						<li>
 							{post.tags.map((tag, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag},
 									</Link>
 								) : (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag}
 									</Link>
 								)
@@ -51,6 +60,22 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} key={index} />
 						})}
 					</section>
+					<Conversation webmentions={data.allWebMentionEntry.nodes} />
+					<section className="microformats">
+						<ul>
+							<li className="p-summary">{post.snippet}</li>
+							{post.categories.map((tag) => (
+								<li className="p-category">{tag}</li>
+							))}
+						</ul>
+						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
+							{data.site.siteMetadata.author}
+							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+						</a>
+						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/wrote/${post.slug}`}>
+							Journal permalink
+						</a>
+					</section>
 				</article>
 			</main>
 		</Layout>
@@ -58,7 +83,7 @@ export default ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-	query($slug: String!) {
+	query($slug: String!, $url: String!) {
 		journals(slug: { eq: $slug }) {
 			title
 			snippet
@@ -66,8 +91,36 @@ export const query = graphql`
 			footnotes
 			tags
 			silo
+			categories
+			slug
 			date(formatString: "DD MMMM YYYY")
 			updated(formatString: "DD MMMM YYYY")
+		}
+		site {
+			siteMetadata {
+				author
+				siteUrl
+			}
+		}
+		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
+			nodes {
+				wmTarget
+				wmSource
+				wmProperty
+				type
+				url
+				likeOf
+				author {
+					url
+					photo
+					name
+				}
+				published
+				content {
+					text
+					html
+				}
+			}
 		}
 	}
 `

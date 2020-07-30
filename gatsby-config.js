@@ -16,7 +16,7 @@ module.exports = {
 		siteUrl: `https://theadhocracy.co.uk`,
 		siteImage: `https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg`,
 		twitterHandle: `@theAdhocracy`,
-		version: `3.4.3`
+		version: `3.5.0`
 	},
 	plugins: [
 		{
@@ -35,6 +35,20 @@ module.exports = {
 				apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
 				queries,
 				chunkSize: 10000
+			}
+		},
+		{
+			resolve: `gatsby-plugin-webmention`,
+			options: {
+				username: "theadhocracy.co.uk", // webmention.io username
+				identity: {
+					github: "theAdhocracy",
+					twitter: "theAdhocracy" // no @
+				},
+				mentions: true,
+				pingbacks: true,
+				domain: "theadhocracy.co.uk",
+				token: process.env.GATSBY_WEBMENTION_TOKEN
 			}
 		},
 		{

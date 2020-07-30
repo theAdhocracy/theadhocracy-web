@@ -21,24 +21,28 @@ export default ({ data, pageContext }) => {
 					<ul className="article-details left-side">
 						<li>Source</li>
 						<li className="h-cite">
-							<a className="u-url" href={note.source}>
+							<a className="u-bookmark-of" href={note.source}>
 								Link to Original{" "}
 								<span role="img" title="Permalink to note" aria-label="Link icon">
 									🔗
 								</span>
 							</a>
 						</li>
-						<li className="dt-published">Published</li>
-						<li>{note.date}</li>
+						<li>Published</li>
+						<li>
+							<time className="dt-published" dateTime={new Date(`${note.date} 12:00 GMT`).toISOString()}>
+								{note.date}
+							</time>
+						</li>
 						<li>Categories</li>
 						<li>
 							{note.categories.map((category, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=&filter=${category}`} key={index}>
+									<Link to={`/search/?query=&filter=${category}`} key={index} className="p-category">
 										{category},
 									</Link>
 								) : (
-									<Link to={`/search/?query=&filter=${category}`} key={index}>
+									<Link to={`/search/?query=&filter=${category}`} key={index} className="p-category">
 										{category}
 									</Link>
 								)
@@ -48,11 +52,11 @@ export default ({ data, pageContext }) => {
 						<li>
 							{note.tags.map((tag, index, array) =>
 								index < array.length - 1 ? (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag},
 									</Link>
 								) : (
-									<Link to={`/search/?query=${tag}`} key={index}>
+									<Link to={`/search/?query=${tag}`} key={index} className="p-category">
 										{tag}
 									</Link>
 								)
@@ -61,6 +65,23 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Notes" url="note" />
+					<section className="microformats">
+						<ul>
+							<li className="p-summary">{note.snippet}</li>
+							<li>
+								<time className="dt-updated" dateTime={new Date(`${note.updated} 12:00 GMT`).toISOString()}>
+									{note.updated}
+								</time>
+							</li>
+						</ul>
+						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
+							{data.site.siteMetadata.author}
+							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+						</a>
+						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/note/${note.slug}`}>
+							Journal permalink
+						</a>
+					</section>
 				</article>
 			</main>
 		</Layout>
@@ -68,7 +89,7 @@ export default ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-	query($slug: String!) {
+	query($slug: String!, $url: String!) {
 		notes(slug: { eq: $slug }) {
 			title
 			body
@@ -80,6 +101,33 @@ export const query = graphql`
 			updated(formatString: "DD MMMM YYYY")
 			attribution
 			source
+			slug
+		}
+		site {
+			siteMetadata {
+				author
+				siteUrl
+			}
+		}
+		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
+			nodes {
+				wmTarget
+				wmSource
+				wmProperty
+				wmId
+				type
+				url
+				likeOf
+				author {
+					url
+					type
+					photo
+					name
+				}
+				content {
+					text
+				}
+			}
 		}
 	}
 `
