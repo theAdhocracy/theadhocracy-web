@@ -75,7 +75,27 @@
 	margin: 0;
 }
 
+.conversation .interactions h3 {
+	margin-top: 0;
+}
+
 /* Tablet Breakpoints */
+
+@media screen and (min-width: 400px) {
+	.conversation .interactions {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		place-content: start;
+		max-width: var(--main);
+	}
+
+	.conversation .interactions > * {
+		margin: 0;
+	}
+}
+
+/* Desktop Breakpoints */
 
 @media screen and (min-width: 1425px) {
 	.conversation {
