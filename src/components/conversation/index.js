@@ -18,6 +18,23 @@ const Conversation = ({ webmentions }) => {
 		return array[Math.floor(Math.random() * array.length)]
 	}
 
+	const testFace = [
+		{
+			wmSource: "https://test.com",
+			wmProperty: "like-of",
+			author: {
+				name: "Murray"
+			}
+		},
+		{
+			wmSource: "https://test2.com",
+			wmProperty: "bookmark-of",
+			author: {
+				name: "Rodsger"
+			}
+		}
+	]
+
 	return (
 		<section className={styles.conversation}>
 			<h2>Conversation</h2>

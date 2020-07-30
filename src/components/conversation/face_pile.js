@@ -24,10 +24,11 @@ const FacePile = ({ pile, defaultFace, defaultImages }) => {
 	return (
 		<Pile>
 			{pile.map((face) => {
+				const type = face.wmProperty.toLowerCase().replace("-of", "")
 				return (
-					<li>
-						<a href={face.wmSource}>
-							<img src={face.author.photo || defaultFace(defaultImages)} alt="" />
+					<li className={`p-${type} h-cite`}>
+						<a className="u-url h-card p-author" href={face.wmSource}>
+							<img src={face.author.photo || defaultFace(defaultImages)} alt={face.author.name} className="u-photo" />
 						</a>
 					</li>
 				)
