@@ -106,24 +106,22 @@ export const query = graphql`
 			}
 		}
 		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
-			edges {
-				node {
-					wmTarget
-					wmSource
-					wmProperty
-					wmId
-					type
+			nodes {
+				wmTarget
+				wmSource
+				wmProperty
+				wmId
+				type
+				url
+				likeOf
+				author {
 					url
-					likeOf
-					author {
-						url
-						type
-						photo
-						name
-					}
-					content {
-						text
-					}
+					type
+					photo
+					name
+				}
+				content {
+					text
 				}
 			}
 		}
