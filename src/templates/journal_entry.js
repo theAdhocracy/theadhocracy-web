@@ -104,9 +104,11 @@ export const query = graphql`
 		}
 		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
 			nodes {
+				id
 				wmTarget
 				wmSource
 				wmProperty
+				wmReceived
 				type
 				url
 				likeOf

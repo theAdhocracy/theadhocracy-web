@@ -111,21 +111,23 @@ export const query = graphql`
 		}
 		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
 			nodes {
+				id
 				wmTarget
 				wmSource
 				wmProperty
-				wmId
+				wmReceived
 				type
 				url
 				likeOf
 				author {
 					url
-					type
 					photo
 					name
 				}
+				published
 				content {
 					text
+					html
 				}
 			}
 		}

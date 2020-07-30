@@ -54,7 +54,7 @@ const Conversation = ({ webmentions }) => {
 			)}
 			<h3>Want to take part?</h3>
 			<p>
-				These comments are powered by <a href="https://indieweb.org/Webmention">Webmentions</a>; if you know what that means, do your thing 👍
+				Comments are powered by <a href="https://indieweb.org/Webmention">Webmentions</a>; if you know what that means, do your thing 👍
 			</p>
 			{comments.map((mention) => {
 				// Date and time
@@ -62,17 +62,24 @@ const Conversation = ({ webmentions }) => {
 				const date = new Date(pubDate).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
 				const time = new Date(pubDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })
 
+				console.log(pubDate)
+
 				// Source
 				const website = mention.wmSource.replace(/^[https:]*\/\/([^/]*)\/.*/i, "$1")
 
+				// Unique ID
+				const id = `comment_${mention.id.replace(/[a-z_]*/i, "")}`
+
 				return (
-					<article>
-						<img src={mention.author.photo || randomImage(defaultImageArray)} alt="" />
-						<header>
-							<h2>{mention.author.name || "Reply"}</h2>
-							<a href={mention.wmSource}>{website}</a>
+					<article id={id} className="h-entry p-comment h-cite">
+						<img className="u-photo" src={mention.author.photo || randomImage(defaultImageArray)} alt="" />
+						<header className="p-author">
+							<h2 className="p-name">{mention.author.name || "Reply"}</h2>
+							<a className="u-url" href={mention.wmSource}>
+								{website}
+							</a>
 						</header>
-						<section>{mention.content.html ? <div dangerouslySetInnerHTML={{ __html: mention.content.html }} /> : <p>{mention.content.text}</p>}</section>
+						<section className="e-content">{mention.content.html ? <div dangerouslySetInnerHTML={{ __html: mention.content.html }} /> : <p>{mention.content.text}</p>}</section>
 						<footer>
 							<p>
 								<span role="img" aria-label="Date posted">
@@ -80,7 +87,7 @@ const Conversation = ({ webmentions }) => {
 								</span>
 							</p>
 							<p>
-								<time dateTime={mention.published}>{`${date} ${time}`}</time>
+								<time className="dt-published" dateTime={pubDate}>{`${date} ${time}`}</time>
 							</p>
 						</footer>
 					</article>
