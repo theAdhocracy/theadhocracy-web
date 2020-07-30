@@ -16,7 +16,7 @@ module.exports = {
 		siteUrl: `https://theadhocracy.co.uk`,
 		siteImage: `https://cms.theadhocracy.co.uk/assets/theadhocracy/website/Logos/adhoc-face.svg`,
 		twitterHandle: `@theAdhocracy`,
-		version: `3.5.0`
+		version: `3.5.1`
 	},
 	plugins: [
 		{
