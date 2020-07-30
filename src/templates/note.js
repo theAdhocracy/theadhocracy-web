@@ -101,6 +101,7 @@ export const query = graphql`
 			updated(formatString: "DD MMMM YYYY")
 			attribution
 			source
+			slug
 		}
 		site {
 			siteMetadata {

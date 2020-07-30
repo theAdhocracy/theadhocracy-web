@@ -126,6 +126,7 @@ export const query = graphql`
 			tags
 			date(formatString: "DD MMMM YYYY")
 			updated(formatString: "DD MMMM YYYY")
+			slug
 		}
 		site {
 			siteMetadata {
