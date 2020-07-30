@@ -98,8 +98,8 @@ export default ({ data, pageContext }) => {
 						</ul>
 						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
 							{data.site.siteMetadata.author}
+							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
 						</a>
-						<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
 						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/wrote/${post.slug}`}>
 							Article permalink
 						</a>

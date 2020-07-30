@@ -74,9 +74,9 @@ export default ({ data, pageContext }) => {
 								</time>
 							</li>
 						</ul>
-						<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
 						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
 							{data.site.siteMetadata.author}
+							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
 						</a>
 						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/note/${note.slug}`}>
 							Journal permalink
