@@ -1,6 +1,7 @@
 import React from "react"
 
 // import CommentForm from "./comment_form"
+import FacePile from "./face_pile"
 import styles from "./conversation.module.css"
 
 const Conversation = ({ webmentions }) => {
@@ -16,6 +17,21 @@ const Conversation = ({ webmentions }) => {
 	const randomImage = (array) => {
 		return array[Math.floor(Math.random() * array.length)]
 	}
+
+	const testFace = [
+		{
+			wmSource: "test.com",
+			author: {
+				name: "Murray"
+			}
+		},
+		{
+			wmSource: "test2.com",
+			author: {
+				name: "Rodsger"
+			}
+		}
+	]
 
 	return (
 		<section className={styles.conversation}>
@@ -34,8 +50,10 @@ const Conversation = ({ webmentions }) => {
 							)
 						})}
 					</ul>
+					<FacePile pile={likes} defaultFace={randomImage} />
 				</>
 			)}
+			<FacePile pile={testFace} defaultFace={randomImage} defaultImages={defaultImageArray} />
 			{bookmarks.length > 0 && (
 				<>
 					<h3>Bookmarks</h3>
