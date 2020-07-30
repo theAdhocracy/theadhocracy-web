@@ -18,23 +18,6 @@ const Conversation = ({ webmentions }) => {
 		return array[Math.floor(Math.random() * array.length)]
 	}
 
-	const testFace = [
-		{
-			wmSource: "https://test.com",
-			wmProperty: "like-of",
-			author: {
-				name: "Murray"
-			}
-		},
-		{
-			wmSource: "https://test2.com",
-			wmProperty: "bookmark-of",
-			author: {
-				name: "Rodsger"
-			}
-		}
-	]
-
 	return (
 		<section className={styles.conversation}>
 			<h2>Conversation</h2>
@@ -63,8 +46,6 @@ const Conversation = ({ webmentions }) => {
 				const pubDate = mention.published ? mention.published : mention.wmReceived
 				const date = new Date(pubDate).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
 				const time = new Date(pubDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })
-
-				console.log(pubDate)
 
 				// Source
 				const website = mention.wmSource.replace(/^[https:]*\/\/([^/]*)\/.*/i, "$1")
