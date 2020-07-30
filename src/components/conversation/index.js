@@ -18,57 +18,24 @@ const Conversation = ({ webmentions }) => {
 		return array[Math.floor(Math.random() * array.length)]
 	}
 
-	const testFace = [
-		{
-			wmSource: "test.com",
-			author: {
-				name: "Murray"
-			}
-		},
-		{
-			wmSource: "test2.com",
-			author: {
-				name: "Rodsger"
-			}
-		}
-	]
-
 	return (
 		<section className={styles.conversation}>
 			<h2>Conversation</h2>
-			{likes.length > 0 && (
-				<>
-					<h3>Likes</h3>
-					<ul>
-						{likes.map((like) => {
-							return (
-								<li>
-									<a href={like.wmSource}>
-										<img src={like.author.photo || randomImage(defaultImageArray)} alt="" />
-									</a>
-								</li>
-							)
-						})}
-					</ul>
-					<FacePile pile={likes} defaultFace={randomImage} />
-				</>
-			)}
-			<FacePile pile={testFace} defaultFace={randomImage} defaultImages={defaultImageArray} />
-			{bookmarks.length > 0 && (
-				<>
-					<h3>Bookmarks</h3>
-					<ul>
-						{bookmarks.map((bookmark) => {
-							return (
-								<li>
-									<a href={bookmark.wmSource}>
-										<img src={bookmark.author.photo || randomImage(defaultImageArray)} alt="" />
-									</a>
-								</li>
-							)
-						})}
-					</ul>
-				</>
+			{(likes.length > 0 || bookmarks.length > 0) && (
+				<section className={styles.interactions}>
+					{likes.length > 0 && (
+						<div>
+							<h3>Likes</h3>
+							<FacePile pile={likes} defaultFace={randomImage} defaultImages={defaultImageArray} />
+						</div>
+					)}
+					{bookmarks.length > 0 && (
+						<div>
+							<h3>Bookmarks</h3>
+							<FacePile pile={bookmarks} defaultFace={randomImage} defaultImages={defaultImageArray} />
+						</div>
+					)}
+				</section>
 			)}
 			<h3>Want to take part?</h3>
 			<p>
