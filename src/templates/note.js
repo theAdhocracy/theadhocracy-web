@@ -21,7 +21,7 @@ export default ({ data, pageContext }) => {
 				<article className="full-width">
 					<ul className="article-details left-side">
 						<li>Source</li>
-						<li className="h-cite">
+						<li>
 							<a className="u-bookmark-of" href={note.source}>
 								Link to Original{" "}
 								<span role="img" title="Permalink to note" aria-label="Link icon">
