@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 import Discovery from "../components/discovery"
+import RelatedContent from "../components/related_content"
 import "../styles/article.css"
 
 export default ({ data, pageContext }) => {
@@ -20,7 +21,7 @@ export default ({ data, pageContext }) => {
 				<article className="full-width">
 					<ul className="article-details left-side">
 						<li>Source</li>
-						<li className="h-cite">
+						<li>
 							<a className="u-bookmark-of" href={note.source}>
 								Link to Original{" "}
 								<span role="img" title="Permalink to note" aria-label="Link icon">
@@ -64,6 +65,7 @@ export default ({ data, pageContext }) => {
 						</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
+					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
 					<Discovery context={pageContext} title="Notes" url="note" />
 					<section className="microformats">
 						<ul>
@@ -73,11 +75,13 @@ export default ({ data, pageContext }) => {
 									{note.updated}
 								</time>
 							</li>
+							<li className="h-card">
+								<a rel="author" className="p-name p-author u-url" href={data.site.siteMetadata.siteUrl}>
+									{data.site.siteMetadata.author}
+								</a>
+								<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+							</li>
 						</ul>
-						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
-							{data.site.siteMetadata.author}
-							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
-						</a>
 						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/note/${note.slug}`}>
 							Journal permalink
 						</a>
@@ -128,6 +132,9 @@ export const query = graphql`
 				content {
 					text
 					html
+				}
+				summary {
+					value
 				}
 			}
 		}

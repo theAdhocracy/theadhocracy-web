@@ -1,15 +1,14 @@
 import React from "react"
 
-// import CommentForm from "./comment_form"
 import FacePile from "./face_pile"
 import styles from "./conversation.module.css"
 
 const Conversation = ({ webmentions }) => {
-	// Filter webmentions based on type
+	// Filter webmentions based on type (apart from self-links)
 	const likes = webmentions.filter((mention) => mention.wmProperty === "like-of")
 	const replies = webmentions.filter((mention) => mention.wmProperty === "in-reply-to")
 	const bookmarks = webmentions.filter((mention) => mention.wmProperty === "bookmark-of" || mention.wmProperty === "repost-of")
-	const mentions = webmentions.filter((mention) => mention.wmProperty === "mention-of")
+	const mentions = webmentions.filter((mention) => mention.wmProperty === "mention-of" && !mention.wmSource.includes("theadhocracy.co.uk"))
 	const comments = replies.concat(mentions)
 
 	// Default image

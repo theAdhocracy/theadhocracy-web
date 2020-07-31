@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 
 import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
+import RelatedContent from "../components/related_content"
 import "../styles/article.css"
 
 export default ({ data, pageContext }) => {
@@ -60,6 +61,7 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} dangerouslySetInnerHTML={{ __html: footnote.replace(/^<p>(.*)<\/p>$/gi, '<p>$1 <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></p>') }} key={index} />
 						})}
 					</section>
+					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
 					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
@@ -67,11 +69,13 @@ export default ({ data, pageContext }) => {
 							{post.categories.map((tag) => (
 								<li className="p-category">{tag}</li>
 							))}
+							<li className="h-card">
+								<a rel="author" className="p-name p-author u-url" href={data.site.siteMetadata.siteUrl}>
+									{data.site.siteMetadata.author}
+								</a>
+								<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+							</li>
 						</ul>
-						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
-							{data.site.siteMetadata.author}
-							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
-						</a>
 						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/wrote/${post.slug}`}>
 							Journal permalink
 						</a>

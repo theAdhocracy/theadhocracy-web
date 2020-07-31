@@ -4,6 +4,9 @@ import { Link } from "gatsby"
 import styles from "./discovery.module.css"
 
 const Discovery = ({ context, title, url }) => {
+	// Determine if note or article
+	const type = url === "note" ? "Note" : "Article"
+
 	return (
 		<section className={styles.discovery}>
 			<h2>Explore Other {title}</h2>
@@ -27,7 +30,7 @@ const Discovery = ({ context, title, url }) => {
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}
-								Read Article
+								Read {type}
 							</Link>
 						</footer>
 					</article>
@@ -53,7 +56,7 @@ const Discovery = ({ context, title, url }) => {
 								<span role="img" aria-label="Book icon">
 									📖
 								</span>{" "}
-								Read Article
+								Read {type}
 							</Link>
 						</footer>
 					</article>
