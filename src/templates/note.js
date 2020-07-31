@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 
 import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
+import RelatedContent from "../components/related_content"
 import "../styles/article.css"
 
 export default ({ data, pageContext }) => {
@@ -65,8 +66,8 @@ export default ({ data, pageContext }) => {
 						</li>
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
+					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
 					<Discovery context={pageContext} title="Notes" url="note" />
-					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
 							<li className="p-summary">{note.snippet}</li>
@@ -132,6 +133,9 @@ export const query = graphql`
 				content {
 					text
 					html
+				}
+				summary {
+					value
 				}
 			}
 		}
