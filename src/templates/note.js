@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
+import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
 import "../styles/article.css"
 
@@ -65,6 +66,7 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Notes" url="note" />
+					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
 							<li className="p-summary">{note.snippet}</li>
@@ -73,11 +75,13 @@ export default ({ data, pageContext }) => {
 									{note.updated}
 								</time>
 							</li>
+							<li className="h-card">
+								<a rel="author" className="p-name p-author u-url" href={data.site.siteMetadata.siteUrl}>
+									{data.site.siteMetadata.author}
+								</a>
+								<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
+							</li>
 						</ul>
-						<a rel="author" className="p-author h-card" href={data.site.siteMetadata.siteUrl}>
-							{data.site.siteMetadata.author}
-							<img className="u-photo" src="https://cms.theadhocracy.co.uk/assets/theadhocracy/website/murray-headshot-square.jpg" alt="Murray Adcock." />
-						</a>
 						<a className="u-url" href={`${data.site.siteMetadata.siteUrl}/note/${note.slug}`}>
 							Journal permalink
 						</a>
