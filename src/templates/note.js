@@ -2,7 +2,6 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
-import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
 import RelatedContent from "../components/related_content"
 import "../styles/article.css"

@@ -91,40 +91,44 @@ const RelatedContent = ({ webmentions }) => {
 	const related = webmentions.filter((mention) => mention.wmSource.includes("theadhocracy.co.uk"))
 
 	return (
-		<Wrapper>
-			<h2>Related Content</h2>
-			<p>Other articles and notes that cross-link here.</p>
-			{related.map((mention) => {
-				// Date and time
-				const date = new Date(mention.published).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
+		<>
+			{related.length > 0 && (
+				<Wrapper>
+					<h2>Related Content</h2>
+					<p>Other articles and notes that cross-link here.</p>
+					{related.map((mention) => {
+						// Date and time
+						const date = new Date(mention.published).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
 
-				// Extract post content from URL
-				const title = mention.wmSource.replace(/^[https:]*\/\/[^/]*\/[^/]*\/([^/]*)/i, "$1").replace(/-/g, " ")
-				const type = mention.wmSource.replace(/^[https:]*\/\/[^/]*\/([^/]*)\/[^/]*/i, "$1")
+						// Extract post content from URL
+						const title = mention.wmSource.replace(/^[https:]*\/\/[^/]*\/[^/]*\/([^/]*)/i, "$1").replace(/-/g, " ")
+						const type = mention.wmSource.replace(/^[https:]*\/\/[^/]*\/([^/]*)\/[^/]*/i, "$1")
 
-				return (
-					<section>
-						<p>
-							<span role="img" aria-label={type}>
-								{type === "note" ? "🔖" : "📜"}
-							</span>
-						</p>
-						<header>
-							<Link href={mention.wmSource}>
-								<h3>{title}</h3>
-							</Link>
-							<time dateTime={mention.published}>{date}</time>
-						</header>
-						<p dangerouslySetInnerHTML={{ __html: mention.summary.value }} />
-						<Link to={mention.wmSource} className="read_more">
-							<span role="img" aria-label="Read content.">
-								<span>➡</span> 📖
-							</span>{" "}
-						</Link>
-					</section>
-				)
-			})}
-		</Wrapper>
+						return (
+							<section>
+								<p>
+									<span role="img" aria-label={type}>
+										{type === "note" ? "🔖" : "📜"}
+									</span>
+								</p>
+								<header>
+									<Link href={mention.wmSource}>
+										<h3>{title}</h3>
+									</Link>
+									<time dateTime={mention.published}>{date}</time>
+								</header>
+								<p dangerouslySetInnerHTML={{ __html: mention.summary.value }} />
+								<Link to={mention.wmSource} className="read_more">
+									<span role="img" aria-label="Read content.">
+										<span>➡</span> 📖
+									</span>{" "}
+								</Link>
+							</section>
+						)
+					})}
+				</Wrapper>
+			)}
+		</>
 	)
 }
 
