@@ -198,6 +198,8 @@ main.article * {
 	margin-top: 0;
 	padding-left: 0;
 	list-style: none;
+	position: relative;
+	z-index: 1; /* fixes overlap with blockquotes making links unclickable */
 }
 
 .article-details li {
