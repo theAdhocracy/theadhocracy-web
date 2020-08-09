@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
 import RelatedContent from "../components/related_content"
+import Resources from "../components/resources"
 import "../styles/article.css"
 
 export default ({ data, pageContext }) => {
@@ -68,22 +69,7 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Articles" url="wrote" />
-					{resources && (
-						<>
-							<section className="resources">
-								<h2>Further Reading & Sources</h2>
-								<ul>
-									{post.resources.map((item, index) => {
-										return (
-											<li key={index}>
-												<a href={item.url}>{item.title}</a>
-											</li>
-										)
-									})}
-								</ul>
-							</section>
-						</>
-					)}
+					{resources && <Resources resources={post.resources} />}
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
@@ -126,6 +112,9 @@ export const query = graphql`
 			resources {
 				title
 				url
+				author
+				desc
+				type
 			}
 			tags
 			date(formatString: "DD MMMM YYYY")
