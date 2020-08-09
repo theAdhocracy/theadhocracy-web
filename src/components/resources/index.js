@@ -20,7 +20,7 @@ const ResourcesStyles = styled.section`
 	}
 
 	li.resource.like::before {
-		content: "♥";
+		content: "😍";
 	}
 
 	li.resource.noted::before {
@@ -64,7 +64,7 @@ const Resources = ({ resources }) => {
 								<a href={item.url}>{item.title}</a>
 								<span>{item.author}</span>
 							</li>
-							{item.desc && <li className="resource-desc">{item.desc}</li>}
+							{item.desc && <li className="resource-desc">&#11180; {item.desc}</li>}
 						</>
 					)
 				})}
