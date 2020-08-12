@@ -27,7 +27,8 @@ const ResourcesStyles = styled.section`
 		content: "📂";
 	}
 
-	li.resource-desc {
+	.resource-desc {
+		margin: 0;
 		margin-left: 2.1rem;
 		font-style: italic;
 		color: var(--grey);
@@ -60,11 +61,13 @@ const Resources = ({ resources }) => {
 					const type = item.type
 					return (
 						<>
-							<li key={index} className={`resource ${type}`}>
-								<a href={item.url}>{item.title}</a>
-								<span>{item.author}</span>
+							<li key={index} className={`resource ${type} h-entry`}>
+								<a href={item.url} className={`u-${type}-of h-cite p-name`}>
+									{item.title}
+								</a>
+								<span className="p-author">{item.author}</span>
+								{item.desc && <p className="resource-desc e-content">&#11180; {item.desc}</p>}
 							</li>
-							{item.desc && <li className="resource-desc">&#11180; {item.desc}</li>}
 						</>
 					)
 				})}
