@@ -101,7 +101,7 @@ export default ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-	query($slug: String!, $url: String!) {
+	query($slug: String!, $regexUrl: String!) {
 		article(slug: { eq: $slug }) {
 			title
 			snippet
@@ -127,7 +127,7 @@ export const query = graphql`
 				siteUrl
 			}
 		}
-		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
+		allWebMentionEntry(filter: { wmTarget: { regex: $regexUrl } }) {
 			nodes {
 				id
 				wmTarget
