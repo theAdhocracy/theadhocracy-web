@@ -13,6 +13,7 @@ const Pile = styled.ul`
 		width: 3rem;
 		justify-self: flex-start;
 		margin: 0 0 0 -0.5rem;
+		transition: 0.25s;
 	}
 
 	& > li:first-of-type {
