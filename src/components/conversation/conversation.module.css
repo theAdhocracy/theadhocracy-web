@@ -89,6 +89,10 @@
 	.conversation .interactions > * {
 		margin: 0;
 	}
+
+	.conversation .interactions h3 {
+		margin: 0;
+	}
 }
 
 /* Desktop Breakpoints */

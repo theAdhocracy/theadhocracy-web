@@ -70,6 +70,8 @@ export default ({ data, pageContext }) => {
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Articles" url="wrote" />
 					{resources && <Resources resources={post.resources} />}
+					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
+					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
@@ -78,8 +80,6 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} key={index} dangerouslySetInnerHTML={{ __html: footnote.replace(/<\/(li|p)>(?![^]*<\/(li|p)>)/im, ' <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></$1>') }} />
 						})}
 					</section>
-					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
-					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
 							<li className="p-summary">{post.snippet}</li>
