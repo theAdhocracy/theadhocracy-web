@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Conversation from "../components/conversation"
 import Discovery from "../components/discovery"
 import RelatedContent from "../components/related_content"
+import Resources from "../components/resources"
 import "../styles/article.css"
 
 export default ({ data, pageContext }) => {
@@ -68,22 +69,9 @@ export default ({ data, pageContext }) => {
 					</ul>
 					<div id="article-body" className="e-content" dangerouslySetInnerHTML={{ __html: body }} />
 					<Discovery context={pageContext} title="Articles" url="wrote" />
-					{resources && (
-						<>
-							<section className="resources">
-								<h2>Further Reading & Sources</h2>
-								<ul>
-									{post.resources.map((item, index) => {
-										return (
-											<li key={index}>
-												<a href={item.url}>{item.title}</a>
-											</li>
-										)
-									})}
-								</ul>
-							</section>
-						</>
-					)}
+					{resources && <Resources resources={post.resources} />}
+					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
+					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="footnotes">
 						{post.footnotes.length >= 1 ? <h2>Footnotes</h2> : null}
 						{post.footnotes.map((footnote, index) => {
@@ -92,8 +80,6 @@ export default ({ data, pageContext }) => {
 							return <aside id={`footnote${position}`} key={index} dangerouslySetInnerHTML={{ __html: footnote.replace(/<\/(li|p)>(?![^]*<\/(li|p)>)/im, ' <a class="footnote-return" href="#index' + position + '" title="Return to previous location in article.">⬆️</a></$1>') }} />
 						})}
 					</section>
-					<RelatedContent webmentions={data.allWebMentionEntry.nodes} />
-					<Conversation webmentions={data.allWebMentionEntry.nodes} />
 					<section className="microformats">
 						<ul>
 							<li className="p-summary">{post.snippet}</li>
@@ -115,7 +101,7 @@ export default ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-	query($slug: String!, $url: String!) {
+	query($slug: String!, $regexUrl: String!) {
 		article(slug: { eq: $slug }) {
 			title
 			snippet
@@ -126,6 +112,9 @@ export const query = graphql`
 			resources {
 				title
 				url
+				author
+				desc
+				type
 			}
 			tags
 			date(formatString: "DD MMMM YYYY")
@@ -138,7 +127,7 @@ export const query = graphql`
 				siteUrl
 			}
 		}
-		allWebMentionEntry(filter: { wmTarget: { eq: $url } }) {
+		allWebMentionEntry(filter: { wmTarget: { regex: $regexUrl } }) {
 			nodes {
 				id
 				wmTarget
